@@ -84,74 +84,45 @@ $conn->close();
                 <canvas id="myChart2" width="200" height="100"></canvas>
             </div>
             <hr class="linha-horizontal">
-            <div class="col-4"><br>
-                <h4><img src="../assets/img/arquivo.png" width="30px" alt="Ícone de mão dando saudação.">Próximas avaliações</h4>
-                <h6>Acompanhe abaixo suas próximas avaliações da escola.</h6><br>
-                <div class="row">
-                    <div class="col-8">
-                        <h5>Prova de História</h5>
-                        <h6>24/04/2024</h6>
+            <div class="col-6"><br>
+                <h4>Agendar novo evento escolar</h4><br>
+                <form action="processar_formulario.php" method="post">
+                    <label for="nome">Nome/Título do Evento:</label><br>
+                    <input type="text" id="nome" name="nome" required><br><br>
+
+                    <label for="descricao">Descrição do Evento:</label><br>
+                    <textarea id="descricao" name="descricao" rows="4" cols="50" required></textarea><br><br>
+                    <div class="col-3">
+                        <label for="data_inicio">Data de Início:</label><br>
+                        <input type="date" id="data_inicio" name="data_inicio" required><br><br>
                     </div>
-                    <div class="col-4">
-                        <h6>Detalhes</h6>
+                    <div class="col-3">
+                        <label for="data_termino">Data de Término:</label><br>
+                        <input type="date" id="data_termino" name="data_termino" required><br><br>
                     </div>
-                    <hr class="linha-horizontal"><br>
-                </div>
-                <div class="row">
-                    <div class="col-8">
-                        <h5>Prova de Matemática</h5>
-                        <h6>24/04/2024</h6>
-                    </div>
-                    <div class="col-4">
-                        <h6>Detalhes</h6>
-                    </div>
-                    <hr class="linha-horizontal"><br>
-                </div>
+
+                    <input type="submit" value="Agendar Evento">
+                </form>
             </div>
-            <div class="col-4 linha-vertical"><br>
-                <h4><img src="../assets/img/calendario.png" width="30px" alt="Ícone de mão dando saudação."> Agenda escolar</h4>
-                <h6>Visualize o resumo da sua agenda escolar.</h6><br><br>
-                <div class="row">
-                    <div class="col-8">
-                        <h5>Primeira fase da OBMEP</h5>
-                    </div>
-                    <div class="col-4">
-                        <h6>24/04/2024</h6>
-                    </div>
-                    <hr class="linha-horizontal"><br>
-                </div>
-                <div class="row">
-                    <div class="col-8">
-                        <h5>Segunda fase da OBMEP</h5>
-                    </div>
-                    <div class="col-4">
-                        <h6>24/04/2024</h6>
-                    </div>
-                    <hr class="linha-horizontal"><br>
-                </div>
+            <div class="col-6 linha-vertical"><br>
+                <h4>Registrar nova conquista acadêmica</h4><br>
+                <form action="processar_conquista.php" method="post">
+                    <label for="titulo">Nome/Título da Conquista:</label><br>
+                    <input type="text" id="titulo" name="titulo" required><br><br>
+
+                    <label for="descricao">Descrição da Conquista:</label><br>
+                    <textarea id="descricao" name="descricao" rows="4" cols="50" required></textarea><br><br>
+
+                    <label for="data">Data:</label><br>
+                    <input type="date" id="data" name="data" required><br><br>
+
+                    <label for="comentarios">Comentários:</label><br>
+                    <textarea id="comentarios" name="comentarios" rows="4" cols="50"></textarea><br><br>
+
+                    <input type="submit" value="Registrar Conquista">
+                </form>
             </div>
-            <div class="col-4 linha-vertical"><br>
-                <h4><img src="../assets/img/pasta.png" width="30px" alt="Ícone de mão dando saudação."> Materiais de apoio</h4>
-                <h6>Acesse abaixo os recursos educacionais disponíveis. </h6><br>
-                <div class="row">
-                    <div class="col-8">
-                        <h5>Números Naturais</h5>
-                    </div>
-                    <div class="col-4">
-                        <h6>Acessar</h6>
-                    </div>
-                    <hr class="linha-horizontal"><br>
-                </div>
-                <div class="row">
-                    <div class="col-8">
-                        <h5>Números Inteiros</h5>
-                    </div>
-                    <div class="col-4">
-                        <h6>Acessar</h6>
-                    </div>
-                    <hr class="linha-horizontal"><br>
-                </div>
-            </div>
+
         </div>
     </div>
 
