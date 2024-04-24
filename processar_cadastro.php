@@ -1,6 +1,7 @@
 <?php
 
 require_once 'db/config.php';
+
 date_default_timezone_set('America/Sao_Paulo');
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -23,10 +24,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     session_start();
     $_SESSION['dados'] = $user;
-    header('Location: proxima_pagina');
+    header('Location: pages/pagina-inicial-professor.php');
     exit;
 }else{
-    header('Location: cadastroProfessor.php');
+    header('Location: pages/cadastroProfessor.php');
     exit;
 }
 

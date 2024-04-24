@@ -1,5 +1,5 @@
 <?php
-require_once 'db/config.php';
+require_once '../db/config.php';
 ?>
 
 <!DOCTYPE html>
@@ -7,8 +7,8 @@ require_once 'db/config.php';
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
     <title>Cadastro Professor</title>
 </head>
 
@@ -19,12 +19,12 @@ require_once 'db/config.php';
             <!--Lado Esquerdo da tela-->
             <div class="col-md-8">
                 <div class="d-flex justify-content-center">
-                    <img src="assets/img/logo_modo_claro.png" class="img-fluid" alt="Imagem">
+                    <img src="../assets/img/imagem_modo_claro.png" class="img-fluid" alt="Imagem">
 
                 </div>
 
                 <div class="mx-auto">
-                    <form action='processar_cadastro.php' method="POST">
+                    <form action='../processar_cadastro.php' method="POST">
                         <h5>Registre-se, professor!</h5>
 
                         <div class="mt-4">
