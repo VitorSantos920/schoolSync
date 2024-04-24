@@ -28,6 +28,7 @@ $conn->close();
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="icon" href="../assets/img/logo_transparente.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -62,7 +63,7 @@ $conn->close();
             font-family: Poppins;
         }
     </style>
-    <title>Painel do aluno</title>
+    <title>Visualização de aluno</title>
 </head>
 
 <body>
