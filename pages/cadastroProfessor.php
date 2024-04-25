@@ -10,6 +10,50 @@ require_once '../db/config.php';
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/global.css">
     <title>Cadastro Professor</title>
+
+    <style>
+
+    #cabecalho{
+        font-size: var(--fontSize-xl);
+        font-family: var(--fontFamily-poppins);
+        font-weight: var(--fontWeight-bold);
+    }
+
+    .form-label{
+        font-size: var(--fontSize-xs);
+        font-family: var(--fontFamily-poppins);
+        font-weight: var(--fontWeight-regular);
+    }
+
+    .form-control{
+        font-size: var(--fontSize-sm);
+        font-family: var(--fontFamily-roboto);
+        font-weight: var(--fontWeight-regular);
+        border-radius: var(--borderRadius-sm);
+    }
+
+    .btn{
+        border-radius: var(--borderRadius-sm);
+        font-size: var(--fontSize-md);
+        font-family: var(--fontFamily-poppins);
+        font-weight: var(--fontWeight-bold);
+        color: white;
+        background-color: var(--brand-color);
+        box-shadow: var(--boxShadow-base);
+    }
+
+    #ladoDireito{
+        background-color: var(--brand-color);
+    }
+
+    #politicaPrivacidade{
+        font-size: var(--fontSize-sm);
+        font-family: var(--fontFamily-roboto);
+        font-weight: var(--fontWeight-regular);
+    }
+
+    </style>
+
 </head>
 
 <body>
@@ -25,7 +69,7 @@ require_once '../db/config.php';
 
                 <div class="mx-auto">
                     <form action='../processar_cadastro.php' method="POST">
-                        <h5>Registre-se, professor!</h5>
+                        <p id="cabecalho" >Registre-se, professor!</p>
 
                         <div class="mt-4">
                             <label for="nome" class="form-label">Nome</label>
@@ -47,11 +91,11 @@ require_once '../db/config.php';
                             <input type="text" name="cpf" class="form-control" placeholder="123.456.789-10" required>
                         </div>
 
-                        <button class="btn mt-4" type="submit" style="box-shadow: var(--boxShadow-base); background-color: var(--brand-color); color:white">Realizar Cadastro</button>
+                        <button class="btn mt-4" type="submit">Realizar Cadastro</button>
                     </form>
                 </div>
 
-                <div class="container mt-5">
+                <div class="container mt-5" id="politicaPrivacidade">
                     <div class="row">
                         <div class="col-md-6">
                             <p>Termos e Condições</p>
@@ -64,7 +108,7 @@ require_once '../db/config.php';
 
             </div>
             <!--Lado Direito da tela-->
-            <div class="d-flex col-md-4 justify-content-end" style="background-color: var(--brand-color);"></div>
+            <div class="d-flex col-md-4 justify-content-end" id="ladoDireito"></div>
 
         </div>
     </div>
