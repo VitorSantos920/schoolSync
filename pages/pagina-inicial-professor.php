@@ -151,8 +151,8 @@
               <input class="form-control" type="datetime-local" name="data-inicio" id="data-inicio">
             </div>
             <div class="col">
-              <label for="data-inicio" class="form-label">Data de Início</label>
-              <input class="form-control" type="datetime-local" name="data-inicio" id="data-inicio">
+              <label for="data-fim" class="form-label">Data de Término</label>
+              <input class="form-control" type="datetime-local" name="data-fim" id="data-fim">
             </div>
           </fieldset>
           <button type="submit" class="btn btn-success">Agendar Evento</button>
