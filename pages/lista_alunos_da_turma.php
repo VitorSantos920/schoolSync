@@ -1,5 +1,5 @@
 <?php
-require_once 'db/config.php';
+require_once '../db/config.php';
 
 $alunos = DB::query('select * from aluno');
 ?>
@@ -9,8 +9,8 @@ $alunos = DB::query('select * from aluno');
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
     <title>Cadastro Professor</title>
 </head>
 
