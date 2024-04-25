@@ -8,8 +8,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         'nome' => $_POST['nome'],
         'email' => $_POST['email'],
         'senha' => $_POST['senha'],
-        'categoria' => 'professor',
-        'status_user' => 1,
+        'categoria' => 'Professor',
         'created_at' => date('Y-m-d H:i:s')
     ]);
 
