@@ -49,7 +49,7 @@
                   <a href="">Acessar</a>
                 </td>
                 <td>
-                  <button class="btn btn-info">Detalhes</button>
+                  <button class="btn btn-info" onclick="abrirModalDetalhes('')">Detalhes</button>
                 </td>
               </tr>
               <tr>
@@ -58,7 +58,7 @@
                   <a href="">Acessar</a>
                 </td>
                 <td>
-                  <button class="btn btn-info">Detalhes</button>
+                  <button class="btn btn-info" onclick="abrirModalDetalhes('')">Detalhes</button>
                 </td>
               </tr>
               <tr>
@@ -67,7 +67,7 @@
                   <a href="">Acessar</a>
                 </td>
                 <td>
-                  <button class="btn btn-info">Detalhes</button>
+                  <button class="btn btn-info" onclick="abrirModalDetalhes('')">Detalhes</button>
                 </td>
               </tr>
               <tr>
@@ -76,13 +76,48 @@
                   <a href="">Acessar</a>
                 </td>
                 <td>
-                  <button class="btn btn-info">Detalhes</button>
+                  <button class="btn btn-info" onclick="abrirModalDetalhes('')">Detalhes</button>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
         <a href="" class="materiais-apoio__view-all">Visualizar Todos</a>
+
+        <div class="modal fade" id="modalMaterialApoio" tabindex="-1" aria-labelledby="modalMaterialApoio" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title">
+                  <img src="../assets/img/material-apoio.svg" alt="Símbolo de pasta alaranjada dentro de um círculo.">
+                  Material de Apoio #7462
+                </h2>
+              </div>
+              <div class="modal-body">
+                <h3>Números Naturiais</h3>
+
+                <h5>Descrição</h5>
+                <p>Os Números Naturais N = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12...} são numeros inteiros positivos (não-negativos) que se agrupam num conjunto chamado de N, composto de um número ilimitado de elementos. Se um número é inteiro e positivo, podemos dizer que é um número natural.
+                  Quando o zero não faz parte do conjunto, é representado com um asterisco ao lado da letra N e, nesse caso, esse conjunto é denominado de Conjunto dos Números Naturais Não-Nulos: N* = {1, 2, 3, 4, 5, 6, 7, 8, 9...}.</p>
+
+                <h5>Tipo do Material</h5>
+                <p>Site da Internet</p>
+
+                <h5>Escolaridade</h5>
+                <p>2° Ano</p>
+
+                <a href="" class="btn btn-info">
+                  Acessar Material <i class="fa-solid fa-arrow-up-right-from-square" style="color: #ffffff;"></i>
+                </a>
+
+                <p id="created-at">Criado em: 07/04/2024</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
     <div class="vr"></div>
@@ -126,8 +161,10 @@
     </div>
   </main>
 
+  <script src="https://kit.fontawesome.com/4ac8bcd2f5.js" crossorigin="anonymous"></script>
   <script src="../assets/js/jquery.min.js"></script>
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/pages__pagina-inicial-professor.js"></script>
 </body>
 
 </html>
