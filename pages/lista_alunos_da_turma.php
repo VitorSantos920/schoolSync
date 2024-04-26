@@ -10,59 +10,66 @@ $alunos = DB::query('select * from aluno');
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../assets/css/global.css">
 
     <title>Cadastro Professor</title>
 
     <style>
+        #cabecalhoListaAluno {
+            font-size: var(--fontSize-2xl);
+            font-family: var(--fontFamily-poppins);
+            font-weight: var(--fontWeight-bold);
+        }
 
-    #cabecalhoListaAluno{
-        font-size: var(--fontSize-2xl);
-        font-family: var(--fontFamily-poppins);
-        font-weight: var(--fontWeight-bold);
-    }
+        #search {
+            border-radius: var(--borderRadius-xs);
+            font-family: var(--fontFamily-roboto);
+            font-weight: var(--fontWeight-regular);
+        }
 
-    #search{
-        border-radius: var(--borderRadius-xs);
-        font-family: var(--fontFamily-roboto);
-        font-weight: var(--fontWeight-regular);
-    }
+        #tabelaCabecalho {
+            text-align: center;
+            font-size: var(--fontSize-md);
+            font-family: var(--fontFamily-poppins);
+            font-weight: var(--fontWeight-bold);
+        }
 
-    #tabelaCabecalho{
-        font-size: var(--fontSize-md);
-        font-family: var(--fontFamily-poppins);
-        font-weight: var(--fontWeight-bold);
-    }
+        #tabelaCorpo {
+            text-align: center;
+            font-size: var(--fontSize-sm);
+            font-family: var(--fontFamily-roboto);
+            font-weight: var(--fontWeight-regular);
+        }
 
-    #tabelaCorpo{
-        font-size: var(--fontSize-sm);
-        font-family: var(--fontFamily-roboto);
-        font-weight: var(--fontWeight-regular);
-    }
+        .dropdown #btnPrincipal {
+            color: black;
+            font-size: var(--fontSize-xs);
+            font-family: var(--fontFamily-poppins);
+            font-weight: var(--fontWeight-regular);
+            border-radius: var(--borderRadius-xs);
+            background-color: #C9CDD2;
+        }
 
-    .dropdown #btnPrincipal{
-        font-size: var(--fontSize-xs);
-        font-family: var(--fontFamily-poppins);
-        font-weight: var(--fontWeight-regular);
-        border-radius: var(--borderRadius-xs);
-    }
+        .dropdown .dropdown-menu {
+            background-color: #E0E1E2;
+            box-shadow: var(--boxShadow-base);
+        }
 
-    .dropdown .dropdown-menu{
-        box-shadow: var(--boxShadow-base);
-    }
+        .dropdown .dropdown-menu .btn {
+            font-size: var(--fontSize-xxs);
+            font-family: var(--fontFamily-poppins);
+            font-weight: var(--fontWeight-regular);
+            border-radius: var(--borderRadius-xs);
+            background-color: #C8CBD9;
+            margin-left: var(--spacing-10);
+            margin-bottom: var(--spacing-2);
+        }
 
-    .dropdown .dropdown-menu .dropdown-item{
-        font-size: var(--fontSize-xxs);
-        font-family: var(--fontFamily-poppins);
-        font-weight: var(--fontWeight-regular);
-        border-radius: var(--borderRadius-xs);
-    }
-
-    .dropdown .dropdown-menu #deletar{
-        background-color: var(--danger-default);
-    }
-
-</style>
+        .dropdown .dropdown-menu #deletarAluno {
+            background-color: var(--danger-default);
+        }
+    </style>
 
 </head>
 
@@ -102,9 +109,9 @@ $alunos = DB::query('select * from aluno');
                     <td><?php echo $user['nome'] ?></td>
                     <td><?php echo $user_responsavel['nome'] ?></td>
                     <td><?php echo $user_responsavel['email'] ?></td>
-                    <?php if($aluno['status_aluno'] == 1): ?>
+                    <?php if ($aluno['status_aluno'] == 1) : ?>
                         <td>&#128994;</td>
-                    <?php else: ?>
+                    <?php else : ?>
                         <td>&#128308;</td>
                     <?php endif; ?>
                     <td><?php echo $user['created_at'] ?></td>
@@ -113,12 +120,17 @@ $alunos = DB::query('select * from aluno');
                             <button class="btn btn-secondary dropdown-toggle" id="btnPrincipal" type="button" data-bs-toggle='dropdown' aria-expanded="false">
                                 Lista de Ações
                             </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Acessar Perfil</a></li>
-                                <li><a class="dropdown-item" href="#">Ver Detalhes</a></li>
-                                <li><a class="dropdown-item" href="#">Editar Aluno</a></li>
-                                <li><a class="dropdown-item" id="deletarAluno" href="#">Deletar Aluno</a></li>
-                            </ul>
+
+                            <form action="../processar_lista_aluno.php" method="POST">
+                                <ul class="dropdown-menu">
+                                    <input type="hidden" name="id_aluno" value="<?php echo $aluno['id']; ?>">
+                                    <input type="hidden" name="id_professor" value="<?php echo $aluno['id']; ?>">
+                                    <button class="btn" name="action" value="acessar_perfil_aluno">Acessar Perfil</button>
+                                    <button class="btn" name="action" value="detalhes">Ver Detalhes</button>
+                                    <button class="btn" name="action" value="edt_aluno">Editar Aluno</button>
+                                    <button class="btn" id="deletarAluno" name="action" value="deletar_aluno">Deletar Aluno</button>
+                                </ul>
+                            </form>
                         </div>
                     </td>
                 </tr>
