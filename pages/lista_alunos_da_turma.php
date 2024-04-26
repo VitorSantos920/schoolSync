@@ -69,6 +69,11 @@ $alunos = DB::query('select * from aluno');
         .dropdown .dropdown-menu #deletarAluno {
             background-color: var(--danger-default);
         }
+
+        #edtAlunoModal #edtAlunoModalLabel {
+            flex: auto;
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -109,12 +114,12 @@ $alunos = DB::query('select * from aluno');
                     <td><?php echo $user['nome'] ?></td>
                     <td><?php echo $user_responsavel['nome'] ?></td>
                     <td><?php echo $user_responsavel['email'] ?></td>
+                    <td><?php echo $user['created_at'] ?></td>
                     <?php if ($aluno['status_aluno'] == 1) : ?>
                         <td>&#128994;</td>
                     <?php else : ?>
                         <td>&#128308;</td>
                     <?php endif; ?>
-                    <td><?php echo $user['created_at'] ?></td>
                     <td>
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" id="btnPrincipal" type="button" data-bs-toggle='dropdown' aria-expanded="false">
@@ -127,7 +132,7 @@ $alunos = DB::query('select * from aluno');
                                     <input type="hidden" name="id_professor" value="<?php echo $aluno['id']; ?>">
                                     <button class="btn" name="action" value="acessar_perfil_aluno">Acessar Perfil</button>
                                     <button class="btn" name="action" value="detalhes">Ver Detalhes</button>
-                                    <button class="btn" name="action" value="edt_aluno">Editar Aluno</button>
+                                    <button type="button" class="btn" name="action" value="edt_aluno" data-bs-toggle="modal" data-bs-target="#edtAlunoModal">Editar Aluno</button>
                                     <button class="btn" id="deletarAluno" name="action" value="deletar_aluno">Deletar Aluno</button>
                                 </ul>
                             </form>
@@ -137,6 +142,82 @@ $alunos = DB::query('select * from aluno');
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <!-- Modal Atualização de Aluno-->
+    <div class="modal fade" id="edtAlunoModal" tabindex="-1" aria-labelledby="edtAlunoModalLabel" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="../processar_lista_aluno.php" method="POST">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="edtAlunoModalLabel">Atualizar Aluno</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="nome" class="form-label">Nome</label>
+                                    <input type="text" class="form-control" name="nome"  value="<?php echo $user['nome']; ?>">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="data_nascimento" class="form-label">Data de Nascimento</label>
+                                    <input type="text" class="form-control" name="data_nascimento" value="<?php echo $aluno['data_nascimento']; ?>">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="escolaridade" class="form-label">Escolaridade</label>
+                                    <input type="text" class="form-control" name="escolaridade" value="<?php echo $aluno['escolaridade']; ?>">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="classe" class="form-label">Classe</label>
+                                    <input type="text" class="form-control" name="classe" value="<?php echo $aluno['classe_id']; ?>">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="escola" class="form-label">Escola</label>
+                                    <input type="text" class="form-control" name="escola" value="<?php echo $aluno['escola']; ?>">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="status" class="form-label">Status do Aluno</label>
+                                    <select class="form-select" name="status">
+                                        <option value="ativo" selected>Ativo</option>
+                                        <option value="inativo">Inativo</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="genero" class="form-label">Gênero do Aluno</label>
+                            <select class="form-select" name="genero">
+                                <option value="Feminino" selected>Feminino</option>
+                                <option value="Masculino">Masculino</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id_aluno" value="<?php echo $aluno['id']; ?>">
+                        <input type="hidden" name="id_professor" value="<?php echo $aluno['id']; ?>">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-success" name="action" value="salvar">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </body>
 

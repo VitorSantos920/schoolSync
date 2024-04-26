@@ -22,10 +22,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     session_start();
     $_SESSION['dados'] = $user;
-    header('Location: proxima_pagina');
+    header('Location: /School_sync/pages/pagina-inicial-professor.php');
     exit;
 }else{
-    header('Location: cadastroProfessor.php');
+    header('Location: /School_sync/pages/cadastroProfessor.php');
     exit;
 }
 
