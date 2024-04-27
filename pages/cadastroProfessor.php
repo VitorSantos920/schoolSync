@@ -24,7 +24,7 @@ require_once '../db/config.php';
                 </div>
 
                 <div class="mx-auto">
-                    <form class="forms" action='../processar_cadastro.php' method="POST">
+                    <form class="forms" action='../backend/processar_cadastro.php' method="POST">
                         <p id="cabecalho" >Registre-se, professor!</p>
 
                         <div class="mt-4">

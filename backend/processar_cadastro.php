@@ -1,6 +1,6 @@
 <?php
 
-require_once 'db/config.php';
+require_once '../db/config.php';
 
 date_default_timezone_set('America/Sao_Paulo');
 
@@ -69,10 +69,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $_SESSION['erros'] = $erros;
     echo var_dump($_SESSION['erros']);
     exit;
-    header('Location: pages/cadastroProfessor.php');
+    header('Location: /School_sync/pages/cadastroProfessor.php');
     exit;
 } else {
-    header('Location: pages/cadastroProfessor.php');
+    header('Location: /School_sync/pages/cadastroProfessor.php');
     exit;
 }
 
