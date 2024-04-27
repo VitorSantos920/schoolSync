@@ -2,8 +2,8 @@
 // Função para conectar ao banco de dados
 function conectarBanco() {
     $servername = "localhost"; 
-    $username = "seu_usuario"; 
-    $password = "sua_senha"; 
+    $username = "root"; 
+    $password = ""; 
     $dbname = "school_sync"; 
     // Cria conexão
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -62,6 +62,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $erro = "Email ou senha incorretos.";
     }
 
+    //Lógica para lembrar login
+    // Função para definir um cookie com o nome do usuário se a caixa de seleção "Lembrar login" estiver marcada
+    if(isset($_POST['lembrar-login']) && $_POST['lembrar-login'] == 'on'){
+        // Defina o cookie com o nome do usuário (substitua 'nome_do_usuario' pela variável real do nome do usuário)
+        setcookie('lembrar_login', 'nome_do_usuario', time() + (86400 * 30), "/"); // cookie válido por 30 dias
+    } else{
+        // Se a caixa de seleção não estiver marcada, remova o cookie
+        setcookie('lembrar_login', '', time() - 3600, "/");
+    }
+
+    // Recupere a categoria do usuário do banco de dados
+    try {
+        $sql = "SELECT categoria FROM usuarios WHERE email = :email";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":email", $email); // Supondo que $email seja o email do usuário logado
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if ($row) {
+            $categoria = $row['categoria'];
+        } else {
+            // Categoria não encontrada para o usuário
+            // Lidar com isso conforme necessário (por exemplo, redirecionar para uma página de erro)
+            header("Location: erro.php");
+            exit();
+        }
+    } catch (PDOException $e) {
+        // Erro ao executar a consulta SQL
+        // Lidar com isso conforme necessário (por exemplo, redirecionar para uma página de erro)
+        echo "Erro: " . $e->getMessage();
+        exit();
+    }
+
+    // Redirecionamento com base na categoria do usuário
+    switch ($categoria) {
+        case "aluno":
+            header("Location: painel_aluno.php");
+            break;
+        case "professor":
+            header("Location: pagina_inicial_professor.php");
+            break;
+        case "responsavel":
+            header("Location: pagina_inicial_responsavel.php");
+            break;
+        case "administrador":
+            header("Location: tela_inicial_admin.php");
+            break;
+        default:
+            // Categoria inválida, redirecionar para uma página de erro
+            header("Location: erro.php");
+            break;
+    }
+
     // Fecha a conexão
     $stmt->close();
     $conn->close();
@@ -75,22 +128,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
+    <link rel="stylesheet" href="../assets/css/variables.css">
     <title>Login SchoolSync</title>
+
+    <style>
+
+        .logo-text{
+            font-size: var(--fontSize-5xl);
+            font-family: var(--fontFamily-poppins);
+            font-weight: var(--fontWeight-bold);
+            color: var(--brand-color);
+        }
+
+        .sub-text{
+            font-size: var(--fontSize-sm);
+            font-family: var(--fontFamily-roboto);
+            font-weight: var(--fontWeight-regular);
+            color: var(--level-gray500);
+        }
+
+        .lembrar-de-mim {
+            font-size: var(--fontSize-sm);
+            font-family: var(--fontFamily-poppins);
+            font-weight: var(--fontWeight-regular);
+        }
+
+    </style>
 </head>
 <body>
-    <h2>Login</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-        
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required><br><br>
-        
-        <button type="submit">Entrar</button>
-    </form>
-    
-    <?php if(isset($erro)) { ?>
-        <p><?php echo $erro; ?></p>
-    <?php } ?>
+    <div class="container">
+        <div class="login-box">
+            <!-- alt é um atributo que determina o texto que deve aparecer caso a imagem não seja exibida-->
+            <img src="../assets/img/logo_transparente.png" alt="SchoolSync" class="logo">
+            <p class="logo-text">SchoolSync</p>
+            <p class="sub-text">Se você é um aluno, professor ou um responsável e já possui cadastro no sistema, faça seu login abaixo!</p>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                <div class="mt-4">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br><br>
+                </div>
+                
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required><br><br>
+
+
+                <input type="checkbox" id="lembrar-login" name="lembrar-login">
+                <label for="lembrar-login">Lembrar login</label><br><br>
+                
+                <button type="submit">REALIZAR LOGIN</button>
+            </form>
+            
+            <?php if(isset($erro)) { ?>
+                <p><?php echo $erro; ?></p>
+            <?php } ?>
+        </div>
+    </div>
 </body>
 </html>
