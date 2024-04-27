@@ -121,3 +121,8 @@ nav,
 section {
     display: block;
 }
+
+:is(input.form-control, textarea.form-control, select.form-control):focus {
+    box-shadow: none;
+    border-color: var(--brand-color) !important;
+}
