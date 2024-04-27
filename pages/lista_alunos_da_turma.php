@@ -11,70 +11,9 @@ $alunos = DB::query('select * from aluno');
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/lista_alunos_da_turma.css">
 
     <title>Cadastro Professor</title>
-
-    <style>
-        #cabecalhoListaAluno {
-            font-size: var(--fontSize-2xl);
-            font-family: var(--fontFamily-poppins);
-            font-weight: var(--fontWeight-bold);
-        }
-
-        #search {
-            border-radius: var(--borderRadius-xs);
-            font-family: var(--fontFamily-roboto);
-            font-weight: var(--fontWeight-regular);
-        }
-
-        #tabelaCabecalho {
-            text-align: center;
-            font-size: var(--fontSize-md);
-            font-family: var(--fontFamily-poppins);
-            font-weight: var(--fontWeight-bold);
-        }
-
-        #tabelaCorpo {
-            text-align: center;
-            font-size: var(--fontSize-sm);
-            font-family: var(--fontFamily-roboto);
-            font-weight: var(--fontWeight-regular);
-        }
-
-        .dropdown #btnPrincipal {
-            color: black;
-            font-size: var(--fontSize-xs);
-            font-family: var(--fontFamily-poppins);
-            font-weight: var(--fontWeight-regular);
-            border-radius: var(--borderRadius-xs);
-            background-color: #C9CDD2;
-        }
-
-        .dropdown .dropdown-menu {
-            background-color: #E0E1E2;
-            box-shadow: var(--boxShadow-base);
-        }
-
-        .dropdown .dropdown-menu .btn {
-            font-size: var(--fontSize-xxs);
-            font-family: var(--fontFamily-poppins);
-            font-weight: var(--fontWeight-regular);
-            border-radius: var(--borderRadius-xs);
-            background-color: #C8CBD9;
-            margin-left: var(--spacing-10);
-            margin-bottom: var(--spacing-2);
-        }
-
-        .dropdown .dropdown-menu #deletarAluno {
-            background-color: var(--danger-default);
-        }
-
-        #edtAlunoModal #edtAlunoModalLabel {
-            flex: auto;
-            text-align: center;
-        }
-    </style>
 
 </head>
 
@@ -130,10 +69,10 @@ $alunos = DB::query('select * from aluno');
                                 <ul class="dropdown-menu">
                                     <input type="hidden" name="id_aluno" value="<?php echo $aluno['id']; ?>">
                                     <input type="hidden" name="id_professor" value="<?php echo $aluno['id']; ?>">
-                                    <button class="btn" name="action" value="acessar_perfil_aluno">Acessar Perfil</button>
-                                    <button class="btn" name="action" value="detalhes">Ver Detalhes</button>
-                                    <button type="button" class="btn" name="action" value="edt_aluno" data-bs-toggle="modal" data-bs-target="#edtAlunoModal">Editar Aluno</button>
-                                    <button class="btn" id="deletarAluno" name="action" value="deletar_aluno">Deletar Aluno</button>
+                                    <button class="btn" name="action" value="acessar_perfil_aluno"><i class="fa-solid fa-user icone"></i>Acessar Perfil</button>
+                                    <button class="btn" name="action" value="detalhes"><i class="fa-solid fa-folder icone"></i>Ver Detalhes</button>
+                                    <button type="button" class="btn" name="action" value="edt_aluno" data-bs-toggle="modal" data-bs-target="#edtAlunoModal"><i class="fa-solid fa-pen icone"></i>Editar Aluno</button>
+                                    <button class="btn" id="deletarAluno" name="action" value="deletar_aluno"><i class="fa-solid fa-trash icone"></i>Deletar Aluno</button>
                                 </ul>
                             </form>
                         </div>
@@ -158,7 +97,7 @@ $alunos = DB::query('select * from aluno');
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="nome" class="form-label">Nome</label>
-                                    <input type="text" class="form-control" name="nome"  value="<?php echo $user['nome']; ?>">
+                                    <input type="text" class="form-control" name="nome" value="<?php echo $user['nome']; ?>">
                                 </div>
 
                                 <div class="col-md-6">
@@ -220,5 +159,7 @@ $alunos = DB::query('select * from aluno');
     </div>
 
 </body>
+
+<script src="https://kit.fontawesome.com/4ac8bcd2f5.js" crossorigin="anonymous"></script>
 
 </html>

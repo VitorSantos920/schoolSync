@@ -8,51 +8,8 @@ require_once '../db/config.php';
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/cadastroProfessor.css">  
     <title>Cadastro Professor</title>
-
-    <style>
-
-    #cabecalho{
-        font-size: var(--fontSize-xl);
-        font-family: var(--fontFamily-poppins);
-        font-weight: var(--fontWeight-bold);
-    }
-
-    .form-label{
-        font-size: var(--fontSize-xs);
-        font-family: var(--fontFamily-poppins);
-        font-weight: var(--fontWeight-regular);
-    }
-
-    .form-control{
-        font-size: var(--fontSize-sm);
-        font-family: var(--fontFamily-roboto);
-        font-weight: var(--fontWeight-regular);
-        border-radius: var(--borderRadius-sm);
-    }
-
-    .btn{
-        border-radius: var(--borderRadius-sm);
-        font-size: var(--fontSize-md);
-        font-family: var(--fontFamily-poppins);
-        font-weight: var(--fontWeight-bold);
-        color: white;
-        background-color: var(--brand-color);
-        box-shadow: var(--boxShadow-base);
-    }
-
-    #ladoDireito{
-        background-color: var(--brand-color);
-    }
-
-    #politicaPrivacidade{
-        font-size: var(--fontSize-sm);
-        font-family: var(--fontFamily-roboto);
-        font-weight: var(--fontWeight-regular);
-    }
-
-    </style>
 
 </head>
 
@@ -61,14 +18,13 @@ require_once '../db/config.php';
     <div class="container">
         <div class="row">
             <!--Lado Esquerdo da tela-->
-            <div class="col-md-8">
+            <div class="col-md-8" id="ladoEsquerdo">
                 <div class="d-flex justify-content-center">
                     <img src="../assets/img/imagem_modo_claro.png" class="img-fluid" alt="Imagem">
-
                 </div>
 
                 <div class="mx-auto">
-                    <form action='../processar_cadastro.php' method="POST">
+                    <form class="forms" action='../processar_cadastro.php' method="POST">
                         <p id="cabecalho" >Registre-se, professor!</p>
 
                         <div class="mt-4">
@@ -78,17 +34,29 @@ require_once '../db/config.php';
 
                         <div class="mt-4">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" name="email" class="form-control" placeholder="lucasLima@gmail.com" required>
+                            <input type="email" name="email" class="form-control" placeholder="lucasLima@gmail.com" required>
+                            <?php
+                                if(isset($_SESSION['erros'][1])){
+                                    echo "<p class='erro'>". $_SESSION['erros'][1] ."</p>";
+                                    unset($_SESSION['erros']);
+                                }
+                            ?>
                         </div>
 
                         <div class="mt-4">
                             <label for="senha" class="form-label">Senha</label>
-                            <input type="password" name="senha" class="form-control" placeholder="xxxxxxxx" required>
+                            <input type="password" name="senha" class="form-control" placeholder="xxxxxxxx" min="6" max="12" required>
                         </div>
 
                         <div class="mt-4">
                             <label for="cpf" class="form-label">CPF</label>
-                            <input type="text" name="cpf" class="form-control" placeholder="123.456.789-10" required>
+                            <input type="text" name="cpf" class="form-control" placeholder="123.456.789-10" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" title="111.111.111-11" required>
+                            <?php
+                                if(isset($_SESSION['erros'][0])){
+                                    echo "<p class='erro'>". $_SESSION['erros'][0] ."</p>";
+                                    unset($_SESSION['erros']);
+                                }
+                            ?>
                         </div>
 
                         <button class="btn mt-4" type="submit">Realizar Cadastro</button>
@@ -108,7 +76,7 @@ require_once '../db/config.php';
 
             </div>
             <!--Lado Direito da tela-->
-            <div class="d-flex col-md-4 justify-content-end" id="ladoDireito"></div>
+            <div class="d-flex col-md-4" id="ladoDireito"></div>
 
         </div>
     </div>
