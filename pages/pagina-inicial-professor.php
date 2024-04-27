@@ -234,6 +234,11 @@
   <script>
     function modalCriacaoMaterialApoio() {
       $('#criacaoMaterialApoio').modal('show')
+      let nomeMaterial = $('#nome-material').val('');
+      let descricaoMaterial = $('#descricao-material').val('');
+      let urlMaterial = $('#url-material').val('');
+      let escolaridade = $('#escolaridade').val('');
+      let tipoMaterial = $('#tipo-material').val('');
     }
 
     function criarMaterialApoio() {

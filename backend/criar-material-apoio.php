@@ -15,7 +15,7 @@ $escolaridade = $_POST['escolaridade'];
 $tipo = $_POST['tipo'];
 
 try {
-  DB::insert("recurs_educacional", [
+  DB::insert("recurso_educacional", [
     "administrador_id" => 2,
     "titulo" => $nome,
     "descricao" => $descricao,
