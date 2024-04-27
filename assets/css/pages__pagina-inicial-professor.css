@@ -34,6 +34,10 @@ main :is(button.btn, a.btn) {
     font-size: var(--fontSize-xl);
 }
 
+.swal2-container {
+    font-family: var(--fontFamily-poppins);
+}
+
 /* turmas */
 .turmas {
     margin-bottom: var(--spacing-13);

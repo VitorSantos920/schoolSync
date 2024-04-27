@@ -8,6 +8,7 @@
   <meta name="keywords" content="docente, professor, tela inicial">
   <title>Professor | Página Inicial</title>
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/sweetalert2.min.css">
   <link rel="stylesheet" href="../assets/css/pages__pagina-inicial-professor.css">
 </head>
 
@@ -176,7 +177,6 @@
             <img src="../assets/img/material-apoio.svg" alt="">
             Criar Material de Apoio
           </h3>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form action="#" method="post">
@@ -221,7 +221,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" class="btn btn-success">Criar Material</button>
+          <button type="button" class="btn btn-success" onclick="criarMaterialApoio()">Criar Material</button>
         </div>
       </div>
     </div>
@@ -229,10 +229,68 @@
   <script src="https://kit.fontawesome.com/4ac8bcd2f5.js" crossorigin="anonymous"></script>
   <script src="../assets/js/jquery.min.js"></script>
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/sweetalert2.all.min.js"></script>
   <script src="../assets/js/pages__pagina-inicial-professor.js"></script>
   <script>
     function modalCriacaoMaterialApoio() {
       $('#criacaoMaterialApoio').modal('show')
+    }
+
+    function criarMaterialApoio() {
+      let nomeMaterial = $('#nome-material').val();
+      let descricaoMaterial = $('#descricao-material').val();
+      let urlMaterial = $('#url-material').val();
+      let escolaridade = $('#escolaridade').val();
+      let tipoMaterial = $('#tipo-material').val();
+
+      if (!nomeMaterial || !descricaoMaterial || !urlMaterial || !escolaridade || !tipoMaterial) {
+        Swal.fire({
+          title: "Opa, algo deu errado!",
+          text: "Para criar o Recurso Educacional, é necessário o preenchimento de todos os campos.",
+          icon: "error"
+        })
+        return;
+      }
+
+      $.ajax({
+        type: "POST",
+        url: "../backend/criar-material-apoio.php",
+        data: {
+          nome: nomeMaterial,
+          descricao: descricaoMaterial,
+          url: urlMaterial,
+          escolaridade,
+          tipo: tipoMaterial
+        },
+        success: function(response) {
+          response = JSON.parse(response)
+          console.log(response)
+          switch (response.status) {
+            case 1: {
+              Swal.fire({
+                title: "Recurso criado!",
+                text: response.message,
+                icon: "success"
+              })
+
+              break;
+            }
+            case -1: {
+              Swal.fire({
+                title: "Erro Interno!",
+                text: response.swalMessage,
+                icon: "error"
+              })
+
+              console.log(`Status: ${response.status} | Mensagem de Erro: ${response.messageError}`)
+              break;
+            }
+          }
+
+          $('#criacaoMaterialApoio').modal('hide');
+        },
+        error: (err) => console.log(err)
+      })
     }
   </script>
 </body>
