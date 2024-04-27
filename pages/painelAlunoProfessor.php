@@ -1,26 +1,3 @@
-<?php
-// Passo 1: Estabelecer a conexão com o banco de dados
-$servername = "localhost"; // Nome do servidor
-$username = "root"; // Nome de usuário do banco de dados
-$password = ""; // Senha do banco de dados
-$dbname = "school_sync"; // Nome do banco de dados
-
-// Crie a conexão
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verificar a conexão
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Passo 2: Executar a consulta SQL
-$sql = "SELECT * FROM usuario";
-$result = $conn->query($sql);
-
-// Fechar a conexão
-$conn->close();
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -86,27 +63,25 @@ $conn->close();
             <hr class="linha-horizontal">
             <div class="col-6"><br>
                 <h4>Agendar novo evento escolar</h4><br>
-                <form action="processar_formulario.php" method="post">
-                    <label for="nome">Nome/Título do Evento:</label><br>
-                    <input type="text" id="nome" name="nome" required><br><br>
+                <form action="processar_formulario_evento.php" method="post">
+                    <label for="titulo">Nome/Título do Evento:</label><br>
+                    <input type="text" id="titulo" name="titulo" required><br><br>
 
                     <label for="descricao">Descrição do Evento:</label><br>
                     <textarea id="descricao" name="descricao" rows="4" cols="50" required></textarea><br><br>
-                    <div class="col-3">
-                        <label for="data_inicio">Data de Início:</label><br>
-                        <input type="date" id="data_inicio" name="data_inicio" required><br><br>
-                    </div>
-                    <div class="col-3">
-                        <label for="data_termino">Data de Término:</label><br>
-                        <input type="date" id="data_termino" name="data_termino" required><br><br>
-                    </div>
+
+                    <label for="data_inicio">Data de Início:</label><br>
+                    <input type="date" id="data_inicio" name="data_inicio" required><br><br>
+
+                    <label for="data_termino">Data de Término:</label><br>
+                    <input type="date" id="data_termino" name="data_termino" required><br><br>
 
                     <input type="submit" value="Agendar Evento">
                 </form>
             </div>
             <div class="col-6 linha-vertical"><br>
                 <h4>Registrar nova conquista acadêmica</h4><br>
-                <form action="processar_conquista.php" method="post">
+                <form action="processar_formulario_conquista.php" method="post">
                     <label for="titulo">Nome/Título da Conquista:</label><br>
                     <input type="text" id="titulo" name="titulo" required><br><br>
 
