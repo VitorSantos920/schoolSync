@@ -15,6 +15,7 @@
   <section class="saudacao d-flex align-items-center">
     <img width="30" src="../assets/img/hand.svg" alt="Emoji de mão amarela acenando.">
     <h2 class="saudacao__titulo">Olá, professor (a) Márcio!</h2>
+    <button class="btn btn-success" onclick="modalCriacaoMaterialApoio()">Abrir Modal Criação Material de Apoio</button>
   </section>
 
   <main class="d-flex gap-5">
@@ -134,8 +135,14 @@
         <button class="btn">+ Adicionar</button>
       </section>
 
+      <section class="adicionar-responsavel">
+
+        <h3>Cadastrar Turma</h3>
+        <button class="btn">+ Adicionar</button>
+      </section>
+
       <section class="agendar-evento-escolar">
-        <h3>Agendar novo evento escolar</h3>
+        <h3>Agendar novo evento escolar aos alunos</h3>
         <form action="#" method="post">
           <fieldset>
             <label for="nome-evento" class="form-label">Nome/Título do Evento</label>
@@ -161,10 +168,73 @@
     </div>
   </main>
 
+  <div class="modal fade" id="criacaoMaterialApoio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">
+            <img src="../assets/img/material-apoio.svg" alt="">
+            Criar Material de Apoio
+          </h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="#" method="post">
+
+            <fieldset>
+              <label for="nome-material" class="form-label">Nome/Título do Material</label>
+              <input type="text" name="nome-material" id="nome-material" class="form-control" placeholder="Números Romanos" required>
+            </fieldset>
+
+            <fieldset>
+              <label for="descricao-material" class="form-label">Descrição do material</label>
+              <textarea class="form-control" name="descricao-material" id="descricao-material" cols="30" rows="5"></textarea>
+            </fieldset>
+
+            <fieldset>
+              <label for="url-material" class="form-label">Digite ou cole a URL (link) do Material (Caso seja um material externo [website, vídeo etc.]) </label>
+              <input type="text" name="url-material" id="url-material" class="form-control" placeholder="https://mundoescola.com.br" required>
+            </fieldset>
+
+            <fieldset>
+              <label for="escolaridade" class="form-label">Selecione a escolaridade ideal para este Material</label>
+              <select class="form-control form-select" name="escolaridade" id="escolaridade">
+                <option value="0" selected disabled>Escolaridade</option>
+                <option value="1">1°Ano</option>
+                <option value="2">2°Ano</option>
+                <option value="3">3°Ano</option>
+                <option value="4">4°Ano</option>
+                <option value="5">5°Ano</option>
+              </select>
+            </fieldset>
+
+            <fieldset>
+              <label for="tipo-material" class="form-label">Selecione o tipo deste Material</label>
+              <select class="form-control form-select" name="tipo-material" id="tipo-material">
+                <option value="0" selected disabled>Tipo</option>
+                <option value="pdf">PDF</option>
+                <option value="site">Site da Internet</option>
+
+              </select>
+            </fieldset>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-success">Criar Material</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="https://kit.fontawesome.com/4ac8bcd2f5.js" crossorigin="anonymous"></script>
   <script src="../assets/js/jquery.min.js"></script>
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/pages__pagina-inicial-professor.js"></script>
+  <script>
+    function modalCriacaoMaterialApoio() {
+      $('#criacaoMaterialApoio').modal('show')
+    }
+  </script>
 </body>
 
 </html>
