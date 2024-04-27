@@ -31,15 +31,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recupera os dados do formulário
     $titulo = $_POST["titulo"];
     $descricao = $_POST["descricao"];
-    $data_inicio = $_POST["data_inicio"];
-    $data_termino = $_POST["data_termino"];
+    $data_conquista = $_POST["data_conquista"];
+    $comentario = $_POST["comentario"];
     // Adicione mais campos conforme necessário
 
-    // Query SQL para inserir dados na tabela evento
-    $sql = "INSERT INTO evento (titulo, descricao, data_inicio, data_termino, professor_id) VALUES ('$titulo', '$descricao', '$data_inicio', '$data_termino' '$professor_id')";
+    // Query SQL para inserir dados na tabela conquista
+    $sql = "INSERT INTO conquista (aluno_id, professor_id, titulo, descricao, data_conquista, comentario) VALUES ('$aluno_id', '$professor_id', '$titulo', '$descricao', '$data_conquista', '$comentario')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Novo evento criado com sucesso!";
+        echo "Nova conquista criada com sucesso!";
     } else {
         echo "Erro: " . $sql . "<br>" . $conn->error;
     }

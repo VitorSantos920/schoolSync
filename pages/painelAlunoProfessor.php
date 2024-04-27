@@ -64,6 +64,7 @@
             <div class="col-6"><br>
                 <h4>Agendar novo evento escolar</h4><br>
                 <form action="processar_formulario_evento.php" method="post">
+
                     <label for="titulo">Nome/Título do Evento:</label><br>
                     <input type="text" id="titulo" name="titulo" required><br><br>
 
@@ -82,6 +83,7 @@
             <div class="col-6 linha-vertical"><br>
                 <h4>Registrar nova conquista acadêmica</h4><br>
                 <form action="processar_formulario_conquista.php" method="post">
+
                     <label for="titulo">Nome/Título da Conquista:</label><br>
                     <input type="text" id="titulo" name="titulo" required><br><br>
 
