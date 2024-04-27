@@ -65,7 +65,7 @@ $alunos = DB::query('select * from aluno');
                                 Lista de Ações
                             </button>
 
-                            <form action="../processar_lista_aluno.php" method="POST">
+                            <form action="../backend/processar_lista_aluno.php" method="POST">
                                 <ul class="dropdown-menu">
                                     <input type="hidden" name="id_aluno" value="<?php echo $aluno['id']; ?>">
                                     <input type="hidden" name="id_professor" value="<?php echo $aluno['id']; ?>">
@@ -86,7 +86,7 @@ $alunos = DB::query('select * from aluno');
     <div class="modal fade" id="edtAlunoModal" tabindex="-1" aria-labelledby="edtAlunoModalLabel" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="../processar_lista_aluno.php" method="POST">
+                <form action="../backend/processar_lista_aluno.php" method="POST">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="edtAlunoModalLabel">Atualizar Aluno</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

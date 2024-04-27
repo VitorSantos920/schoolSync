@@ -24,33 +24,27 @@ require_once '../db/config.php';
                 </div>
 
                 <div class="mx-auto">
-                    <form class="forms" action='../processar_cadastro.php' method="POST">
+                    <form  id="form_registro" class="forms" method="POST">
                         <p id="cabecalho" >Registre-se, professor!</p>
 
                         <div class="mt-4">
                             <label for="nome" class="form-label">Nome</label>
-                            <input type="text" name="nome" class="form-control" placeholder="Lucas Lima Silva" required>
+                            <input type="text" name="nome" class="form-control" id='nome' placeholder="Lucas Lima Silva" required>
                         </div>
 
                         <div class="mt-4">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control" placeholder="lucasLima@gmail.com" required>
-                            <?php
-                                if(isset($_SESSION['erros'][1])){
-                                    echo "<p class='erro'>". $_SESSION['erros'][1] ."</p>";
-                                    unset($_SESSION['erros']);
-                                }
-                            ?>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="lucasLima@gmail.com" required>
                         </div>
 
                         <div class="mt-4">
                             <label for="senha" class="form-label">Senha</label>
-                            <input type="password" name="senha" class="form-control" placeholder="xxxxxxxx" min="6" max="12" required>
+                            <input type="password" name="senha" class="form-control" id="senha" placeholder="xxxxxxxx" min="6" max="12" required>
                         </div>
 
                         <div class="mt-4">
                             <label for="cpf" class="form-label">CPF</label>
-                            <input type="text" name="cpf" class="form-control" placeholder="123.456.789-10" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" title="111.111.111-11" required>
+                            <input type="text" name="cpf" class="form-control" id="cpf" placeholder="123.456.789-10" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" title="111.111.111-11" required>
                             <?php
                                 if(isset($_SESSION['erros'][0])){
                                     echo "<p class='erro'>". $_SESSION['erros'][0] ."</p>";
@@ -59,7 +53,7 @@ require_once '../db/config.php';
                             ?>
                         </div>
 
-                        <button class="btn mt-4" type="submit">Realizar Cadastro</button>
+                        <button class="btn mt-4" type="submit" onclick="cadastrar()">Realizar Cadastro</button>
                     </form>
                 </div>
 
@@ -81,6 +75,8 @@ require_once '../db/config.php';
         </div>
     </div>
 
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/cadastroProfessor.js"></script>
 </body>
 
 </html>
