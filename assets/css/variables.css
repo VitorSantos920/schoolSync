@@ -1,5 +1,8 @@
 :root {
     --brand-color: #ffa500;
+    --brand-color-light: #ffcb6c;
+    --brand-color-dark: #cd8500;
+    --brand-color-low: #835500;
     --background-color: #ececec;
 
     /* semantic */

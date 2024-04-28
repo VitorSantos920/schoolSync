@@ -34,6 +34,10 @@ main :is(button.btn, a.btn) {
     font-size: var(--fontSize-xl);
 }
 
+.swal2-container {
+    font-family: var(--fontFamily-poppins);
+}
+
 /* turmas */
 .turmas {
     margin-bottom: var(--spacing-13);
@@ -218,4 +222,64 @@ main .right-side button.btn {
 .right-side .agendar-evento-escolar form :is(input, textarea) {
     background-color: transparent;
     border: 1px solid #b6bdc4;
+}
+
+#criacaoMaterialApoio :is(.modal-header, .modal-body, .modal-footer) {
+    padding-left: var(--spacing-9);
+    padding-right: var(--spacing-9);
+}
+
+#criacaoMaterialApoio .modal-header {
+    padding-top: var(--spacing-9);
+}
+
+#criacaoMaterialApoio .modal-footer {
+    padding-bottom: var(--spacing-9);
+    border-top: none;
+}
+
+#criacaoMaterialApoio .modal-title {
+    color: var(--brand-color);
+    font-size: var(--fontSize-2xl);
+}
+
+#criacaoMaterialApoio .modal-title img {
+    vertical-align: middle;
+}
+
+#criacaoMaterialApoio :is(button.btn, label) {
+    font-family: var(--fontFamily-poppins);
+}
+
+#criacaoMaterialApoio :is(h3, p, a.btn) {
+    margin-bottom: var(--spacing-6);
+}
+
+#criacaoMaterialApoio h5 {
+    margin-bottom: var(--spacing-1);
+    font-weight: var(--fontWeight-medium);
+    font-size: var(--fontSize-xl);
+}
+
+#criacaoMaterialApoio p {
+    font-family: var(--fontFamily-roboto);
+    font-size: var(--fontSize-sm);
+}
+
+#criacaoMaterialApoio a:hover {
+    color: #fff;
+    background-color: var(--info-hover);
+}
+
+#criacaoMaterialApoio fieldset:not(fieldset:first-child) {
+    margin-top: var(--spacing-6);
+}
+
+#criacaoMaterialApoio label {
+    font-family: var(--fontFamily-poppins);
+}
+
+#criacaoMaterialApoio :is(input, select, textarea) {
+    font-size: var(--fontSize-sm);
+    font-family: var(--fontFamily-roboto);
 }
