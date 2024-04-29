@@ -1,0 +1,68 @@
+@import url(./global.css);
+
+body{
+    background-color: white;
+}
+
+#cabecalhoListaAluno {
+    font-size: var(--fontSize-2xl);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-bold);
+}
+
+#search {
+    border-radius: var(--borderRadius-xs);
+    font-family: var(--fontFamily-roboto);
+    font-weight: var(--fontWeight-regular);
+}
+
+#tabelaCabecalho {
+    text-align: center;
+    font-size: var(--fontSize-md);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-bold);
+}
+
+#tabelaCorpo {
+    text-align: center;
+    font-size: var(--fontSize-sm);
+    font-family: var(--fontFamily-roboto);
+    font-weight: var(--fontWeight-regular);
+}
+
+.dropdown #btnPrincipal {
+    color: black;
+    font-size: var(--fontSize-xs);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-regular);
+    border-radius: var(--borderRadius-xs);
+    background-color: #C9CDD2;
+}
+
+.dropdown .dropdown-menu {
+    background-color: #E0E1E2;
+    box-shadow: var(--boxShadow-base);
+}
+
+.dropdown .dropdown-menu .btn {
+    font-size: var(--fontSize-xxs);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-regular);
+    border-radius: var(--borderRadius-xs);
+    background-color: #C8CBD9;
+    margin-left: var(--spacing-10);
+    margin-bottom: var(--spacing-2);
+}
+
+.dropdown .dropdown-menu #deletarAluno {
+    background-color: var(--danger-default);
+}
+
+.dropdown .dropdown-menu .btn .icone {
+    margin-right: var(--spacing-3);
+}
+
+#edtAlunoModal #edtAlunoModalLabel {
+    flex: auto;
+    text-align: center;
+}
