@@ -1,3 +1,5 @@
+@import url(../assets/css/global.css);
+
 body {
     margin: 0;
     padding: 0;
@@ -15,10 +17,16 @@ body {
 .login-box {
     background-color: #fff;
     padding: 40px;
-    width: 490px;
-    height:500px;
+    width: 575px;
     border-radius: 3px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.input-box {
+    background-color: #fff;
+    padding: 40px;
+    width: 480px;
     text-align: center;
 }
 
@@ -42,8 +50,33 @@ button {
     color: #fff;
     border: none;
     cursor: pointer;
+    box-shadow: var(--boxShadow-base);
 }
 
 button:hover {
     background-color: #ffa500;
+}
+
+.logo-text{
+    font-size: var(--fontSize-5xl);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-bold);
+    color: var(--brand-color);
+}
+
+.sub-text{
+    font-size: var(--fontSize-sm);
+    font-family: var(--fontFamily-roboto);
+    font-weight: var(--fontWeight-regular);
+    color: var(--level-gray500);
+}
+
+.link{
+    color: #0066FF;
+    text-decoration: underline;
+}
+
+.example-login::placeholder{
+    font-size: var(--fontSize-xs);
+    color: var(--level-gray400);
 }
