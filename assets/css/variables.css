@@ -8,12 +8,12 @@
     --info-default: #0dcaf0;
 
     /* grayscale */
-    --level-gray900: '#1B1D1F';
-    --level-gray800: '#26282B';
-    --level-gray600: '#454C53';
-    --level-gray500: '#72787F';
-    --level-gray400: '#9EA4AA';
-    --level-gray200: '#C9CDD2';
+    --level-gray900: #1B1D1F;
+    --level-gray800: #26282B;
+    --level-gray600: #454C53;
+    --level-gray500: #72787F;
+    --level-gray400: #9EA4AA;
+    --level-gray200: #C9CDD2;
 
     /* fonts */
     --fontFamily-poppins: 'Poppins', sans-serif;
