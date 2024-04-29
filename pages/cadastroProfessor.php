@@ -15,6 +15,10 @@ require_once '../db/config.php';
 
 <body>
 
+    <?php 
+        require '../components/sidebar.php';
+    ?>
+
     <div class="container">
         <div class="row">
             <!--Lado Esquerdo da tela-->

@@ -21,6 +21,10 @@ $quantidade = DB::count();
 </head>
 
 <body>
+    <?php
+        require '../components/sidebar.php'; 
+    ?>
+
     <div class="d-flex justify-content-start ms-3 mt-5">
         <p id="cabecalhoListaAluno">Lista de Alunos do <?php echo $classe['nome'] ?> - <?php echo $quantidade ?>Alunos</p>
     </div>
