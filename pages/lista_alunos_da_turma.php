@@ -1,7 +1,10 @@
 <?php
 require_once '../db/config.php';
 
-$alunos = DB::query('select * from aluno');
+$classe_id = $_GET['turma_id'];
+$classe = DB::queryFirstRow('select * from classe where id=%i', $classe_id);
+$alunos = DB::query('select * from aluno where classe_id=%i', $aluno_id);
+$quantidade = DB::count();
 ?>
 
 <!DOCTYPE html>
@@ -13,13 +16,13 @@ $alunos = DB::query('select * from aluno');
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../assets/css/lista_alunos_da_turma.css">
 
-    <title>Cadastro Professor</title>
+    <title>Lista de Alunos da Turma</title>
 
 </head>
 
 <body>
     <div class="d-flex justify-content-start ms-3 mt-5">
-        <p id="cabecalhoListaAluno">Lista de Alunos do ano - Alunos</p>
+        <p id="cabecalhoListaAluno">Lista de Alunos do <?php echo $classe['nome'] ?> - <?php echo $quantidade ?>Alunos</p>
     </div>
 
     <div class="d-flex justify-content-start mt-3 ms-3">
