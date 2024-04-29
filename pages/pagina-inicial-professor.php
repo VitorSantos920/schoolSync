@@ -1,3 +1,9 @@
+<?php
+require_once '../db/config.php';
+
+$materiaisApoio = DB::query("SELECT * FROM recurso_educacional ");
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -45,42 +51,23 @@
         <div class="table-responsive">
           <table class="table">
             <tbody>
-              <tr>
-                <td>Números Naturais</td>
-                <td>
-                  <a href="">Acessar</a>
-                </td>
-                <td>
-                  <button class="btn btn-info" onclick="abrirModalDetalhes('')">Detalhes</button>
-                </td>
-              </tr>
-              <tr>
-                <td>Números Naturais</td>
-                <td>
-                  <a href="">Acessar</a>
-                </td>
-                <td>
-                  <button class="btn btn-info" onclick="abrirModalDetalhes('')">Detalhes</button>
-                </td>
-              </tr>
-              <tr>
-                <td>Números Naturais</td>
-                <td>
-                  <a href="">Acessar</a>
-                </td>
-                <td>
-                  <button class="btn btn-info" onclick="abrirModalDetalhes('')">Detalhes</button>
-                </td>
-              </tr>
-              <tr>
-                <td>Números Naturais</td>
-                <td>
-                  <a href="">Acessar</a>
-                </td>
-                <td>
-                  <button class="btn btn-info" onclick="abrirModalDetalhes('')">Detalhes</button>
-                </td>
-              </tr>
+              <?php
+
+              foreach ($materiaisApoio as $materialApoio) {
+                echo "
+                    <tr>
+                      <td>{$materialApoio['titulo']}</td>
+                      <td>
+                        <a href='{$materialApoio['url']}'>Acessar</a>
+                      </td>
+                      <td>
+                        <button class='btn btn-info' onclick='abrirModalDetalhes({$material['id']})'>Detalhes</button>
+                      </td>
+                    </tr>
+                  ";
+              }
+
+              ?>
             </tbody>
           </table>
         </div>
@@ -232,7 +219,7 @@
   <script src="../assets/js/sweetalert2.all.min.js"></script>
   <script src="../assets/js/pages__pagina-inicial-professor.js"></script>
   <script>
-    function modalCriacaoMaterialApoio() {
+    function modalCriacaoMaterialApoio(id) {
       $('#criacaoMaterialApoio').modal('show')
       let nomeMaterial = $('#nome-material').val('');
       let descricaoMaterial = $('#descricao-material').val('');
