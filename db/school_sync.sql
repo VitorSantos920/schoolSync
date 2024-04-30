@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27/04/2024 às 18:42
+-- Tempo de geração: 30/04/2024 às 03:32
 -- Versão do servidor: 10.4.27-MariaDB
 -- Versão do PHP: 8.2.0
 
@@ -84,7 +84,8 @@ CREATE TABLE `classe` (
 --
 
 INSERT INTO `classe` (`id`, `nome`, `serie`, `professor_id`, `created_at`) VALUES
-(1, '5 A', '5', 1, '2024-04-25 09:01:45');
+(1, '5 A', '5', 1, '2024-04-25 09:01:45'),
+(2, '6A', '6', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -221,7 +222,8 @@ CREATE TABLE `professor` (
 --
 
 INSERT INTO `professor` (`id`, `usuario_id`, `cpf`) VALUES
-(1, 26, '123.456.789-10');
+(1, 26, '123.456.789-10'),
+(2, 27, '34945058024');
 
 -- --------------------------------------------------------
 
@@ -251,6 +253,21 @@ CREATE TABLE `recurso_educacional` (
   `tipo` varchar(15) NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `recurso_educacional`
+--
+
+INSERT INTO `recurso_educacional` (`id`, `administrador_id`, `titulo`, `descricao`, `url`, `escolaridade`, `tipo`, `created_at`) VALUES
+(1, 2, 'Recurso', 'b', 'c', 1, 'pdf', '2024-04-27 16:01:05'),
+(2, 2, 'v', 'w', 'x', 2, 'site', '2024-04-27 16:04:57'),
+(3, 2, 'g', 'h', 'i', 2, 'site', '2024-04-27 16:06:19'),
+(4, 2, 'h', 'i', 'k', 3, 'site', '2024-04-27 16:06:42'),
+(5, 2, 'a', 'a', 'a', 1, 'pdf', '2024-04-27 16:20:41'),
+(6, 2, 'Números Inteiros', 'Os números inteiros blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá blá.', 'https://numerosinteiros.com.br', 3, 'site', '2024-04-27 16:21:51'),
+(7, 2, 'a', 'b', 'c', 1, 'pdf', '2024-04-29 21:56:19'),
+(8, 2, 'Introdução à Programação em Python', 'Este recurso oferece uma introdução abrangente à linguagem de programação Python, abordando desde os conceitos básicos até tópicos mais avançados, como estruturas de dados e funções.', 'https://www.example.com/introducao-python', 4, 'pdf', '2024-04-29 21:58:24'),
+(9, 2, 'teste', 'teste', 'https://www.example.com/introducao-python', 3, 'pdf', '2024-04-29 22:08:13');
 
 -- --------------------------------------------------------
 
@@ -295,9 +312,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `categoria`, `imagem_perfil`, `created_at`) VALUES
-(2, 'Maria eduarda', 'duda@gmail.com', '123456789', 'aluna', NULL, NULL),
+(2, 'Maria eduarda', 'duda@gmail.com', '123456789', 'Aluno', NULL, NULL),
 (26, 'lucass d', 'lucas@d.com', '123456789', 'Professor', NULL, '2024-04-25 08:47:08'),
-(27, 'Vitor Santos', 'vitor@gmail.com.br', '12345678', 'Aluno', NULL, '2024-04-25 08:49:56'),
+(27, 'Vitor Santos', 'vitor@gmail.com.br', '12345678', 'Professor', NULL, '2024-04-25 08:49:56'),
 (28, 'Cleiton Silva', 'silva@admin.com', '123456789', 'Administrador', NULL, '2024-04-25 08:49:56'),
 (29, 'Ramiris da Silva Souza', 'ram@.com', '123', 'Responsável', '', '2024-04-25 08:53:49'),
 (30, 'Vitor H. P. dos Santos', 'pireshugo737@gmail.com', 'VitorSantos2', 'Administrador', NULL, '2024-04-16 12:43:58'),
@@ -493,7 +510,7 @@ ALTER TABLE `aluno`
 -- AUTO_INCREMENT de tabela `classe`
 --
 ALTER TABLE `classe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `classe_materia`
@@ -547,7 +564,7 @@ ALTER TABLE `nota`
 -- AUTO_INCREMENT de tabela `professor`
 --
 ALTER TABLE `professor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `professor_materia`
@@ -559,7 +576,7 @@ ALTER TABLE `professor_materia`
 -- AUTO_INCREMENT de tabela `recurso_educacional`
 --
 ALTER TABLE `recurso_educacional`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `responsavel`
