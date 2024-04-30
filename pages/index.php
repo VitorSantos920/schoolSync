@@ -8,30 +8,6 @@
     <link rel="stylesheet" href="../assets/css/login.css">
     <link rel="stylesheet" href="../assets/css/variables.css">
     <title>Login SchoolSync</title>
-
-    <style>
-
-        .logo-text{
-            font-size: var(--fontSize-5xl);
-            font-family: var(--fontFamily-poppins);
-            font-weight: var(--fontWeight-bold);
-            color: var(--brand-color);
-        }
-
-        .sub-text{
-            font-size: var(--fontSize-sm);
-            font-family: var(--fontFamily-roboto);
-            font-weight: var(--fontWeight-regular);
-            color: var(--level-gray500);
-        }
-
-        .lembrar-de-mim {
-            font-size: var(--fontSize-sm);
-            font-family: var(--fontFamily-poppins);
-            font-weight: var(--fontWeight-regular);
-        }
-
-    </style>
 </head>
 <body>
     <div class="container">
@@ -41,19 +17,17 @@
             <p class="logo-text">SchoolSync</p>
             <p class="sub-text">Se você é um aluno, professor ou um responsável e já possui cadastro no sistema, faça seu login abaixo!</p>
             <form method="POST" id="form_login">
-                <div class="mt-4">
+                <div class="input-box">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required><br><br>
+                    <input type="email" id="email" name="email" placeholder="exemplo@email.com" class="example-login" required><br><br>
                 </div>
                 
                 <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required><br><br>
-
-
-                <input type="checkbox" id="lembrar-login" name="lembrar-login">
-                <label for="lembrar-login">Lembrar login</label><br><br>
+                <input type="password" id="senha" name="senha" placeholder="************"  class="example-login" required><br><br>
                 
                 <button type="submit" onclick="realizar_login()">REALIZAR LOGIN</button>
+
+                <p class="sub-text">É um professor e ainda não possui cadastro? <a class="link-text" href=../pages/cadastroProfessor.php>Crie uma conta!</a></p>
             </form>
         </div>
     </div>
