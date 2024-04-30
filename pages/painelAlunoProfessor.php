@@ -1,3 +1,14 @@
+<?php
+// Inclua o arquivo que contém a definição da classe DB
+require_once '../db/config.php';
+date_default_timezone_set('America/Sao_Paulo');
+
+$aluno_id = $_GET['aluno_id'];
+$sql = DB::queryFirstRow('SELECT usuario_id FROM aluno WHERE id=%i', $aluno_id);
+$usuario_id = $sql['usuario_id'];
+$dados = DB::query('SELECT * FROM usuario WHERE id=%i', $usuario_id);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -46,8 +57,8 @@
 <body>
 
     <div class="container">
-        <h3><img src="../assets/img/maozinha.png" width="30px" alt="Ícone de mão dando saudação."> Olá, Maria!</h3>
-        <h1>Confira seu desempenho acadêmico.</h1><br>
+        <h3><img src="../assets/img/maozinha.png" width="30px" alt="Ícone de mão dando saudação."> Olá!</h3>
+        <h1>Confira o Desempenho Acadêmico de <?php echo $dados["nome"] ?></h1><br>
 
         <div class="row">
             <div class="col-8">

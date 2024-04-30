@@ -1,24 +1,14 @@
 <?php
-// Passo 1: Estabelecer a conexão com o banco de dados
-$servername = "localhost"; // Nome do servidor
-$username = "root"; // Nome de usuário do banco de dados
-$password = ""; // Senha do banco de dados
-$dbname = "school_sync"; // Nome do banco de dados
+require_once '../db/config.php';
+date_default_timezone_set('America/Sao_Paulo');
 
-// Crie a conexão
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verificar a conexão
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+session_start();
+if (!isset($_SESSION['email'])) {
+    header('Location: ./index.php');
+    exit;
 }
 
-// Passo 2: Executar a consulta SQL
-$sql = "SELECT * FROM usuario";
-$result = $conn->query($sql);
-
-// Fechar a conexão
-$conn->close();
+$dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us INNER JOIN aluno al ON al.usuario_id = us.id WHERE us.id = %i", $_SESSION['id']);
 ?>
 
 <!DOCTYPE html>
@@ -69,20 +59,48 @@ $conn->close();
 <body>
 
     <div class="container">
-        <h3><img src="../assets/img/maozinha.png" width="30px" alt="Ícone de mão dando saudação."> Olá, Maria!</h3>
+        <h3><img src="../assets/img/maozinha.png" width="30px" alt="Ícone de mão dando saudação."> Olá, <?php echo $dadosAluno["nome"] ?></h3>
         <h1>Confira seu desempenho acadêmico.</h1><br>
 
         <div class="row">
+            <?php
+            // Consulta SQL para recuperar as notas do aluno
+            $notas = DB::query("SELECT nota FROM nota WHERE aluno_id = %i", $dadosAluno["aluno_id"]);
+
+            // Inicializa variáveis para o cálculo da média
+            $totalNotas = 0;
+            $quantidadeNotas = count($notas);
+
+            // Soma todas as notas
+            foreach ($notas as $nota) {
+                $totalNotas += $nota['nota'];
+            }
+
+            // Calcula a média
+            if ($quantidadeNotas > 0) {
+                $media = $totalNotas / $quantidadeNotas;
+            } else {
+                $media = 0;
+            }
+            ?>
+
             <div class="col-8">
-                <h3>Media geral de nota: 7,9.</h3>
+                <h3>Média geral de nota: <?php echo number_format($media, 1); ?></h3>
                 <h6>Gráfico de barras representando suas notas bimestrais por disciplina</h6><br>
                 <canvas id="myChart" width="400" height="100"></canvas>
             </div>
+
+            <?php
+            // Consulta SQL para recuperar o total de faltas do aluno
+            $totalFaltas = DB::queryFirstField("SELECT COUNT(*) FROM falta WHERE aluno_id = %i", $dadosAluno["aluno_id"]);
+            ?>
+
             <div class="col-4 linha-vertical">
-                <h3>Faltas no total: 17.</h3>
+                <h3>Total de faltas: <?php echo $totalFaltas; ?></h3>
                 <h6>Faltas por Disciplina</h6>
                 <canvas id="myChart2" width="200" height="100"></canvas>
             </div>
+
             <hr class="linha-horizontal">
             <div class="col-4"><br>
                 <h4><img src="../assets/img/arquivo.png" width="30px" alt="Ícone de mão dando saudação.">Próximas avaliações</h4>
@@ -133,27 +151,31 @@ $conn->close();
             <div class="col-4 linha-vertical"><br>
                 <h4><img src="../assets/img/pasta.png" width="30px" alt="Ícone de mão dando saudação."> Materiais de apoio</h4>
                 <h6>Acesse abaixo os recursos educacionais disponíveis. </h6><br>
-                <div class="row">
-                    <div class="col-8">
-                        <h5>Números Naturais</h5>
-                    </div>
-                    <div class="col-4">
-                        <h6>Acessar</h6>
-                    </div>
-                    <hr class="linha-horizontal"><br>
-                </div>
-                <div class="row">
-                    <div class="col-8">
-                        <h5>Números Inteiros</h5>
-                    </div>
-                    <div class="col-4">
-                        <h6>Acessar</h6>
-                    </div>
-                    <hr class="linha-horizontal"><br>
-                </div>
+                <?php
+                // Consulta SQL para recuperar os recursos educacionais
+                $escolaridadeAluno = $dadosAluno["escolaridade"]; // Supondo que a coluna com a escolaridade do aluno seja "escolaridade"
+                $recursos = DB::query("SELECT * FROM recurso_educacional WHERE escolaridade = %s", $escolaridadeAluno);
+
+
+                // Verificar se há recursos disponíveis
+                if ($recursos) {
+                    foreach ($recursos as $recurso) {
+                        echo '<div class="row">';
+                        echo '<div class="col-8">';
+                        echo '<h5>' . $recurso["titulo"] . '</h5>';
+                        echo '</div>';
+                        echo '<div class="col-4">';
+                        echo '<a href="' . $recurso["url"] . '">Acessar</a>'; // Link para acessar o recurso
+                        echo '</div>';
+                        echo '<hr class="linha-horizontal"><br>';
+                        echo '</div>';
+                    }
+                } else {
+                    echo '<p>Nenhum recurso educacional disponível no momento.</p>';
+                }
+                ?>
             </div>
         </div>
-    </div>
 
 </body>
 <script>

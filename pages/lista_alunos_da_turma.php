@@ -3,7 +3,7 @@ require_once '../db/config.php';
 
 $classe_id = $_GET['turma_id'];
 $classe = DB::queryFirstRow('select * from classe where id=%i', $classe_id);
-$alunos = DB::query('select * from aluno where classe_id=%i', $aluno_id);
+$alunos = DB::query('select * from aluno where classe_id=%i', $classe_id);
 $quantidade = DB::count();
 ?>
 
@@ -22,7 +22,7 @@ $quantidade = DB::count();
 
 <body>
     <?php
-        require '../components/sidebar.php'; 
+    require '../components/sidebar.php';
     ?>
 
     <div class="d-flex justify-content-start ms-3 mt-5">
@@ -57,7 +57,7 @@ $quantidade = DB::count();
                 ?>
                 <tr id="tabelaCorpo">
                     <td><?php echo $aluno['id'] ?></td>
-                    <td><?php echo $user['nome'] ?></td>
+                    <td><a href="./painelAlunoProfessor.php?aluno_id=<?php echo $aluno['id']; ?>"><?php echo $user['nome']; ?></a></td>
                     <td><?php echo $user_responsavel['nome'] ?></td>
                     <td><?php echo $user_responsavel['email'] ?></td>
                     <td><?php echo $user['created_at'] ?></td>
