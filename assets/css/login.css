@@ -27,11 +27,10 @@ body {
     text-align: center;
 }
 
-.input-box {
-    background-color: #fff;
-    padding: 40px;
-    width: 480px;
-    text-align: center;
+/* Estilização dos rótulos dos campos de entrada */
+.login-box label {
+    display: block;
+    margin-bottom: 10px;
 }
 
 .input-box {
