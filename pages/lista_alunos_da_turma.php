@@ -2,6 +2,12 @@
 require_once '../db/config.php';
 
 $classe_id = $_GET['turma_id'];
+
+if($classe_id == null){
+    session_start();
+    $classe_id = $_SESSION['classe_id'];
+}
+
 $classe = DB::queryFirstRow('select * from classe where id=%i', $classe_id);
 $alunos = DB::query('select * from aluno where classe_id=%i', $classe_id);
 $quantidade = DB::count();
@@ -155,7 +161,8 @@ $quantidade = DB::count();
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="id_aluno" value="<?php echo $aluno['id']; ?>">
-                        <input type="hidden" name="id_professor" value="<?php echo $aluno['id']; ?>">
+                        <input type="hidden" name="id_aluno" value="<?php echo $aluno['id']; ?>">
+                        <input type="hidden" name="turma_id" value="<?php echo $aluno['id']; ?>">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                         <button type="submit" class="btn btn-success" name="action" value="salvar">Salvar</button>
                     </div>

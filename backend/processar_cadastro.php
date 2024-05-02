@@ -69,10 +69,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $_SESSION['erros'] = $erros;
     echo var_dump($_SESSION['erros']);
     exit;
-    header('Location: /School_sync/pages/cadastroProfessor.php');
+    header('Location: /schoolSync/pages/cadastroProfessor.php');
     exit;
 } else {
-    header('Location: /School_sync/pages/cadastroProfessor.php');
+    header('Location: /schoolSync/pages/cadastroProfessor.php');
     exit;
 }
 

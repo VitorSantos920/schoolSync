@@ -9,16 +9,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $_SESSION['dados'] = array(
         'id_aluno' => $_POST['id_aluno'],
         'id_professor' => $_POST['id_professor'],
+        'classe_id' => $_POST['turma_id']
     );
 
     if ($_POST['action'] == 'acessar_perfil_aluno') {
-        header('Location: /School_sync/pages/painelAlunoProfessor.php');
+        header('Location: /schoolSync/pages/painelAlunoProfessor.php');
         exit;
     } elseif ($_POST['action'] == 'detalhes') {
-        header('Location: /School_sync/pages/painelAluno.php');
+        header('Location: /schoolSync/pages/painelAluno.php');
         exit;
     } elseif ($_POST['action'] == 'salvar') {
-        $aluno = DB::queryFirstRow('select * from aluno where id=%i', $_POST['id_aluno']);
+        $aluno = DB::queryFirstRow('select * from aluno where id=%i',$_SESSION['id_aluno']);
         $user = DB::queryFirstRow('select * from usuario where id=%i', $aluno['usuario_id']);
 
         DB::update('usuario', ['nome' => $_POST['nome']], 'id=%i', $user['id']);
@@ -30,13 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             DB::update('aluno', ['status_aluno' => 0], 'id=%i', $aluno['id']);
         }
 
-        echo var_dump($aluno, $user, $_POST);
-
-        header('Location: /School_sync/pages/lista_alunos_da_turma.php');
+        header('Location: /schoolSync/pages/lista_alunos_da_turma.php');
         exit;
     } elseif ($_POST['action'] == 'deletar_aluno') {
-        DB::delete('aluno', 'id=%i', $_POST['id_aluno']);
-        header('Location:  /School_sync/pages/lista_alunos_da_turma.php');
+        DB::delete('aluno', 'id=%i', $_SESSION['id_aluno']);
+        header('Location:  /schoolSync/pages/lista_alunos_da_turma.php');
         exit;
     }
 } 
