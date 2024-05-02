@@ -11,6 +11,7 @@
 </head>
 <body>
     <div class="container">
+        <img src="../assets/img/boy_login.png" alt="Aluno" class="boy-image">
         <div class="login-box">
             <!-- alt é um atributo que determina o texto que deve aparecer caso a imagem não seja exibida-->
             <img src="../assets/img/logo_transparente.png" alt="SchoolSync" class="logo">

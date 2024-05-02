@@ -20,7 +20,7 @@
                     break;
                 case "Professor":
                     $response["categoria"] = "Professor";  
-                    $response["link"] = "http://localhost/schoolSync/pages/painelAlunoProfessor.php";
+                    $response["link"] = "http://localhost/schoolSync/pages/pagina-inicial-professor.php";
                     break;
                 case "Responsavel":
                     $response["categoria"] = "Responsavel"; 

@@ -21,7 +21,6 @@ body {
     background-color: #fff;
     padding: 40px;
     width: 575px;
-    width: 575px;
     border-radius: 3px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -113,4 +112,13 @@ button:hover {
 .example-login::placeholder{
     font-size: var(--fontSize-xs);
     color: var(--level-gray400);
+}
+
+.boy-image {
+    width: 500px;
+    margin-bottom: 5px;
+    position: relative;
+    left: 170px;
+    right: 30px;
+    top: 0.075vh; /* Posição a 50% da altura da janela do navegador */
 }
