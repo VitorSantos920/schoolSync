@@ -3,20 +3,14 @@
 require_once '../db/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    session_start();
-
-    $_SESSION['dados_processar_lista'] = array(
-        'id_aluno' => $_POST['id_aluno'],
-        'id_professor' => $_POST['id_professor'],
-        'classe_id' => $_POST['turma_id']
-    );
+    
+    $classe_id = $_POST['id_turma'];
 
     if ($_POST['action'] == 'acessar_perfil_aluno') {
-        header('Location: /schoolSync/pages/painelAlunoProfessor.php');
+        header("Location: /schoolSync/pages/painelAlunoProfessor.php?aluno_id={$aluno['id']}");
         exit;
     } elseif ($_POST['action'] == 'detalhes') {
-        header('Location: /schoolSync/pages/painelAluno.php');
+        header("Location: /schoolSync/pages/painelAluno.php?$aluno_id{['id']}");
         exit;
     } elseif ($_POST['action'] == 'salvar') {
         $aluno = DB::queryFirstRow('select * from aluno where id=%i',$_POST['id_aluno']);
@@ -31,11 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             DB::update('aluno', ['status_aluno' => 0], 'id=%i', $aluno['id']);
         }
 
-        header('Location: /schoolSync/pages/lista_alunos_da_turma.php');
+        header("Location: /schoolSync/pages/lista_alunos_da_turma.php?id_turma={$classe_id}");
         exit;
     } elseif ($_POST['action'] == 'deletar_aluno') {
         DB::delete('aluno', 'id=%i', $_POST['id_aluno']);
-        header('Location:  /schoolSync/pages/lista_alunos_da_turma.php');
+        header("Location: /schoolSync/pages/lista_alunos_da_turma.php?id_turma={$classe_id}");
         exit;
     }
 } 

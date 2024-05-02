@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     //Validar o email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $erros[] = 'Email inválido';
+        $erros[3] = 'Email inválido';
     }
 
     //Verifica se o email existe
@@ -63,12 +63,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = DB::query('select * from professor where usuario_id=%i', $usuario_id);
 
         $_SESSION['dados'] = $user;
-        header('Location: pages/pagina-inicial-professor.php');
+        header('Location: /schoolSync/pages/pagina-inicial-professor.php');
         exit;
     }
+
     $_SESSION['erros'] = $erros;
-    echo var_dump($_SESSION['erros']);
-    exit;
+
     header('Location: /schoolSync/pages/cadastroProfessor.php');
     exit;
 } else {
