@@ -3,7 +3,7 @@ require_once '../db/config.php';
 
 $classe_id = $_GET['turma_id'];
 $classe = DB::queryFirstRow('select * from classe where id=%i', $classe_id);
-$alunos = DB::query('select * from aluno where classe_id=%i', $aluno_id);
+$alunos = DB::query('select * from aluno where classe_id=%i', $classe_id);
 $quantidade = DB::count();
 ?>
 
@@ -13,7 +13,6 @@ $quantidade = DB::count();
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../assets/css/lista_alunos_da_turma.css">
 
     <title>Lista de Alunos da Turma</title>
@@ -26,7 +25,7 @@ $quantidade = DB::count();
     ?>
 
     <div class="d-flex justify-content-start ms-3 mt-5">
-        <p id="cabecalhoListaAluno">Lista de Alunos do <?php echo $classe['nome'] ?> - <?php echo $quantidade ?>Alunos</p>
+        <p id="cabecalhoListaAluno">Lista de Alunos do <?php echo $classe['nome'] ?> - <?php echo $quantidade ?> Alunos</p>
     </div>
 
     <div class="d-flex justify-content-start mt-3 ms-3">
@@ -72,14 +71,14 @@ $quantidade = DB::count();
                                 Lista de Ações
                             </button>
 
-                            <form action="../backend/processar_lista_aluno.php" method="POST">
+                            <form id="btns_action" action="../backend/processar_lista_aluno.php" method="POST">
                                 <ul class="dropdown-menu">
                                     <input type="hidden" name="id_aluno" value="<?php echo $aluno['id']; ?>">
                                     <input type="hidden" name="id_professor" value="<?php echo $aluno['id']; ?>">
-                                    <button class="btn" name="action" value="acessar_perfil_aluno"><i class="fa-solid fa-user icone"></i>Acessar Perfil</button>
-                                    <button class="btn" name="action" value="detalhes"><i class="fa-solid fa-folder icone"></i>Ver Detalhes</button>
-                                    <button type="button" class="btn" name="action" value="edt_aluno" data-bs-toggle="modal" data-bs-target="#edtAlunoModal"><i class="fa-solid fa-pen icone"></i>Editar Aluno</button>
-                                    <button class="btn" id="deletarAluno" name="action" value="deletar_aluno"><i class="fa-solid fa-trash icone"></i>Deletar Aluno</button>
+                                    <li><button class="btn" name="action" value="acessar_perfil_aluno"><i class="fa-solid fa-user icone"></i>Acessar Perfil</button></li>
+                                    <li><button class="btn" name="action" value="detalhes"><i class="fa-solid fa-folder icone"></i>Ver Detalhes</button></li>
+                                    <li><button type="button" class="btn" name="action" value="edt_aluno" data-bs-toggle="modal" data-bs-target="#edtAlunoModal"><i class="fa-solid fa-pen icone"></i>Editar Aluno</button></li>
+                                    <li><button class="btn" id="deletarAluno" name="action" value="deletar_aluno"><i class="fa-solid fa-trash icone"></i>Deletar Aluno</button></li>
                                 </ul>
                             </form>
                         </div>
@@ -167,6 +166,7 @@ $quantidade = DB::count();
 
 </body>
 
+<script src="../assets/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/4ac8bcd2f5.js" crossorigin="anonymous"></script>
 
 </html>
