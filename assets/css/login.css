@@ -21,6 +21,7 @@ body {
     background-color: #fff;
     padding: 40px;
     width: 575px;
+    border: 1px solid #9EA4AA; /* Borda sólida de 2 pixels com cor preta */
     border-radius: 3px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -36,7 +37,7 @@ body {
     background-color: #fff;
     padding: 40px;
     width: 480px;
-    text-align: center;
+    text-align: left;
 }
 
 .logo {
@@ -78,7 +79,7 @@ button:hover {
     font-size: var(--fontSize-sm);
     font-family: var(--fontFamily-roboto);
     font-weight: var(--fontWeight-regular);
-    color: var(--level-gray500);
+    color: #717171;
 }
 
 .link{
@@ -117,8 +118,9 @@ button:hover {
 .boy-image {
     width: 500px;
     margin-bottom: 5px;
-    position: relative;
-    left: 170px;
-    right: 30px;
-    top: 0.075vh; /* Posição a 50% da altura da janela do navegador */
+    position: absolute;
+    left: 350px;
+    right: 10px;
+    top: 7vh;  /* Posição a 50% da altura da janela do navegador */
+    z-index: -1;
 }

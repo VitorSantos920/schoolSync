@@ -17,20 +17,24 @@ function realizar_login(){
                 console.log(response.link);
                 console.log(response.categoria);
 
-                switch (response.categoria) {
-                    case "Aluno":
-                        //console.log("hddgdgdbdbbbc");
-                        window.location.href=response.link;
-                        break;
-                    case "Professor":
-                        window.location.href=response.link;
-                        break;
-                    case "Responsavel":
-                        window.location.href=response.link;
-                        break;
-                    case "Administrador":
-                        window.location.href=response.link;
-                        break;
+                if(response.status === 1){
+                    switch (response.categoria) {
+                        case "Aluno":
+                            //console.log("hddgdgdbdbbbc");
+                            window.location.href=response.link;
+                            break;
+                        case "Professor":
+                            window.location.href=response.link;
+                            break;
+                        case "Responsavel":
+                            window.location.href=response.link;
+                            break;
+                        case "Administrador":
+                            window.location.href=response.link;
+                            break;
+                    }
+                } else if(response.status === -1){
+                    alert("Email e/ou senha inválidos. Tente novamente.");
                 }
             },
             error: function(erro){
