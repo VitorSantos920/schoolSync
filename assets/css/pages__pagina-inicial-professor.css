@@ -4,15 +4,19 @@
     gap: var(--spacing-2);
 }
 
-h2,
+body :is(h2,
 h3,
-h5 {
+h5) {
     font-family: var(--fontFamily-poppins);
     font-weight: var(--fontWeight-bold);
 }
 
 h3 {
     font-size: var(--fontSize-2xl);
+}
+
+main, .saudacao {
+    margin-left: 22rem;
 }
 
 main :is(button.btn, a.btn) {
@@ -45,6 +49,10 @@ main :is(button.btn, a.btn) {
 
 .turmas .turmas__quantidade {
     color: var(--level-gray900);
+}
+
+.turmas .turmas__lista-turmas {
+    padding: 0;
 }
 
 .turmas .turmas__lista-turmas li {

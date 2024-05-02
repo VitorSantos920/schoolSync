@@ -32,15 +32,16 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
 </head>
 
 <body>
+  <?php
+    include_once "../components/sidebar.php";
+  ?>
+
   <section class="saudacao d-flex align-items-center">
     <img width="30" src="../assets/img/hand.svg" alt="Emoji de mão amarela acenando.">
     <h2 class="saudacao__titulo">Olá, professor (a) <?php echo $dadosProfessor["nome"] ?>!</h2>
     <button class="btn btn-success" onclick="modalCriacaoMaterialApoio()">Abrir Modal Criação Material de Apoio</button>
   </section>
 
-  <?php
-  echo date('H:i:s');
-  ?>
   <main class="d-flex gap-5">
     <div class="left-side">
       <section class="turmas">
