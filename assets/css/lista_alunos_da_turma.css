@@ -50,6 +50,7 @@ body{
     font-weight: var(--fontWeight-regular);
     border-radius: var(--borderRadius-xs);
     background-color: #C8CBD9;
+    margin-left: var(--spacing-2);
     margin-bottom: var(--spacing-2);
 }
 

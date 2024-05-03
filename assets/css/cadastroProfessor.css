@@ -55,7 +55,10 @@ body{
     font-weight: var(--fontWeight-regular);
 }
 
-.forms #erro{
-    color: black;
+.exibir-erro .erro{
+    color: red;
     background-color: red;
+    font-size: var(--fontSize-sm);
+    font-family: var(--fontFamily-roboto);
+    font-weight: var(--fontWeight-regular);
 }
