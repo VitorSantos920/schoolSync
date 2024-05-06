@@ -3,11 +3,12 @@ require_once '../db/config.php';
 
 if (isset($_SERVER['HTTP_REFERER'])) {
     $pagina_anterior = $_SERVER['HTTP_REFERER'];
+
+    if ($pagina_anterior == '/schoolSync/pages/pagina-inicial-professor.php') {
+        $classe_id = $_GET['turma_id'];
+    }
 }
 
-if ($pagina_anterior == '/schoolSync/pages/pagina-inicial-professor.php') {
-    $classe_id = $_GET['turma_id'];
-}
 
 /*
 session_start();
@@ -88,6 +89,8 @@ $quantidade = DB::count();
 
                                 <form id="btns_action" action="../backend/processar_lista_aluno.php" method="POST">
                                     <ul class="dropdown-menu">
+                                        <li><input type="hidden" name="id_aluno" value="<?php echo $aluno['id']; ?>"></li>
+                                        <li><input type="hidden" name="id_turma" value="<?php echo $aluno['classe_id']; ?>"></li>
                                         <li><button class="btn" name="action" value="acessar_perfil_aluno"><i class="fa-solid fa-user icone"></i>Acessar Perfil</button></li>
                                         <li><button class="btn" name="action" value="detalhes"><i class="fa-solid fa-folder icone"></i>Ver Detalhes</button></li>
                                         <li><button type="button" class="btn" name="action" value="edt_aluno" data-bs-toggle="modal" data-bs-target="#edtAlunoModal"><i class="fa-solid fa-pen icone"></i>Editar Aluno</button></li>

@@ -56,9 +56,9 @@ body{
 }
 
 .exibir-erro .erro{
-    color: red;
-    background-color: red;
-    font-size: var(--fontSize-sm);
+    color: var(--danger-default);
+    font-size: var(--fontSize-xs);
     font-family: var(--fontFamily-roboto);
     font-weight: var(--fontWeight-regular);
+    margin-left: var(--spacing-3);
 }
