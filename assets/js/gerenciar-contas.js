@@ -104,3 +104,7 @@ function pesquisarUsuario() {
         error: (err) => console.log(err),
     });
 }
+
+function abrirModalAdicionarUsuario() {
+    $('#modalAdicionarUsuario').modal('show');
+}

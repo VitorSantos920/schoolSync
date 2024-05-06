@@ -34,7 +34,3 @@ table.table td {
 .modal .modal-footer .btn:last-child {
     background-color: var(--brand-color);
 }
-
-#modalEditarUsuario .modal-body fieldset {
-    margin-top: var(--spacing-7);
-}

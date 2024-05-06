@@ -50,3 +50,7 @@ section {
 main {
     margin-left: 22rem;
 }
+
+.modal-body fieldset:not(fieldset:first-child) {
+    margin-top: var(--spacing-7);
+}
