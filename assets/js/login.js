@@ -54,7 +54,7 @@ function realizar_login() {
                         title: 'Credenciais incorretas!',
                         html: 'Email e/ou senha incorretos.',
                         icon: 'error',
-                        timer: 1200,
+                        timer: 2000,
                         timerProgressBar: true,
                         didOpen: () => {
                             const timer = Swal.getPopup().querySelector('b');

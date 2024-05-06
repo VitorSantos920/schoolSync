@@ -1,7 +1,11 @@
 @import url(./global.css);
 
-body{
-    background-color: white;
+body {
+    background-color: var(--background-color);
+}
+
+main {
+    margin-left: 22rem;
 }
 
 #cabecalhoListaAluno {
@@ -36,11 +40,11 @@ body{
     font-family: var(--fontFamily-poppins);
     font-weight: var(--fontWeight-regular);
     border-radius: var(--borderRadius-xs);
-    background-color: #C9CDD2;
+    background-color: #c9cdd2;
 }
 
 .dropdown #btns_action .dropdown-menu {
-    background-color: #E0E1E2;
+    background-color: #e0e1e2;
     box-shadow: var(--boxShadow-base);
 }
 
@@ -49,7 +53,7 @@ body{
     font-family: var(--fontFamily-poppins);
     font-weight: var(--fontWeight-regular);
     border-radius: var(--borderRadius-xs);
-    background-color: #C8CBD9;
+    background-color: #c8cbd9;
     margin-left: var(--spacing-2);
     margin-bottom: var(--spacing-2);
 }
