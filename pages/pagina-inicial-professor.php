@@ -1,14 +1,16 @@
 <?php
 require_once '../db/config.php';
 date_default_timezone_set('America/Sao_Paulo');
-
 session_start();
-if (!isset($_SESSION['email'])) {
+session_destroy();
+session_unset();
+
+if (!isset($_SESSION['email']) || $_SESSION["categoria"] != "Professor") {
   header('Location: ./index.php');
   exit;
 }
 
-$materiaisApoio = DB::query("SELECT * FROM recurso_educacional ");
+$materiaisApoio = DB::query("SELECT * FROM recurso_educacional LIMIT 6");
 
 // Recupera todos os dados do Professor
 $dadosProfessor = DB::queryFirstRow("SELECT *, pr.id as 'prof_id' FROM usuario us INNER JOIN professor pr ON pr.usuario_id = us.id WHERE us.id = %i", $_SESSION['id']);
@@ -33,7 +35,7 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
 
 <body>
   <?php
-    include_once "../components/sidebar.php";
+  include_once "../components/sidebar.php";
   ?>
 
   <section class="saudacao d-flex align-items-center">
