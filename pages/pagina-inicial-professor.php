@@ -1,3 +1,24 @@
+<?php
+require_once '../db/config.php';
+date_default_timezone_set('America/Sao_Paulo');
+session_start();
+session_destroy();
+session_unset();
+
+if (!isset($_SESSION['email']) || $_SESSION["categoria"] != "Professor") {
+  header('Location: ./index.php');
+  exit;
+}
+
+$materiaisApoio = DB::query("SELECT * FROM recurso_educacional LIMIT 6");
+
+// Recupera todos os dados do Professor
+$dadosProfessor = DB::queryFirstRow("SELECT *, pr.id as 'prof_id' FROM usuario us INNER JOIN professor pr ON pr.usuario_id = us.id WHERE us.id = %i", $_SESSION['id']);
+
+// Recupera as turmas (classes) deste professor
+$turmasProfessor = DB::query("SELECT *, COUNT(*) as 'quantidade_turmas' FROM classe cl WHERE cl.professor_id = %i", $dadosProfessor['prof_id']);
+$quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade_turmas' FROM classe cl WHERE cl.professor_id = %i", $dadosProfessor['prof_id']);
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -15,27 +36,31 @@
 <body>
   <section class="saudacao d-flex align-items-center">
     <img width="30" src="../assets/img/hand.svg" alt="Emoji de mão amarela acenando.">
-    <h2 class="saudacao__titulo">Olá, professor (a) Márcio!</h2>
+    <h2 class="saudacao__titulo">Olá, professor (a) <?php echo $dadosProfessor["nome"] ?>!</h2>
     <button class="btn btn-success" onclick="modalCriacaoMaterialApoio()">Abrir Modal Criação Material de Apoio</button>
   </section>
+
+  <?php
+  echo var_dump($_SESSION);
+  ?>
 
   <main class="d-flex gap-5">
     <div class="left-side">
       <section class="turmas">
-        <h3 class="turmas__quantidade">Suas turmas: 2</h3>
+        <h3 class="turmas__quantidade">Suas turmas:<?php echo $quantidadeTurmasProfessor; ?></h3>
         <ul class="turmas__lista-turmas">
-          <li class="turmas__turma">
-            <a href="" class="d-flex align-items-center gap-2">
-              <h4>Turma A - 3° Ano B - 23 alunos</h4>
-              >
-            </a>
-          </li>
-          <li class="turmas__turma d-flex align-items-center gap-2">
-            <a href="" class="d-flex align-align-items-center gap-2">
-              <h4>Turma C - 1° Ano A - 19 alunos</h4>
-              >
-            </a>
-          </li>
+          <?php
+          foreach ($turmasProfessor as $turma) {
+            echo "
+                <li class='turmas__turma'>
+                  <a href='./lista_alunos_da_turma.php?turma_id={$turma['id']}' class='d-flex align-items-center gap-2 justify-content-between'
+                    <h4>{$turma['nome']} - {$turma['serie']}° Ano</h4>
+                    >
+                  </a>
+                </li>
+              ";
+          }
+          ?>
         </ul>
       </section>
       <section class="materiais-apoio">
@@ -45,42 +70,31 @@
         <div class="table-responsive">
           <table class="table">
             <tbody>
-              <tr>
-                <td>Números Naturais</td>
-                <td>
-                  <a href="">Acessar</a>
-                </td>
-                <td>
-                  <button class="btn btn-info" onclick="abrirModalDetalhes('')">Detalhes</button>
-                </td>
-              </tr>
-              <tr>
-                <td>Números Naturais</td>
-                <td>
-                  <a href="">Acessar</a>
-                </td>
-                <td>
-                  <button class="btn btn-info" onclick="abrirModalDetalhes('')">Detalhes</button>
-                </td>
-              </tr>
-              <tr>
-                <td>Números Naturais</td>
-                <td>
-                  <a href="">Acessar</a>
-                </td>
-                <td>
-                  <button class="btn btn-info" onclick="abrirModalDetalhes('')">Detalhes</button>
-                </td>
-              </tr>
-              <tr>
-                <td>Números Naturais</td>
-                <td>
-                  <a href="">Acessar</a>
-                </td>
-                <td>
-                  <button class="btn btn-info" onclick="abrirModalDetalhes('')">Detalhes</button>
-                </td>
-              </tr>
+              <?php
+              foreach ($materiaisApoio as $materialApoio) {
+                $id = $materialApoio['id'];
+                $titulo = $materialApoio['titulo'];
+                $descricao = $materialApoio['descricao'];
+                $url = $materialApoio['url'];
+                $escolaridade = $materialApoio['escolaridade'];
+                $tipo = $materialApoio['tipo'];
+
+                $created_at = $materialApoio['created_at'];
+                $created_at = date('d/m/Y H:i:s', strtotime($created_at));
+
+                echo "
+                    <tr>
+                      <td>{$titulo}</td>
+                      <td>
+                        <a href='{$url}' target='_blank'>Acessar</a>
+                      </td>
+                      <td>
+                        <button class='btn btn-info' onclick='abrirModalDetalhes({$id}, \"{$titulo}\", \"{$descricao}\", \"{$url}\", \"{$escolaridade}\", \"{$tipo}\", \"{$created_at}\")'>Detalhes</button>
+                      </td>
+                    </tr>
+                  ";
+              }
+              ?>
             </tbody>
           </table>
         </div>
@@ -92,23 +106,23 @@
               <div class="modal-header">
                 <h2 class="modal-title">
                   <img src="../assets/img/material-apoio.svg" alt="Símbolo de pasta alaranjada dentro de um círculo.">
-                  Material de Apoio #7462
+                  Material de Apoio <span id="id-material"></span>
                 </h2>
               </div>
               <div class="modal-body">
-                <h3>Números Naturiais</h3>
+                <h3 id="titulo-material">Números Naturiais</h3>
 
                 <h5>Descrição</h5>
-                <p>Os Números Naturais N = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12...} são numeros inteiros positivos (não-negativos) que se agrupam num conjunto chamado de N, composto de um número ilimitado de elementos. Se um número é inteiro e positivo, podemos dizer que é um número natural.
+                <p id="descricao-material">Os Números Naturais N = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12...} são numeros inteiros positivos (não-negativos) que se agrupam num conjunto chamado de N, composto de um número ilimitado de elementos. Se um número é inteiro e positivo, podemos dizer que é um número natural.
                   Quando o zero não faz parte do conjunto, é representado com um asterisco ao lado da letra N e, nesse caso, esse conjunto é denominado de Conjunto dos Números Naturais Não-Nulos: N* = {1, 2, 3, 4, 5, 6, 7, 8, 9...}.</p>
 
                 <h5>Tipo do Material</h5>
-                <p>Site da Internet</p>
+                <p id="tipo-material">Site da Internet</p>
 
                 <h5>Escolaridade</h5>
-                <p>2° Ano</p>
+                <p id="escolaridade-material">2° Ano</p>
 
-                <a href="" class="btn btn-info">
+                <a id="url-material" class="btn btn-info" target="_blank">
                   Acessar Material <i class="fa-solid fa-arrow-up-right-from-square" style="color: #ffffff;"></i>
                 </a>
 
@@ -182,23 +196,23 @@
           <form action="#" method="post">
 
             <fieldset>
-              <label for="nome-material" class="form-label">Nome/Título do Material</label>
-              <input type="text" name="nome-material" id="nome-material" class="form-control" placeholder="Números Romanos" required>
+              <label for="ipt-nome-material" class="form-label">Nome/Título do Material</label>
+              <input type="text" name="ipt-nome-material" id="ipt-nome-material" class="form-control" placeholder="Números Romanos" required>
             </fieldset>
 
             <fieldset>
-              <label for="descricao-material" class="form-label">Descrição do material</label>
-              <textarea class="form-control" name="descricao-material" id="descricao-material" cols="30" rows="5"></textarea>
+              <label for="ipt-descricao-material" class="form-label">Descrição do material</label>
+              <textarea class="form-control" name="ipt-descricao-material" id="ipt-descricao-material" cols="30" rows="5"></textarea>
             </fieldset>
 
             <fieldset>
-              <label for="url-material" class="form-label">Digite ou cole a URL (link) do Material (Caso seja um material externo [website, vídeo etc.]) </label>
-              <input type="text" name="url-material" id="url-material" class="form-control" placeholder="https://mundoescola.com.br" required>
+              <label for="ipt-url-material" class="form-label">Digite ou cole a URL (link) do Material (Caso seja um material externo [website, vídeo etc.]) </label>
+              <input type="text" name="ipt-url-material" id="ipt-url-material" class="form-control" placeholder="https://mundoescola.com.br" required>
             </fieldset>
 
             <fieldset>
-              <label for="escolaridade" class="form-label">Selecione a escolaridade ideal para este Material</label>
-              <select class="form-control form-select" name="escolaridade" id="escolaridade">
+              <label for="select-escolaridade" class="form-label">Selecione a escolaridade ideal para este Material</label>
+              <select class="form-control form-select" name="select-escolaridade" id="select-escolaridade">
                 <option value="0" selected disabled>Escolaridade</option>
                 <option value="1">1°Ano</option>
                 <option value="2">2°Ano</option>
@@ -209,8 +223,8 @@
             </fieldset>
 
             <fieldset>
-              <label for="tipo-material" class="form-label">Selecione o tipo deste Material</label>
-              <select class="form-control form-select" name="tipo-material" id="tipo-material">
+              <label for="select-tipo-material" class="form-label">Selecione o tipo deste Material</label>
+              <select class="form-control form-select" name="select-tipo-material" id="select-tipo-material">
                 <option value="0" selected disabled>Tipo</option>
                 <option value="pdf">PDF</option>
                 <option value="site">Site da Internet</option>
@@ -242,11 +256,17 @@
     }
 
     function criarMaterialApoio() {
-      let nomeMaterial = $('#nome-material').val();
-      let descricaoMaterial = $('#descricao-material').val();
-      let urlMaterial = $('#url-material').val();
-      let escolaridade = $('#escolaridade').val();
-      let tipoMaterial = $('#tipo-material').val();
+      let nomeMaterial = $('#ipt-nome-material').val();
+      let descricaoMaterial = $('#ipt-descricao-material').val();
+      let urlMaterial = $('#ipt-url-material').val();
+      let escolaridade = $('#select-escolaridade').val();
+      let tipoMaterial = $('#select-tipo-material').val();
+
+      console.log(nomeMaterial)
+      console.log(descricaoMaterial)
+      console.log(urlMaterial)
+      console.log(escolaridade)
+      console.log(tipoMaterial)
 
       if (!nomeMaterial || !descricaoMaterial || !urlMaterial || !escolaridade || !tipoMaterial) {
         Swal.fire({

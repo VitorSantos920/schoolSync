@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +11,14 @@
     <title>Login SchoolSync</title>
 
     <style>
-
-        .logo-text{
+        .logo-text {
             font-size: var(--fontSize-5xl);
             font-family: var(--fontFamily-poppins);
             font-weight: var(--fontWeight-bold);
             color: var(--brand-color);
         }
 
-        .sub-text{
+        .sub-text {
             font-size: var(--fontSize-sm);
             font-family: var(--fontFamily-roboto);
             font-weight: var(--fontWeight-regular);
@@ -30,9 +30,9 @@
             font-family: var(--fontFamily-poppins);
             font-weight: var(--fontWeight-regular);
         }
-
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="login-box">
@@ -45,14 +45,10 @@
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required><br><br>
                 </div>
-                
+
                 <label for="senha">Senha:</label>
                 <input type="password" id="senha" name="senha" required><br><br>
 
-
-                <input type="checkbox" id="lembrar-login" name="lembrar-login">
-                <label for="lembrar-login">Lembrar login</label><br><br>
-                
                 <button type="submit" onclick="realizar_login()">REALIZAR LOGIN</button>
             </form>
         </div>
@@ -60,4 +56,5 @@
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/login.js"></script>
 </body>
+
 </html>
