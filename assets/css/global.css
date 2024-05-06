@@ -11,6 +11,7 @@
 
 html {
     font-size: 16px;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -44,4 +45,8 @@ section {
 :is(input.form-control, textarea.form-control, select.form-control):focus {
     box-shadow: none;
     border-color: var(--brand-color) !important;
+}
+
+main {
+    margin-left: 22rem;
 }

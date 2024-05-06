@@ -2,8 +2,6 @@
 require_once '../db/config.php';
 date_default_timezone_set('America/Sao_Paulo');
 session_start();
-session_destroy();
-session_unset();
 
 if (!isset($_SESSION['email']) || $_SESSION["categoria"] != "Professor") {
   header('Location: ./index.php');

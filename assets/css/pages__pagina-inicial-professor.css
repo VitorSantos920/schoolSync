@@ -1,12 +1,6 @@
 @import url(./global.css);
 
-.saudacao {
-    gap: var(--spacing-2);
-}
-
-body :is(h2,
-h3,
-h5) {
+body :is(h2, h3, h5) {
     font-family: var(--fontFamily-poppins);
     font-weight: var(--fontWeight-bold);
 }
@@ -15,7 +9,8 @@ h3 {
     font-size: var(--fontSize-2xl);
 }
 
-main, .saudacao {
+main,
+.saudacao {
     margin-left: 22rem;
 }
 
@@ -31,6 +26,7 @@ main :is(button.btn, a.btn) {
 }
 
 .saudacao {
+    gap: var(--spacing-2);
     margin-bottom: var(--spacing-9);
 }
 .saudacao__titulo {
