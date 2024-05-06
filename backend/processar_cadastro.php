@@ -57,7 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         DB::insert('professor', [
             'cpf' => $cpf,
-            'usuario_id' => $usuario_id
+            'usuario_id' => $usuario_id,
+            'status_professor' => 1
         ]);
 
         $user = DB::query('select * from professor where usuario_id=%i', $usuario_id);
