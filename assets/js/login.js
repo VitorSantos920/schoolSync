@@ -16,21 +16,56 @@ function realizar_login() {
                 console.log(response);
                 console.log(response.link);
                 console.log(response.categoria);
-
-                switch (response.categoria) {
-                    case 'Aluno':
-                        //console.log("hddgdgdbdbbbc");
-                        window.location.href = response.link;
-                        break;
-                    case 'Professor':
-                        window.location.href = response.link;
-                        break;
-                    case 'Responsavel':
-                        window.location.href = response.link;
-                        break;
-                    case 'Administrador':
-                        window.location.href = response.link;
-                        break;
+                if (response.status == 1) {
+                    let timerInterval;
+                    Swal.fire({
+                        title: 'Seja bem-vindo!',
+                        html: 'Você será redirecionado em breve.',
+                        icon: 'success',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            const timer = Swal.getPopup().querySelector('b');
+                            timerInterval = setInterval(() => {
+                                timer.textContent = `${Swal.getTimerLeft()}`;
+                            }, 100);
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval);
+                            switch (response.categoria) {
+                                case 'Aluno':
+                                    window.location.href = response.link;
+                                    break;
+                                case 'Professor':
+                                    window.location.href = response.link;
+                                    break;
+                                case 'Responsavel':
+                                    window.location.href = response.link;
+                                    break;
+                                case 'Administrador':
+                                    window.location.href = response.link;
+                                    break;
+                            }
+                        },
+                    });
+                } else {
+                    let timerInterval;
+                    Swal.fire({
+                        title: 'Credenciais incorretas!',
+                        html: 'Email e/ou senha incorretos.',
+                        icon: 'error',
+                        timer: 1200,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            const timer = Swal.getPopup().querySelector('b');
+                            timerInterval = setInterval(() => {
+                                timer.textContent = `${Swal.getTimerLeft()}`;
+                            }, 100);
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval);
+                        },
+                    });
                 }
             },
             error: function (erro) {

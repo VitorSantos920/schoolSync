@@ -52,3 +52,23 @@ button:hover {
 #form_login {
     text-align: left;
 }
+
+.logo-text {
+    font-size: var(--fontSize-5xl);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-bold);
+    color: var(--brand-color);
+}
+
+.sub-text {
+    font-size: var(--fontSize-sm);
+    font-family: var(--fontFamily-roboto);
+    font-weight: var(--fontWeight-regular);
+    color: var(--level-gray500);
+}
+
+.lembrar-de-mim {
+    font-size: var(--fontSize-sm);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-regular);
+}

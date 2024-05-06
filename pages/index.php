@@ -8,29 +8,8 @@
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/login.css">
     <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/sweetalert2.min.css">
     <title>Login SchoolSync</title>
-
-    <style>
-        .logo-text {
-            font-size: var(--fontSize-5xl);
-            font-family: var(--fontFamily-poppins);
-            font-weight: var(--fontWeight-bold);
-            color: var(--brand-color);
-        }
-
-        .sub-text {
-            font-size: var(--fontSize-sm);
-            font-family: var(--fontFamily-roboto);
-            font-weight: var(--fontWeight-regular);
-            color: var(--level-gray500);
-        }
-
-        .lembrar-de-mim {
-            font-size: var(--fontSize-sm);
-            font-family: var(--fontFamily-poppins);
-            font-weight: var(--fontWeight-regular);
-        }
-    </style>
 </head>
 
 <body>
@@ -54,6 +33,7 @@
         </div>
     </div>
     <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/sweetalert2.all.min.js"></script>
     <script src="../assets/js/login.js"></script>
 </body>
 
