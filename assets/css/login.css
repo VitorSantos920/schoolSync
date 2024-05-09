@@ -1,3 +1,8 @@
+@import url(../assets/css/global.css);
+
+@import url(../assets/css/global.css);
+@import url(../assets/css/variables.css);
+
 body {
     margin: 0;
     padding: 0;
@@ -15,15 +20,29 @@ body {
 .login-box {
     background-color: #fff;
     padding: 40px;
-    width: 490px;
+    width: 575px;
+    border: 1px solid #9EA4AA; /* Borda sólida de 2 pixels com cor preta */
     border-radius: 3px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
+/* Estilização dos rótulos dos campos de entrada */
+.login-box label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.input-box {
+    background-color: #fff;
+    padding: 40px;
+    width: 480px;
+    text-align: left;
+}
+
 .logo {
     width: 100px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 input[type='email'],
@@ -43,32 +62,66 @@ button {
     border: none;
     cursor: pointer;
     box-shadow: var(--boxShadow-base);
+    box-shadow: var(--boxShadow-base);
 }
 
 button:hover {
     background-color: #ffa500;
 }
 
-#form_login {
-    text-align: left;
-}
-
-.logo-text {
+.logo-text{
     font-size: var(--fontSize-5xl);
     font-family: var(--fontFamily-poppins);
     font-weight: var(--fontWeight-bold);
     color: var(--brand-color);
 }
 
-.sub-text {
+.sub-text{
+    font-size: var(--fontSize-sm);
+    font-family: var(--fontFamily-roboto);
+    font-weight: var(--fontWeight-regular);
+    color: #717171;
+}
+
+.link{
+    color: #0066FF;
+    text-decoration: underline;
+}
+
+.example-login::placeholder{
+    font-size: var(--fontSize-xs);
+    color: var(--level-gray400);
+}
+.link-text{
+    text-decoration: underline;
+    color: #0066FF;
+}
+
+.logo-text{
+    font-size: var(--fontSize-5xl);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-bold);
+    color: var(--brand-color);
+}
+
+.sub-text{
     font-size: var(--fontSize-sm);
     font-family: var(--fontFamily-roboto);
     font-weight: var(--fontWeight-regular);
     color: var(--level-gray500);
 }
 
-.lembrar-de-mim {
-    font-size: var(--fontSize-sm);
-    font-family: var(--fontFamily-poppins);
-    font-weight: var(--fontWeight-regular);
+.example-login::placeholder{
+    font-size: var(--fontSize-xs);
+    color: var(--level-gray400);
+}
+
+.boy-image {
+    width: 500px;
+    margin-bottom: 5px;
+    position: absolute;
+    left: 350px;
+    right: 10px;
+    top: 7vh;  /* Posição a 50% da altura da janela do navegador */
+    z-index: -1;
 }
