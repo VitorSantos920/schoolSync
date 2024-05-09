@@ -32,11 +32,6 @@
 
                     <p class="sub-text">É um professor e ainda não possui cadastro? <a class="link" href=../pages/cadastroProfessor.php>Crie uma conta!</a></p>
                 </div>
-
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required><br><br>
-
-                <button type="submit" onclick="realizar_login()">REALIZAR LOGIN</button>
             </form>
         </div>
     </div>
