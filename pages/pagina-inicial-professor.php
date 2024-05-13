@@ -44,7 +44,7 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
   <main class="d-flex gap-5">
     <div class="left-side">
       <section class="turmas">
-        <h3 class="turmas__quantidade">Suas turmas:<?php echo $quantidadeTurmasProfessor; ?></h3>
+        <h3 class="turmas__quantidade">Suas turmas: <?php echo $quantidadeTurmasProfessor; ?></h3>
         <ul class="turmas__lista-turmas">
           <?php
           if ($quantidadeTurmasProfessor > 0) {

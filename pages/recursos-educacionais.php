@@ -29,7 +29,7 @@ $recursosEducacionais = DB::query("SELECT * FROM recurso_educacional");
   include_once "../components/sidebar.php";
   ?>
   <main>
-    <button class="btn btn-success" onclick="modalCriacaoMaterialApoio()">Abrir Modal Criação Material de Apoio</button>
+    <button class="btn btn-success" onclick="modalCriacaoMaterialApoio()">Criar Material de Apoio</button>
     <div class="table-responsive">
       <table class="table table-borderless align-middle caption-top" id="table-users">
         <caption>Lista de Recursos Educacionais</caption>
@@ -41,6 +41,7 @@ $recursosEducacionais = DB::query("SELECT * FROM recurso_educacional");
             <th>URL</th>
             <th>Escolaridade</th>
             <th>Tipo</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -57,6 +58,10 @@ $recursosEducacionais = DB::query("SELECT * FROM recurso_educacional");
                   </td>
                   <td>{$recursoEducacional['escolaridade']}</td>
                   <td>{$recursoEducacional['tipo']}</td>
+                  <td>
+                    <button class='btn btn-warning' onclick='modalEditarMaterialApoio()'>Editar</button>
+                    <button class='btn btn-danger' onclick='excluirRecurso(2)'>Excluir</button>
+                  </td>
                 </tr>
               ";
             }
@@ -70,11 +75,11 @@ $recursosEducacionais = DB::query("SELECT * FROM recurso_educacional");
           ?>
         </tbody>
       </table>
-      <div class="modal fade" id="modalEditarUsuario" tabindex="-1" aria-labelledby="modalEditarUsuario" aria-hidden="true">
+      <div class="modal fade" id="modalEditarRecurso" tabindex="-1" aria-labelledby="modalEditarRecurso" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h2 class="modal-title">Editar Usuário</h2>
+              <h2 class="modal-title">Editar Material de Apoio</h2>
             </div>
             <div class="modal-body">
 
@@ -87,52 +92,7 @@ $recursosEducacionais = DB::query("SELECT * FROM recurso_educacional");
         </div>
       </div>
 
-      <div class="modal fade" id="modalAdicionarUsuario" tabindex="-1" aria-labelledby="modalAdicionarUsuario" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h2 class="modal-title">Adicionar Usuário</h2>
-            </div>
-            <div class="modal-body">
-              <form action="#" method="post">
 
-                <fieldset>
-                  <label for="ipt-nome-usuario" class="form-label">Nome do usuário</label>
-                  <input type="text" name="ipt-nome-usuario" id="ipt-nome-usuario" class="form-control" placeholder="Números Romanos" required>
-                </fieldset>
-
-
-                <fieldset>
-                  <label for="ipt-email-usuario" class="form-label">Email do usuário</label>
-                  <input type="email" name="ipt-email-usuario" id="ipt-email-usuario" class="form-control" placeholder="https://mundoescola.com.br" required>
-                </fieldset>
-
-                <fieldset>
-                  <label for="ipt-senha-usuario" class="form-label">Senha do usuário</label>
-                  <input type="text" name="ipt-senha-usuario" id="ipt-senha-usuario" class="form-control" placeholder="https://mundoescola.com.br" required>
-                </fieldset>
-
-                <fieldset>
-                  <label for="select-categoria" class="form-label">Selecione a categoria do usuário</label>
-                  <select class="form-control form-select" name="select-categoria" id="select-categoria">
-                    <option value="0" selected disabled>Categoria</option>
-                    <option value="Administrador">Administrador</option>
-                    <option value="Professor">Professor</option>
-                    <option value="Responsável">Responsável</option>
-                    <option value="Aluno">Aluno</option>
-                  </select>
-                </fieldset>
-
-                </fieldset>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-              <button type='submit' class='btn' onclick='editarUsuario()'>Adicionar Usuário</button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="modal fade" id="criacaoMaterialApoio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -198,7 +158,7 @@ $recursosEducacionais = DB::query("SELECT * FROM recurso_educacional");
   <script src="../assets/js/jquery.min.js"></script>
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/sweetalert2.all.min.js"></script>
-  <script src="../assets/js/pages__pagina-inicial-administrador.js"></script>
+  <script src="../assets/js/pages__recursos-educacionais.js"></script>
 
 </body>
 
