@@ -2,15 +2,6 @@
 require_once '../db/config.php';
 
 session_start();
-/*
-if (isset($_SERVER['HTTP_REFERER'])) {
-    $pagina_anterior = $_SERVER['HTTP_REFERER'];
-
-    if ($pagina_anterior == '/schoolSync/pages/pagina-inicial-professor.php') {
-        $classe_id = $_GET['turma_id'];
-    }
-}
-*/
 
 if(isset($_GET['turma_id'])) {
     $classe_id = $_GET['turma_id'];
