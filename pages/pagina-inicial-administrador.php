@@ -38,7 +38,7 @@ $dadosAdministrador = DB::queryFirstRow("SELECT * FROM  usuario us INNER JOIN  a
       <a class="acoes__acao" href="./gerenciar-contas.php">
         Gerenciar Contas
       </a>
-      <a class="acoes__acao" href="recursos-educacionais">
+      <a class="acoes__acao" href="./recursos-educacionais.php">
         Recursos Educacionais
       </a>
     </section>

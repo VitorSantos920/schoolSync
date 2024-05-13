@@ -3,7 +3,7 @@ require_once '../db/config.php';
 date_default_timezone_set('America/Sao_Paulo');
 
 session_start();
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['email']) || $_SESSION['categoria'] != "Aluno") {
     header('Location: ./index.php');
     exit;
 }
@@ -63,8 +63,10 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
 </head>
 
 <body>
-
-    <div class="container">
+    <?php
+    include_once "../components/sidebar.php";
+    ?>
+    <main>
         <h3><img src="../assets/img/maozinha.png" width="30px" alt="Ícone de mão dando saudação."> Olá, <?php echo $dadosAluno["nome"] ?></h3>
         <h1>Confira seu desempenho acadêmico.</h1><br>
 
@@ -133,7 +135,8 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
                 <?php
                 // Consulta SQL para recuperar os recursos educacionais
                 $eventosAluno = $dadosAluno["classe_id"]; // Supondo que a coluna com a escolaridade do aluno seja "escolaridade"
-                $eventos = DB::query("SELECT * FROM evento WHERE classe_id = %i", $eventosAluno);
+                // $eventos = DB::query("SELECT * FROM evento WHERE classe_id = %", $eventosAluno);
+                $eventos = DB::query("SELECT * FROM evento");
 
                 // Verificar se há recursos disponíveis
                 if ($eventos) {

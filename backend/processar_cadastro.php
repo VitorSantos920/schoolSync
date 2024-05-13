@@ -64,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = DB::query('select * from professor where usuario_id=%i', $usuario_id);
 
         $_SESSION['dados'] = $user;
+        $_SESSION['id'] = $usuario_id;
         header('Location: /schoolSync/pages/pagina-inicial-professor.php');
         exit;
     }
@@ -76,5 +77,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header('Location: /schoolSync/pages/cadastroProfessor.php');
     exit;
 }
-
-?>

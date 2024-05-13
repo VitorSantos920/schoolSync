@@ -39,7 +39,6 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
   <section class="saudacao d-flex align-items-center">
     <img width="30" src="../assets/img/hand.svg" alt="Emoji de mão amarela acenando.">
     <h2 class="saudacao__titulo">Olá, professor (a) <?php echo $dadosProfessor["nome"] ?>!</h2>
-    <button class="btn btn-success" onclick="modalCriacaoMaterialApoio()">Abrir Modal Criação Material de Apoio</button>
   </section>
 
   <main class="d-flex gap-5">
@@ -48,16 +47,25 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
         <h3 class="turmas__quantidade">Suas turmas:<?php echo $quantidadeTurmasProfessor; ?></h3>
         <ul class="turmas__lista-turmas">
           <?php
-          foreach ($turmasProfessor as $turma) {
+          if ($quantidadeTurmasProfessor > 0) {
+            foreach ($turmasProfessor as $turma) {
+              echo "
+                  <li class='turmas__turma'>
+                    <a href='./lista_alunos_da_turma.php?turma_id={$turma['id']}' class='d-flex align-items-center gap-2 justify-content-between'
+                      <h4>{$turma['nome']} - {$turma['serie']}° Ano</h4>
+                      >
+                    </a>
+                  </li>
+                ";
+            }
+          } else {
             echo "
-                <li class='turmas__turma'>
-                  <a href='./lista_alunos_da_turma.php?turma_id={$turma['id']}' class='d-flex align-items-center gap-2 justify-content-between'
-                    <h4>{$turma['nome']} - {$turma['serie']}° Ano</h4>
-                    >
-                  </a>
-                </li>
-              ";
+              <li class='turmas__turma'>
+                Você ainda não possui turmas.
+              </li>   
+            ";
           }
+
           ?>
         </ul>
       </section>
@@ -108,23 +116,22 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
                 </h2>
               </div>
               <div class="modal-body">
-                <h3 id="titulo-material">Números Naturiais</h3>
+                <h3 id="titulo-material"></h3>
 
                 <h5>Descrição</h5>
-                <p id="descricao-material">Os Números Naturais N = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12...} são numeros inteiros positivos (não-negativos) que se agrupam num conjunto chamado de N, composto de um número ilimitado de elementos. Se um número é inteiro e positivo, podemos dizer que é um número natural.
-                  Quando o zero não faz parte do conjunto, é representado com um asterisco ao lado da letra N e, nesse caso, esse conjunto é denominado de Conjunto dos Números Naturais Não-Nulos: N* = {1, 2, 3, 4, 5, 6, 7, 8, 9...}.</p>
+                <p id="descricao-material"></p>
 
                 <h5>Tipo do Material</h5>
-                <p id="tipo-material">Site da Internet</p>
+                <p id="tipo-material"></p>
 
                 <h5>Escolaridade</h5>
-                <p id="escolaridade-material">2° Ano</p>
+                <p id="escolaridade-material"></p>
 
                 <a id="url-material" class="btn btn-info" target="_blank">
                   Acessar Material <i class="fa-solid fa-arrow-up-right-from-square" style="color: #ffffff;"></i>
                 </a>
 
-                <p id="created-at">Criado em: 07/04/2024</p>
+                <p id="created-at"></p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -139,19 +146,120 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
     <div class="right-side">
       <section class="adicionar-aluno">
         <h3>Cadastrar aluno</h3>
-        <button class="btn">+ Adicionar</button>
+        <button class="btn" onclick="abrirModalCriacaoAluno()">+ Adicionar</button>
+
+        <div class="modal fade" id="modalCriacaoAluno" tabindex="-1" aria-labelledby="modalCricacaoAluno" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title">
+                  Cadastrar Aluno
+                </h2>
+              </div>
+              <div class="modal-body">
+                <form method='POST'>
+                  <fieldset>
+                    <label for='ipt-nome-aluno' class='form-label'>Nome do Aluno</label>
+                    <input type='text' name='ipt-nome-aluno' id='ipt-nome-aluno' class='form-control' required>
+                  </fieldset>
+                  <fieldset>
+                    <label for='ipt-email-aluno' class='form-label'>Email do Aluno</label>
+                    <input type='text' name='ipt-email-aluno' id='ipt-email-aluno' class='form-control' required>
+                  </fieldset>
+                  <fieldset>
+                    <label for='ipt-senha-aluno' class='form-label'>Senha do Aluno</label>
+                    <input type='text' name='ipt-senha-aluno' id='ipt-senha-aluno' class='form-control' required>
+                  </fieldset>
+
+                  <fieldset>
+                    <label for='ipt-escola-aluno' class='form-label'>Escola do Aluno</label>
+                    <input type='text' name='ipt-escola-aluno' id='ipt-escola-aluno' class='form-control' required>
+                  </fieldset>
+                  <fieldset>
+                    <label for='ipt-dataNascimento-aluno' class='form-label'>Data de Nascimento</label>
+                    <input type='date' name='ipt-dataNascimento-aluno' id='ipt-dataNascimento-aluno' class='form-control' required>
+                  </fieldset>
+                  <fieldset>
+                    <label for='select-genero-aluno' class='form-label'>Gênero do Aluno</label>
+                    <select class='form-control form-select' name='select-genero-aluno' id='select-genero-aluno' required>
+                      <option value='0' selected disabled>Gênero</option>
+                      <option value='Masculino'>Masculino</option>
+                      <option value='Feminino'>Feminino</option>
+                    </select>
+                  </fieldset>
+                  <fieldset>
+                    <label for='select-escolaridade' class='form-label'>Escolaridade do Aluno</label>
+                    <select class='form-control form-select' name='select-escolaridade' id='select-escolaridade' required>
+                      <option value='-1' selected disabled>Escolaridade</option>
+                      <option value='1'>1</option>
+                      <option value='2'>2</option>
+                      <option value='3'>3</option>
+                      <option value='4'>4</option>
+                      <option value='5'>5</option>
+                    </select>
+                  </fieldset>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" style="background-color: gray;" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-gray" data-bs-dismiss="modal" onclick="criarAluno()">Criar Aluno</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="adicionar-responsavel">
 
         <h3>Cadastrar responsável</h3>
-        <button class="btn">+ Adicionar</button>
+        <button class="btn" onclick="abrirModalCriacaoResponsavel()">+ Adicionar</button>
+
+        <div class="modal fade" id="modalCriacaoResponsavel" tabindex="-1" aria-labelledby="modalCriacaoResponsavel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title">
+                  Cadastrar Responsável
+                </h2>
+              </div>
+              <div class="modal-body">
+                <form method='POST'>
+                  <fieldset>
+                    <label for='ipt-nome-responsavel' class='form-label'>Nome do Responsável</label>
+                    <input type='text' name='ipt-nome-responsavel' id='ipt-nome-responsavel' class='form-control' required>
+                  </fieldset>
+                  <fieldset>
+                    <label for='ipt-email-responsavel' class='form-label'>Email do Responsável</label>
+                    <input type='email' name='ipt-email-responsavel' id='ipt-email-responsavel' class='form-control' required>
+                  </fieldset>
+                  <fieldset>
+                    <label for='ipt-senha-responsavel' class='form-label'>Senha do Responsável</label>
+                    <input type='password' name='ipt-senha-responsavel' id='ipt-senha-responsavel' class='form-control' required>
+                  </fieldset>
+                  <fieldset>
+                    <label for='ipt-cpf-responsavel' class='form-label'>CPF do Responsável</label>
+                    <input type='text' name='ipt-cpf-responsavel' id='ipt-cpf-responsavel' class='form-control' required>
+                  </fieldset>
+                  <fieldset>
+                    <label for='ipt-telefone-responsavel' class='form-label'>Telefone do Responsável</label>
+                    <input type='tel' name='ipt-telefone-responsavel' id='ipt-telefone-responsavel' class='form-control' required>
+                  </fieldset>
+
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" style="background-color: gray;" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-gray" data-bs-dismiss="modal" onclick="criarResponsavel()">Criar Aluno</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="adicionar-responsavel">
 
         <h3>Cadastrar Turma</h3>
-        <button class="btn">+ Adicionar</button>
+        <button class="btn" onclick="abrirModalCriacaoTurma()">+ Adicionar</button>
       </section>
 
       <section class="agendar-evento-escolar">
@@ -181,141 +289,13 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
     </div>
   </main>
 
-  <div class="modal fade" id="criacaoMaterialApoio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title">
-            <img src="../assets/img/material-apoio.svg" alt="">
-            Criar Material de Apoio
-          </h3>
-        </div>
-        <div class="modal-body">
-          <form action="#" method="post">
 
-            <fieldset>
-              <label for="ipt-nome-material" class="form-label">Nome/Título do Material</label>
-              <input type="text" name="ipt-nome-material" id="ipt-nome-material" class="form-control" placeholder="Números Romanos" required>
-            </fieldset>
-
-            <fieldset>
-              <label for="ipt-descricao-material" class="form-label">Descrição do material</label>
-              <textarea class="form-control" name="ipt-descricao-material" id="ipt-descricao-material" cols="30" rows="5"></textarea>
-            </fieldset>
-
-            <fieldset>
-              <label for="ipt-url-material" class="form-label">Digite ou cole a URL (link) do Material (Caso seja um material externo [website, vídeo etc.]) </label>
-              <input type="text" name="ipt-url-material" id="ipt-url-material" class="form-control" placeholder="https://mundoescola.com.br" required>
-            </fieldset>
-
-            <fieldset>
-              <label for="select-escolaridade" class="form-label">Selecione a escolaridade ideal para este Material</label>
-              <select class="form-control form-select" name="select-escolaridade" id="select-escolaridade">
-                <option value="0" selected disabled>Escolaridade</option>
-                <option value="1">1°Ano</option>
-                <option value="2">2°Ano</option>
-                <option value="3">3°Ano</option>
-                <option value="4">4°Ano</option>
-                <option value="5">5°Ano</option>
-              </select>
-            </fieldset>
-
-            <fieldset>
-              <label for="select-tipo-material" class="form-label">Selecione o tipo deste Material</label>
-              <select class="form-control form-select" name="select-tipo-material" id="select-tipo-material">
-                <option value="0" selected disabled>Tipo</option>
-                <option value="pdf">PDF</option>
-                <option value="site">Site da Internet</option>
-
-              </select>
-            </fieldset>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" class="btn btn-success" onclick="criarMaterialApoio()">Criar Material</button>
-        </div>
-      </div>
-    </div>
-  </div>
   <script src="https://kit.fontawesome.com/4ac8bcd2f5.js" crossorigin="anonymous"></script>
   <script src="../assets/js/jquery.min.js"></script>
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/sweetalert2.all.min.js"></script>
   <script src="../assets/js/pages__pagina-inicial-professor.js"></script>
-  <script>
-    function modalCriacaoMaterialApoio() {
-      $('#criacaoMaterialApoio').modal('show')
-      let nomeMaterial = $('#nome-material').val('');
-      let descricaoMaterial = $('#descricao-material').val('');
-      let urlMaterial = $('#url-material').val('');
-      let escolaridade = $('#escolaridade').val('');
-      let tipoMaterial = $('#tipo-material').val('');
-    }
 
-    function criarMaterialApoio() {
-      let nomeMaterial = $('#ipt-nome-material').val();
-      let descricaoMaterial = $('#ipt-descricao-material').val();
-      let urlMaterial = $('#ipt-url-material').val();
-      let escolaridade = $('#select-escolaridade').val();
-      let tipoMaterial = $('#select-tipo-material').val();
-
-      console.log(nomeMaterial)
-      console.log(descricaoMaterial)
-      console.log(urlMaterial)
-      console.log(escolaridade)
-      console.log(tipoMaterial)
-
-      if (!nomeMaterial || !descricaoMaterial || !urlMaterial || !escolaridade || !tipoMaterial) {
-        Swal.fire({
-          title: "Opa, algo deu errado!",
-          text: "Para criar o Recurso Educacional, é necessário o preenchimento de todos os campos.",
-          icon: "error"
-        })
-        return;
-      }
-
-      $.ajax({
-        type: "POST",
-        url: "../backend/criar-material-apoio.php",
-        data: {
-          nome: nomeMaterial,
-          descricao: descricaoMaterial,
-          url: urlMaterial,
-          escolaridade,
-          tipo: tipoMaterial
-        },
-        success: function(response) {
-          response = JSON.parse(response)
-          console.log(response)
-          switch (response.status) {
-            case 1: {
-              Swal.fire({
-                title: "Recurso criado!",
-                text: response.message,
-                icon: "success"
-              })
-
-              break;
-            }
-            case -1: {
-              Swal.fire({
-                title: "Erro Interno!",
-                text: response.swalMessage,
-                icon: "error"
-              })
-
-              console.log(`Status: ${response.status} | Mensagem de Erro: ${response.messageError}`)
-              break;
-            }
-          }
-
-          $('#criacaoMaterialApoio').modal('hide');
-        },
-        error: (err) => console.log(err)
-      })
-    }
-  </script>
 </body>
 
 </html>
