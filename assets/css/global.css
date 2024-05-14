@@ -28,6 +28,15 @@ a {
     color: inherit;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
 article,
 aside,
 details,
@@ -53,4 +62,14 @@ main {
 
 .modal-body fieldset:not(fieldset:first-child) {
     margin-top: var(--spacing-7);
+}
+
+.saudacao {
+    gap: var(--spacing-2);
+    margin-bottom: var(--spacing-9);
+}
+.saudacao__titulo {
+    color: var(--brand-color);
+    font-size: var(--fontSize-4xl);
+    font-weight: var(--fontWeight-bold);
 }
