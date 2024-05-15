@@ -6,16 +6,6 @@ body :is(h2, h3, h5) {
     margin: 0;
 }
 
-.saudacao {
-    gap: var(--spacing-2);
-    margin-bottom: var(--spacing-9);
-}
-
-.saudacao__titulo {
-    color: var(--brand-color);
-    font-size: var(--fontSize-xl);
-}
-
 .acoes {
     width: 80%;
     gap: var(--spacing-10);

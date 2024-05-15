@@ -25,15 +25,6 @@ main :is(button.btn, a.btn) {
     background-color: var(--level-gray500);
 }
 
-.saudacao {
-    gap: var(--spacing-2);
-    margin-bottom: var(--spacing-9);
-}
-.saudacao__titulo {
-    color: var(--brand-color);
-    font-size: var(--fontSize-xl);
-}
-
 .swal2-container {
     font-family: var(--fontFamily-poppins);
 }

@@ -32,7 +32,7 @@ if (isset($_POST["email"])) {
                 break;
             case "Responsavel":
                 $response["categoria"] = "Responsavel";
-                $response["link"] = "http://localhost/schoolSync/pages/painelAluno.php";
+                $response["link"] = "http://localhost/schoolSync/pages/pagina-inicial-responsavel.php";
                 break;
             case "Administrador":
                 $response["categoria"] = "Administrador";

@@ -249,7 +249,7 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" style="background-color: gray;" data-bs-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-gray" data-bs-dismiss="modal" onclick="criarResponsavel()">Criar Aluno</button>
+                <button type="button" class="btn btn-gray" data-bs-dismiss="modal" onclick="criarResponsavel()">Criar Responsável</button>
               </div>
             </div>
           </div>
