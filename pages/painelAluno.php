@@ -216,7 +216,7 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
                         echo '<h5>' . $recurso["titulo"] . '</h5>';
                         echo '</div>';
                         echo '<div class="col-8">';
-                        echo '<h5>' . $recurso["descricao"] . '</h5>';
+                        echo '<h6>' . $recurso["descricao"] . '</h6>';
                         echo '</div>';
                         echo '<div class="col-4">';
                         echo '<a href="' . $recurso["url"] . '" target="_blank">Acessar</a>'; // Link para acessar o recurso
