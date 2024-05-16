@@ -5,3 +5,4 @@ DB::$user = 'root';
 DB::$password = '';
 DB::$dbName = 'school_sync';
 DB::$encoding = 'utf8';
+?>

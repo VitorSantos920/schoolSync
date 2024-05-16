@@ -64,7 +64,7 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
 
 <body>
     <?php
-    include_once "../components/sidebar.php";
+    include_once "../components/sidebarAluno.php";
     ?>
     <main>
         <h3><img src="../assets/img/maozinha.png" width="30px" alt="Ícone de mão dando saudação."> Olá, <?php echo $dadosAluno["nome"] ?></h3>

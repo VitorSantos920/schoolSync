@@ -101,81 +101,84 @@ $dadosProfessor = DB::queryFirstRow("SELECT *, pr.id as 'prof_id' FROM usuario u
 </head>
 
 <body>
+    <?php
+    include_once "../components/sidebar.php";
+    ?>
+    <main>
+        <div class="container">
+            <h3><img src="../assets/img/maozinha.png" width="30px" alt="Ícone de mão dando saudação."> Olá!</h3>
+            <h1><?php echo "Confira o Desempenho Acadêmico de " . $fila2['nome']; ?></h1><br>
 
-    <div class="container">
-        <h3><img src="../assets/img/maozinha.png" width="30px" alt="Ícone de mão dando saudação."> Olá!</h3>
-        <h1><?php echo "Confira o Desempenho Acadêmico de " . $fila2['nome']; ?></h1><br>
+            <div class="row">
+                <div class="col-8">
+                    <h3><?php echo "Média geral de notas: " . number_format($filaMedia['mediaMedia'], 1); ?></h3>
+                    <h6>Gráfico de barras representando suas notas por disciplina</h6><br>
+                    <?php
+                    // Consulta SQL para recuperar as médias das notas do aluno em cada disciplina
+                    $notasPorDisciplina = DB::query("SELECT m.disciplina AS disciplina, AVG(nota) AS media_nota FROM nota n INNER JOIN materia m ON n.materia_id = m.id INNER JOIN aluno a ON n.aluno_id = a.id WHERE a.id = %i GROUP BY m.disciplina", $aluno_id);
+                    // Preparando dados para o gráfico
+                    $labels = array();
+                    $data = array();
+                    foreach ($notasPorDisciplina as $nota) {
+                        $labels[] = $nota['disciplina'];
+                        $data[] = $nota['media_nota'];
+                    }
+                    ?>
+                    <canvas id="graficoMediasNotas" height="120px"></canvas>
+                </div>
+                <div class="col-4 linha-vertical"><br>
+                    <h3><?php echo "Total de faltas: " . $filaFalta['somaFalta']; ?></h3>
+                    <h6>Faltas por Disciplina</h6>
+                    <?php
+                    $faltasPorDisciplina = DB::query("SELECT m.disciplina AS disciplina, COUNT(*) as total_faltas FROM falta f INNER JOIN materia m ON f.materia_id = m.id WHERE f.aluno_id = %i GROUP BY m.disciplina", $aluno_id);
+                    $faltasData = array();
+                    foreach ($faltasPorDisciplina as $falta) {
+                        $faltasData[$falta['disciplina']] = $falta['total_faltas'];
+                    }
+                    ?>
+                    <canvas id="faltasPorDisciplina" height="250px"></canvas>
+                </div>
+                <hr class="linha-horizontal">
+                <div class="col-6"><br>
+                    <h4>Agendar novo evento escolar</h4><br>
+                    <form action="processar_formulario_evento.php?professor_id=<?php echo $dadosProfessor['id'] ?>&classe_id=<?php echo $evento_classe_id ?>" method="post">
+                        <label for="titulo">Nome/Título do Evento:</label><br>
+                        <input type="text" id="titulo" name="titulo" required><br><br>
 
-        <div class="row">
-            <div class="col-8">
-                <h3><?php echo "Média geral de notas: " . number_format($filaMedia['mediaMedia'],1); ?></h3>
-                <h6>Gráfico de barras representando suas notas por disciplina</h6><br>
-                <?php
-                // Consulta SQL para recuperar as médias das notas do aluno em cada disciplina
-                $notasPorDisciplina = DB::query("SELECT m.disciplina AS disciplina, AVG(nota) AS media_nota FROM nota n INNER JOIN materia m ON n.materia_id = m.id INNER JOIN aluno a ON n.aluno_id = a.id WHERE a.id = %i GROUP BY m.disciplina", $aluno_id);
-                // Preparando dados para o gráfico
-                $labels = array();
-                $data = array();
-                foreach ($notasPorDisciplina as $nota) {
-                    $labels[] = $nota['disciplina'];
-                    $data[] = $nota['media_nota'];
-                }
-                ?>
-                <canvas id="graficoMediasNotas" height="120px"></canvas>
+                        <label for="descricao">Descrição do Evento:</label><br>
+                        <textarea id="descricao" name="descricao" rows="4" cols="50" required></textarea><br><br>
+
+                        <label for="data_inicio">Data de Início:</label><br>
+                        <input type="date" id="data_inicio" name="data_inicio" required><br><br>
+
+                        <label for="data_termino">Data de Término:</label><br>
+                        <input type="date" id="data_termino" name="data_termino" required><br><br>
+
+                        <input type="submit" value="Agendar Evento">
+                    </form>
+                </div>
+                <div class="col-6 linha-vertical"><br>
+                    <h4>Registrar nova conquista acadêmica</h4><br>
+                    <form action="processar_formulario_conquista.php?professor_id=<?php echo $dadosProfessor["id"] ?>&aluno_id=<?php echo $aluno_id ?>" method="post">
+
+                        <label for="titulo">Nome/Título da Conquista:</label><br>
+                        <input type="text" id="titulo" name="titulo" required><br><br>
+
+                        <label for="descricao">Descrição da Conquista:</label><br>
+                        <textarea id="descricao" name="descricao" rows="4" cols="50" required></textarea><br><br>
+
+                        <label for="data">Data:</label><br>
+                        <input type="date" id="data" name="data" required><br><br>
+
+                        <label for="comentarios">Comentários:</label><br>
+                        <textarea id="comentarios" name="comentarios" rows="4" cols="50"></textarea><br><br>
+
+                        <input type="submit" value="Registrar Conquista">
+                    </form>
+                </div>
+
             </div>
-            <div class="col-4 linha-vertical"><br>
-                <h3><?php echo "Total de faltas: " . $filaFalta['somaFalta']; ?></h3>
-                <h6>Faltas por Disciplina</h6>
-                <?php
-                $faltasPorDisciplina = DB::query("SELECT m.disciplina AS disciplina, COUNT(*) as total_faltas FROM falta f INNER JOIN materia m ON f.materia_id = m.id WHERE f.aluno_id = %i GROUP BY m.disciplina", $aluno_id);
-                $faltasData = array();
-                foreach ($faltasPorDisciplina as $falta) {
-                    $faltasData[$falta['disciplina']] = $falta['total_faltas'];
-                }
-                ?>
-                <canvas id="faltasPorDisciplina" height="250px"></canvas>
-            </div>
-            <hr class="linha-horizontal">
-            <div class="col-6"><br>
-                <h4>Agendar novo evento escolar</h4><br>
-                <form action="processar_formulario_evento.php?professor_id=<?php echo $dadosProfessor['id'] ?>&classe_id=<?php echo $evento_classe_id ?>" method="post">
-                    <label for="titulo">Nome/Título do Evento:</label><br>
-                    <input type="text" id="titulo" name="titulo" required><br><br>
-
-                    <label for="descricao">Descrição do Evento:</label><br>
-                    <textarea id="descricao" name="descricao" rows="4" cols="50" required></textarea><br><br>
-
-                    <label for="data_inicio">Data de Início:</label><br>
-                    <input type="date" id="data_inicio" name="data_inicio" required><br><br>
-
-                    <label for="data_termino">Data de Término:</label><br>
-                    <input type="date" id="data_termino" name="data_termino" required><br><br>
-
-                    <input type="submit" value="Agendar Evento">
-                </form>
-            </div>
-            <div class="col-6 linha-vertical"><br>
-                <h4>Registrar nova conquista acadêmica</h4><br>
-                <form action="processar_formulario_conquista.php?professor_id=<?php echo $dadosProfessor["id"] ?>&aluno_id=<?php echo $aluno_id ?>" method="post">
-
-                    <label for="titulo">Nome/Título da Conquista:</label><br>
-                    <input type="text" id="titulo" name="titulo" required><br><br>
-
-                    <label for="descricao">Descrição da Conquista:</label><br>
-                    <textarea id="descricao" name="descricao" rows="4" cols="50" required></textarea><br><br>
-
-                    <label for="data">Data:</label><br>
-                    <input type="date" id="data" name="data" required><br><br>
-
-                    <label for="comentarios">Comentários:</label><br>
-                    <textarea id="comentarios" name="comentarios" rows="4" cols="50"></textarea><br><br>
-
-                    <input type="submit" value="Registrar Conquista">
-                </form>
-            </div>
-
         </div>
-    </div>
 
 </body>
 <script>
