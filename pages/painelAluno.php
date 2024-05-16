@@ -135,8 +135,8 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
                 <?php
                 // Consulta SQL para recuperar os recursos educacionais
                 $eventosAluno = $dadosAluno["classe_id"]; // Supondo que a coluna com a escolaridade do aluno seja "escolaridade"
-                // $eventos = DB::query("SELECT * FROM evento WHERE classe_id = %", $eventosAluno);
-                $eventos = DB::query("SELECT * FROM evento");
+                $eventos = DB::query("SELECT * FROM evento WHERE classe_id = %i", $eventosAluno);
+                //$eventos = DB::query("SELECT * FROM evento");
 
                 // Verificar se há recursos disponíveis
                 if ($eventos) {
