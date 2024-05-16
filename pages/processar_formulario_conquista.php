@@ -4,10 +4,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verifica se todos os campos foram preenchidos
     if (isset($_POST["titulo"]) && isset($_POST["descricao"]) && isset($_POST["data"]) && isset($_POST["comentarios"]) && isset($_GET["professor_id"]) && isset($_GET["aluno_id"])) {
         // Conecta-se ao banco de dados
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $database = "school_sync";
+        $servername = "15.235.9.101";
+        $username = "vfzzdvmy_school_sync";
+        $password = "L@QCHw9eKZ7yRxz";
+        $database = "vfzzdvmy_school_sync";
         $conn = mysqli_connect($servername, $username, $password, $database);
 
         // Verifica se a conexão foi bem sucedida

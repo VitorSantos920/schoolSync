@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "school_sync";
+$servername = "15.235.9.101";
+$username = "vfzzdvmy_school_sync";
+$password = "L@QCHw9eKZ7yRxz";
+$database = "vfzzdvmy_school_sync";
 
 $conn = mysqli_connect($servername, $username, $password, $database);
 
