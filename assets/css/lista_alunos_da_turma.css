@@ -1,72 +1,72 @@
-@import url(./global.css);
-
-body {
-    background-color: var(--background-color);
-}
-
-main {
-    margin-left: 22rem;
-}
-
-#cabecalhoListaAluno {
-    font-size: var(--fontSize-2xl);
-    font-family: var(--fontFamily-poppins);
-    font-weight: var(--fontWeight-bold);
-}
-
-#search {
-    border-radius: var(--borderRadius-xs);
-    font-family: var(--fontFamily-roboto);
-    font-weight: var(--fontWeight-regular);
-}
-
-#tabelaCabecalho {
-    text-align: center;
-    font-size: var(--fontSize-md);
-    font-family: var(--fontFamily-poppins);
-    font-weight: var(--fontWeight-bold);
-}
-
-#tabelaCorpo {
-    text-align: center;
-    font-size: var(--fontSize-sm);
-    font-family: var(--fontFamily-roboto);
-    font-weight: var(--fontWeight-regular);
-}
-
-.dropdown #btnPrincipal {
-    color: black;
-    font-size: var(--fontSize-xs);
-    font-family: var(--fontFamily-poppins);
-    font-weight: var(--fontWeight-regular);
-    border-radius: var(--borderRadius-xs);
-    background-color: #c9cdd2;
-}
-
-.dropdown #btns_action .dropdown-menu {
-    background-color: #e0e1e2;
-    box-shadow: var(--boxShadow-base);
-}
-
-.dropdown #btns_action .dropdown-menu .btn {
-    font-size: var(--fontSize-xxs);
-    font-family: var(--fontFamily-poppins);
-    font-weight: var(--fontWeight-regular);
-    border-radius: var(--borderRadius-xs);
-    background-color: #c8cbd9;
-    margin-left: var(--spacing-2);
-    margin-bottom: var(--spacing-2);
-}
-
-.dropdown #btns_action .dropdown-menu #deletarAluno {
-    background-color: var(--danger-default);
-}
-
-.dropdown #btns_action .dropdown-menu .btn .icone {
-    margin-right: var(--spacing-3);
-}
-
-#edtAlunoModal #edtAlunoModalLabel {
-    flex: auto;
-    text-align: center;
-}
+@import url(./global.css);
+
+body {
+    background-color: var(--background-color);
+}
+
+main {
+    margin-left: 22rem;
+}
+
+#cabecalhoListaAluno {
+    font-size: var(--fontSize-2xl);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-bold);
+}
+
+#search {
+    border-radius: var(--borderRadius-xs);
+    font-family: var(--fontFamily-roboto);
+    font-weight: var(--fontWeight-regular);
+}
+
+#tabelaCabecalho {
+    text-align: center;
+    font-size: var(--fontSize-md);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-bold);
+}
+
+#tabelaCorpo {
+    text-align: center;
+    font-size: var(--fontSize-sm);
+    font-family: var(--fontFamily-roboto);
+    font-weight: var(--fontWeight-regular);
+}
+
+.dropdown #btnPrincipal {
+    color: black;
+    font-size: var(--fontSize-xs);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-regular);
+    border-radius: var(--borderRadius-xs);
+    background-color: #c9cdd2;
+}
+
+.dropdown #btns_action .dropdown-menu {
+    background-color: #e0e1e2;
+    box-shadow: var(--boxShadow-base);
+}
+
+.dropdown #btns_action .dropdown-menu .btn {
+    font-size: var(--fontSize-xxs);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-regular);
+    border-radius: var(--borderRadius-xs);
+    background-color: #c8cbd9;
+    margin-left: var(--spacing-2);
+    margin-bottom: var(--spacing-2);
+}
+
+.dropdown #btns_action .dropdown-menu #deletarAluno {
+    background-color: var(--danger-default);
+}
+
+.dropdown #btns_action .dropdown-menu .btn .icone {
+    margin-right: var(--spacing-3);
+}
+
+#edtAlunoModal #edtAlunoModalLabel {
+    flex: auto;
+    text-align: center;
+}
