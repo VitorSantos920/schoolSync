@@ -23,6 +23,7 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Página inicial do professor ao realizar o login com sucesso no sistema SchoolSync">
   <meta name="keywords" content="docente, professor, tela inicial">
+  <link rel="icon" href="../assets/img/logo_transparente.png">
   <title>Professor | Página Inicial</title>
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/sweetalert2.min.css">
@@ -31,17 +32,18 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
 
 <body>
   <?php
-  include_once "../components/sidebar.php";
+  include_once "../components/sidebarProfessor.php";
   ?>
   <section class="saudacao d-flex align-items-center">
     <img width="30" src="../assets/img/hand.svg" alt="Emoji de mão amarela acenando.">
     <h2 class="saudacao__titulo">Olá, professor (a) <?php echo $dadosProfessor["nome"] ?>!</h2>
   </section>
 
-  <main class="d-flex gap-5 flex-wrap">
+  <main class="d-flex flex-wrap" style="gap: 10px;">
     <div class="left-side">
       <section class="turmas">
         <h3 class="turmas__quantidade">Suas turmas: <?php echo $quantidadeTurmasProfessor; ?></h3>
+
         <ul class="turmas__lista-turmas">
           <?php
           if ($quantidadeTurmasProfessor > 0) {
@@ -134,8 +136,6 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
       </section>
     </div>
 
-    <div class="vr"></div>
-
     <div class="right-side">
       <section class="adicionar-aluno">
         <h3>Cadastrar aluno</h3>
@@ -188,17 +188,23 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
 
                   <fieldset>
                     <label for='select-classe-aluno' class='form-label'>Turma/Classe do Aluno</label>
-                    <select name="select-classe-aluno" class="form-control form-select" id="select-classe-aluno">
-                      <option value="" disabled selected>Classe</option>
-                      <?php
-                      $turmas = DB::query("SELECT * FROM classe c");
+                    <?php
+                    if ($quantidadeTurmasProfessor > 0) {
+                      echo "
+                        <select name='select-classe-aluno' class='form-control form-select' id='select-classe-aluno'>
+                        <option value='' disabled selected>Classe</option>";
 
-                      foreach ($turmas as $turma) {
+                      foreach ($turmasProfessor as $turma) {
                         echo "
                           <option value='{$turma['id']}'>{$turma['nome']}</option>
-                        ";
+                          ";
                       }
-                      ?>
+                    } else {
+                      echo "
+                        <select name='select-classe-aluno' class='form-control form-select' disabled id='select-classe-aluno'>
+                          <option value='' disabled selected>Você não possui turmas cadastradas.</option>";
+                    }
+                    ?>
                     </select>
                   </fieldset>
 
@@ -327,28 +333,52 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
           </div>
         </div>
       </section>
+
       <section class="agendar-evento-escolar">
         <h3>Agendar novo evento escolar aos alunos</h3>
-        <form action="#" method="post">
-          <fieldset>
-            <label for="nome-evento" class="form-label">Nome/Título do Evento</label>
-            <input type="text" name="nome-evento" id="nome-evento" class="form-control" placeholder="Olimpíada Brasileira de Matemática" required>
-          </fieldset>
+        <form id="form-agendar-evento">
+          <div class="row">
+            <div class="col">
+              <fieldset>
+                <label for="nome-evento" class="form-label">Nome/Título do Evento</label>
+                <input type="text" name="nome-evento" id="nome-evento" class="form-control" placeholder="Olimpíada Brasileira de Matemática">
+              </fieldset>
+            </div>
+
+            <div class="col">
+              <fieldset>
+                <label for="classe-evento" class="form-label">Classe do Evento</label>
+                <select name="classe-evento" id="classe-evento" class="form-control form-select">
+                  <option value="" selected disabled>Selecione</option>
+                  <?php
+                  foreach ($turmasProfessor as $turma) {
+                    echo "
+                      <option value='{$turma['id']}'>$turma[nome]</option>
+                    ";
+                  }
+                  ?>
+                </select>
+              </fieldset>
+            </div>
+          </div>
+
           <fieldset>
             <label for="descricao-evento" class="form-label">Descrição do Evento</label>
             <textarea class="form-control" name="descricao-evento" id="descricao-evento" cols="30" rows="5"></textarea>
           </fieldset>
+
           <fieldset class="row">
             <div class="col">
               <label for="data-inicio" class="form-label">Data de Início</label>
               <input class="form-control" type="datetime-local" name="data-inicio" id="data-inicio">
             </div>
+
             <div class="col">
               <label for="data-fim" class="form-label">Data de Término</label>
               <input class="form-control" type="datetime-local" name="data-fim" id="data-fim">
             </div>
           </fieldset>
-          <button type="submit" class="btn btn-success">Agendar Evento</button>
+          <button type="button" class="btn btn-success" onclick="agendarEventoEscolar()">Agendar Evento</button>
         </form>
       </section>
     </div>

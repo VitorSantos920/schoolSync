@@ -1,6 +1,6 @@
 $(document).ready(function () {
     VMasker($('#ipt-cpf-responsavel')).maskPattern('999.999.999-99');
-    VMasker($('#ipt-telefone-responsavel')).maskPattern('(99) 99999-9999wsa/;');
+    VMasker($('#ipt-telefone-responsavel')).maskPattern('(99) 99999-9999');
 });
 
 function abrirModalDetalhes(
@@ -35,19 +35,26 @@ function abrirModalCriacaoResponsavel() {
 }
 
 function criarResponsavel() {
-    let nome = $('#ipt-nome-responsavel').val();
-    let email = $('#ipt-email-responsavel').val();
-    let senha = $('#ipt-senha-responsavel').val();
-    let cpf = $('#ipt-cpf-responsavel').val();
-    let telefone = $('#ipt-telefone-responsavel').val();
-
-    let dadosRegistro = { nome, email, senha, cpf, telefone };
+    let dadosRegistro = {
+        nome: $('#ipt-nome-responsavel').val(),
+        email: $('#ipt-email-responsavel').val(),
+        senha: $('#ipt-senha-responsavel').val(),
+        cpf: $('#ipt-cpf-responsavel').val(),
+        telefone: $('#ipt-telefone-responsavel').val(),
+    };
 
     let verificacao = verificaInputsVazios(dadosRegistro, 'responsavel');
 
     if (verificacao) {
         alertaErroCadastro(verificacao, 'responsável');
 
+        return;
+    }
+
+    if (
+        !verificaNomeUsuario(dadosRegistro.nome, 'responsável') ||
+        !verificaEmailUsuarioUsuario(dadosRegistro.email, 'responsável')
+    ) {
         return;
     }
 
@@ -121,35 +128,30 @@ function abrirModalCriacaoAluno() {
 }
 
 function criarAluno() {
-    let nome = $('#ipt-nome-aluno').val();
-    let email = $('#ipt-email-aluno').val();
-    let senha = $('#ipt-senha-aluno').val();
-    let responsavel = $('#select-responsavel-aluno').val();
-    let classe = $('#select-classe-aluno').val();
-    let escola = $('#ipt-escola-aluno').val();
-    let dataNascimento = $('#ipt-dataNascimento-aluno').val();
-    let genero = $('#select-genero-aluno').val();
-    let escolaridade = $('#select-escolaridade').val();
-
     let dadosRegistro = {
-        nome,
-        email,
-        senha,
-        responsavel,
-        classe,
-        escola,
-        dataNascimento,
-        genero,
-        escolaridade,
+        nome: $('#ipt-nome-aluno').val(),
+        email: $('#ipt-email-aluno').val(),
+        senha: $('#ipt-senha-aluno').val(),
+        responsavel: $('#select-responsavel-aluno').val(),
+        classe: $('#select-classe-aluno').val(),
+        escola: $('#ipt-escola-aluno').val(),
+        dataNascimento: $('#ipt-dataNascimento-aluno').val(),
+        genero: $('#select-genero-aluno').val(),
+        escolaridade: $('#select-escolaridade').val(),
     };
 
     let verificacao = verificaInputsVazios(dadosRegistro, 'aluno');
 
     if (verificacao) {
         alertaErroCadastro(verificacao, 'aluno');
-
         return;
     }
+
+    if (
+        !verificaNomeUsuario(dadosRegistro.nome, 'aluno') ||
+        !verificaEmailUsuario(dadosRegistro.email, 'aluno')
+    )
+        return;
 
     $.ajax({
         type: 'POST',
@@ -237,6 +239,9 @@ function criarTurma() {
                         text: response.swalMessage,
                     });
 
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
                     break;
 
                 case 2:
@@ -280,8 +285,13 @@ function verificaInputsVazios(valuesInput, categoria) {
         camposLegiveis.dataNascimento = 'Data de Nascimento';
         camposLegiveis.genero = 'Gênero';
         camposLegiveis.escolaridade = 'Escolaridade';
-    } else {
+    } else if (categoria == 'turma') {
         camposLegiveis.escolaridade = 'Escolaridade';
+    } else {
+        camposLegiveis.descricao = 'Descrição';
+        camposLegiveis.classe = 'Classe';
+        camposLegiveis.dataInicio = 'Data de Início';
+        camposLegiveis.dataFim = 'Data de Término';
     }
 
     for (const key in valuesInput) {
@@ -314,5 +324,93 @@ function alertaErroCadastro(camposVazios, cadastroDe) {
         icon: 'error',
         title: 'Opa, algo deu errado!',
         text,
+    });
+}
+
+function verificaNomeUsuario(nome, categoria) {
+    const regexNome =
+        /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*[^\d\s][A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*$/;
+
+    if (!regexNome.test(nome)) {
+        Swal.fire({
+            icon: 'error',
+            title: `Erro ao cadastrar o ${categoria}`,
+            text: `Não é possível cadastrar um ${categoria} com este nome. Verifique-o e tente novamente!`,
+        });
+
+        return false;
+    }
+
+    return true;
+}
+
+function verificaEmailUsuario(email, categoria) {
+    const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (!regexEmail.test(email)) {
+        Swal.fire({
+            icon: 'error',
+            title: `Erro ao cadastrar o ${categoria}`,
+            text: `Não é possível cadastrar um ${categoria} com este email. Verifique-o e tente novamente!`,
+        });
+
+        return false;
+    }
+
+    return true;
+}
+
+function agendarEventoEscolar() {
+    let dadosAgendamento = {
+        nome: $('#nome-evento').val(),
+        classe: $('#classe-evento').val(),
+        descricao: $('#descricao-evento').val(),
+        dataInicio: $('#data-inicio').val(),
+        dataFim: $('#data-fim').val(),
+    };
+
+    let verificacao = verificaInputsVazios(dadosAgendamento);
+
+    if (verificacao) {
+        alertaErroCadastro(verificacao, 'evento');
+        return;
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: '../backend/agendar-evento-escolar.php',
+        data: dadosAgendamento,
+        success: function (response) {
+            response = JSON.parse(response);
+            console.log(response);
+
+            switch (response.status) {
+                case 1:
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Evento agendado!',
+                        text: response.swalMessage,
+                    });
+
+                    limparInputs([
+                        '#nome-evento',
+                        '#classe-evento',
+                        '#descricao-evento',
+                        '#data-inicio',
+                        '#data-fim',
+                    ]);
+                    break;
+                case -1:
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro Interno!',
+                        text: response.swalMessage,
+                    });
+
+                    console.log(response.error);
+                    break;
+            }
+        },
+        error: (err) => console.log(err),
     });
 }

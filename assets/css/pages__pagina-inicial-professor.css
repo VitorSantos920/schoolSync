@@ -256,7 +256,7 @@ main .right-side button.btn {
     font-family: var(--fontFamily-roboto);
 }
 
-.right-side .agendar-evento-escolar form :is(input, textarea) {
+.right-side .agendar-evento-escolar form :is(input, textarea, select) {
     background-color: transparent;
 
     border: 1px solid #b6bdc4;
