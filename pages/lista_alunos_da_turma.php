@@ -33,7 +33,7 @@ $classe = DB::queryFirstRow('SELECT * FROM classe WHERE id = %i', $classe_id);
 
 <body>
     <?php
-    require '../components/sidebar.php';
+    require '../components/sidebarProfessor.php';
     ?>
 
     <main>

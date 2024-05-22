@@ -203,7 +203,7 @@ $dadosProfessor = DB::queryFirstRow("SELECT *, pr.id as 'prof_id' FROM usuario u
 
     <?php
 
-    include_once "../components/sidebar.php";
+    include_once "../components/sidebarProfessor.php";
 
     ?>
 
