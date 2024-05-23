@@ -264,10 +264,7 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
 
                 $eventosAluno = $dadosAluno["classe_id"]; // Supondo que a coluna com a escolaridade do aluno seja "escolaridade"
 
-                $eventos = DB::query("SELECT * FROM evento WHERE classe_id = %i", $eventosAluno);
-
-                //$eventos = DB::query("SELECT * FROM evento");
-
+                $eventos = DB::query("SELECT * FROM evento WHERE classe_id = %i LIMIT 4", $eventosAluno);
 
 
                 // Verificar se há recursos disponíveis
@@ -339,7 +336,7 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
 
                 $conquistaAluno = $dadosAluno["aluno_id"]; // Supondo que a coluna com o ID do aluno seja "aluno_id"
 
-                $conquistas = DB::query("SELECT * FROM conquista WHERE aluno_id = %i", $conquistaAluno);
+                $conquistas = DB::query("SELECT * FROM conquista WHERE aluno_id = %i LIMIT 4", $conquistaAluno);
 
 
 
@@ -400,7 +397,7 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
 
                 $escolaridadeAluno = $dadosAluno["escolaridade"]; // Supondo que a coluna com a escolaridade do aluno seja "escolaridade"
 
-                $recursos = DB::query("SELECT * FROM recurso_educacional WHERE escolaridade = %s", $escolaridadeAluno);
+                $recursos = DB::query("SELECT * FROM recurso_educacional WHERE escolaridade = %s LIMIT 4", $escolaridadeAluno);
 
 
 

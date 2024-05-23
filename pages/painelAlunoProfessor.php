@@ -279,7 +279,7 @@ $dadosProfessor = DB::queryFirstRow("SELECT *, pr.id as 'prof_id' FROM usuario u
 
                     <h4>Agendar novo evento escolar</h4><br>
 
-                    <form action="processar_formulario_evento.php?professor_id=<?php echo $dadosProfessor['id'] ?>&classe_id=<?php echo $evento_classe_id ?>" method="post">
+                    <form action="processar_formulario_evento.php?professor_id=<?php echo $dadosProfessor['id'] ?>&classe_id=<?php echo $evento_classe_id ?>&aluno_id=<?php echo $aluno_id ?>" method="post">
 
                         <label for="titulo">Nome/Título do Evento:</label><br>
 
@@ -471,6 +471,14 @@ $dadosProfessor = DB::queryFirstRow("SELECT *, pr.id as 'prof_id' FROM usuario u
     });
 </script>
 
-
+<script>
+    // Verifica se a URL possui o parâmetro "success" igual a 1 e exibe o alerta
+    window.onload = function() {
+        var urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') == 1) {
+            alert("Evento/Conquista registrada com sucesso!");
+        }
+    };
+</script>
 
 </html>
