@@ -54,6 +54,18 @@
             <ul class="sidebar__menu">
 
 
+                <li>
+
+                    <a href="../pages/professorPerfil.php" target="_blank">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        Perfil
+
+
+
+                    </a>
+
                 </li>
 
 

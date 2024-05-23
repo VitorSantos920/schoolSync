@@ -264,9 +264,9 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
 
                 $eventosAluno = $dadosAluno["classe_id"]; // Supondo que a coluna com a escolaridade do aluno seja "escolaridade"
 
-                // $eventos = DB::query("SELECT * FROM evento WHERE classe_id = %", $eventosAluno);
+                $eventos = DB::query("SELECT * FROM evento WHERE classe_id = %i", $eventosAluno);
 
-                $eventos = DB::query("SELECT * FROM evento");
+                //$eventos = DB::query("SELECT * FROM evento");
 
 
 
@@ -291,6 +291,7 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
                         echo '</div>';
 
                         echo '<div class="col-6">';
+                        echo '<br>';
 
                         // Formatando a data de início
 
@@ -301,6 +302,7 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
                         echo '</div>';
 
                         echo '<div class="col-6">';
+                        echo '<br>';
 
                         // Formatando a data de término
 
@@ -366,7 +368,7 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
                         // Formatando a data de conquista
 
                         $data_conquista_formatada = date('d/m/Y', strtotime($conquista["data_conquista"]));
-
+                        echo '<br>';
                         echo '<h6>Alcançada em: ' . $data_conquista_formatada . '</h6>';
 
                         echo '</div>';
@@ -420,13 +422,13 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
 
                         echo '<div class="col-8">';
 
-                        echo '<h5>' . $recurso["descricao"] . '</h5>';
+                        echo '<h6>' . $recurso["descricao"] . '</h6>';
 
                         echo '</div>';
 
                         echo '<div class="col-4">';
 
-                        echo '<a href="' . $recurso["url"] . '" target="_blank">Acessar</a>'; // Link para acessar o recurso
+                        echo '<a href="' . $recurso["url"] . '" target="_blank"><Strong>Acessar</Strong></a>'; // Link para acessar o recurso
 
                         echo '</div>';
 
