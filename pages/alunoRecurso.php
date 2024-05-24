@@ -144,7 +144,7 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
 
         $escolaridadeAluno = $dadosAluno["escolaridade"]; // Supondo que a coluna com a escolaridade do aluno seja "escolaridade"
 
-        $recursos = DB::query("SELECT * FROM recurso_educacional WHERE escolaridade = %s", $escolaridadeAluno);
+        $recursos = DB::query("SELECT * FROM recurso_educacional WHERE escolaridade = %s ORDER BY created_at DESC", $escolaridadeAluno);
 
 
 

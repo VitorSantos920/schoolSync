@@ -143,9 +143,9 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
 
         $eventosAluno = $dadosAluno["classe_id"]; // Supondo que a coluna com a escolaridade do aluno seja "escolaridade"
 
-        // $eventos = DB::query("SELECT * FROM evento WHERE classe_id = %", $eventosAluno);
+        $eventos = DB::query("SELECT * FROM evento WHERE classe_id = %i ORDER BY inicio DESC", $eventosAluno);
 
-        $eventos = DB::query("SELECT * FROM evento");
+        //$eventos = DB::query("SELECT * FROM evento");
 
 
 

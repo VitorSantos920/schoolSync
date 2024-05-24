@@ -143,7 +143,7 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
 
         $conquistaAluno = $dadosAluno["aluno_id"]; // Supondo que a coluna com o ID do aluno seja "aluno_id"
 
-        $conquistas = DB::query("SELECT * FROM conquista WHERE aluno_id = %i", $conquistaAluno);
+        $conquistas = DB::query("SELECT * FROM conquista WHERE aluno_id = %i ORDER BY data_conquista DESC", $conquistaAluno);
 
 
 
