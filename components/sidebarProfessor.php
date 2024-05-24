@@ -102,7 +102,7 @@ $aluno_id = $_GET['aluno_id'];
 
                 <li>
 
-                    <a href="../pages/ajuda.php" target="_blank">
+                    <a href="../pages/ajudaProfessor.php" target="_blank">
 
                         <i class="fa-solid fa-circle-info"></i>
 

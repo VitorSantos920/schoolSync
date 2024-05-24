@@ -97,7 +97,7 @@
 
                 <li>
 
-                    <a href="../pages/ajuda.php" target="_blank">
+                    <a href="../pages/ajudaAdmin.php" target="_blank">
 
                         <i class="fa-solid fa-circle-info"></i>
 

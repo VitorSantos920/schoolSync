@@ -59,7 +59,7 @@ $conn = mysqli_connect($servername, $username, $password, $database);
     <main>
 
         <div class="container">
-            <h1>Aqui será a página de ajuda, tutoriais e FAQ.</h1>
+            <h1>Aqui será a página de ajuda, tutoriais e FAQ do professor.</h1>
 
         </div>
 
