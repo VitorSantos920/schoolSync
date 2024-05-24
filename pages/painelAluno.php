@@ -65,32 +65,33 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
     include_once "../components/sidebarAluno.php";
     ?>
     <main>
-        <h3><img src="../assets/img/maozinha.png" width="30px" alt="Ícone de mão dando saudação."> Olá, <?php echo $dadosAluno["nome"] ?></h3>
-        <h1>Confira seu desempenho acadêmico.</h1><br>
+        <div class="container">
+            <h3><img src="../assets/img/maozinha.png" width="30px" alt="Ícone de mão dando saudação."> Olá, <?php echo $dadosAluno["nome"] ?>!</h3>
+            <h1>Confira seu desempenho acadêmico.</h1><br>
 
-        <div class="row">
-            <?php
-            $notas = DB::query("SELECT nota FROM nota WHERE aluno_id = %i", $dadosAluno["aluno_id"]);
-
-            $totalNotas = 0;
-            $quantidadeNotas = count($notas);
-
-            foreach ($notas as $nota) {
-                $totalNotas += $nota['nota'];
-            }
-
-            if ($quantidadeNotas > 0) {
-                $media = $totalNotas / $quantidadeNotas;
-            } else {
-                $media = 0;
-            }
-            ?>
-
-            <div class="col-8 linha-vertical linha-vertical2">
-                <h3>Média geral de nota: <?php echo number_format($media, 1); ?></h3>
-                <h6>Gráfico de barras representando suas notas por disciplina e bimestre</h6><br>
+            <div class="row">
                 <?php
-                $notasPorDisciplinaEBimestre = DB::query("
+                $notas = DB::query("SELECT nota FROM nota WHERE aluno_id = %i", $dadosAluno["aluno_id"]);
+
+                $totalNotas = 0;
+                $quantidadeNotas = count($notas);
+
+                foreach ($notas as $nota) {
+                    $totalNotas += $nota['nota'];
+                }
+
+                if ($quantidadeNotas > 0) {
+                    $media = $totalNotas / $quantidadeNotas;
+                } else {
+                    $media = 0;
+                }
+                ?>
+
+                <div class="col-8 linha-vertical2">
+                    <h3>Média geral de nota: <?php echo number_format($media, 1); ?></h3>
+                    <h6>Gráfico de barras representando suas notas por disciplina e bimestre</h6><br>
+                    <?php
+                    $notasPorDisciplinaEBimestre = DB::query("
                     SELECT 
                         m.disciplina AS disciplina, 
                         n.bimestre AS bimestre, 
@@ -102,52 +103,52 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
                     GROUP BY m.disciplina, n.bimestre
                 ", $dadosAluno['aluno_id']);
 
-                $disciplinas = array();
-                $bimestres = array(1, 2, 3, 4);
-                $dataPorDisciplina = array();
+                    $disciplinas = array();
+                    $bimestres = array(1, 2, 3, 4);
+                    $dataPorDisciplina = array();
 
-                foreach ($notasPorDisciplinaEBimestre as $nota) {
-                    if (!in_array($nota['disciplina'], $disciplinas)) {
-                        $disciplinas[] = $nota['disciplina'];
+                    foreach ($notasPorDisciplinaEBimestre as $nota) {
+                        if (!in_array($nota['disciplina'], $disciplinas)) {
+                            $disciplinas[] = $nota['disciplina'];
+                        }
+                        $dataPorDisciplina[$nota['disciplina']][$nota['bimestre']] = $nota['media_nota'];
                     }
-                    $dataPorDisciplina[$nota['disciplina']][$nota['bimestre']] = $nota['media_nota'];
-                }
 
-                foreach ($disciplinas as $disciplina) {
-                    foreach ($bimestres as $bimestre) {
-                        if (!isset($dataPorDisciplina[$disciplina][$bimestre])) {
-                            $dataPorDisciplina[$disciplina][$bimestre] = 0;
+                    foreach ($disciplinas as $disciplina) {
+                        foreach ($bimestres as $bimestre) {
+                            if (!isset($dataPorDisciplina[$disciplina][$bimestre])) {
+                                $dataPorDisciplina[$disciplina][$bimestre] = 0;
+                            }
                         }
                     }
-                }
 
-                $datasets = array();
-                foreach ($bimestres as $bimestre) {
-                    $data = array();
-                    foreach ($disciplinas as $disciplina) {
-                        $data[] = $dataPorDisciplina[$disciplina][$bimestre];
+                    $datasets = array();
+                    foreach ($bimestres as $bimestre) {
+                        $data = array();
+                        foreach ($disciplinas as $disciplina) {
+                            $data[] = $dataPorDisciplina[$disciplina][$bimestre];
+                        }
+                        $datasets[] = array(
+                            'label' => 'Bimestre ' . $bimestre,
+                            'data' => $data,
+                            'backgroundColor' => 'rgba(54, 162, 235, 0.5)',
+                            'borderColor' => 'rgba(54, 162, 235, 1)',
+                            'borderWidth' => 1
+                        );
                     }
-                    $datasets[] = array(
-                        'label' => 'Bimestre ' . $bimestre,
-                        'data' => $data,
-                        'backgroundColor' => 'rgba(54, 162, 235, 0.5)',
-                        'borderColor' => 'rgba(54, 162, 235, 1)',
-                        'borderWidth' => 1
-                    );
-                }
-                ?>
-                <canvas id="graficoMediasNotas" height="120px"></canvas>
-            </div>
+                    ?>
+                    <canvas id="graficoMediasNotas" height="120px"></canvas>
+                </div>
 
-            <?php
-            $totalFaltas = DB::queryFirstField("SELECT COUNT(*) FROM falta WHERE aluno_id = %i", $dadosAluno["aluno_id"]);
-            ?>
-
-            <div class="col-4 linha-vertical2">
-                <h3>Total de faltas: <?php echo $totalFaltas; ?></h3>
-                <h6>Faltas por Disciplina e Bimestre</h6>
                 <?php
-                $faltasPorDisciplinaEBimestre = DB::query("
+                $totalFaltas = DB::queryFirstField("SELECT COUNT(*) FROM falta WHERE aluno_id = %i", $dadosAluno["aluno_id"]);
+                ?>
+
+                <div class="col-4">
+                    <h3>Total de faltas: <?php echo $totalFaltas; ?></h3>
+                    <h6>Faltas por Disciplina e Bimestre</h6>
+                    <?php
+                    $faltasPorDisciplinaEBimestre = DB::query("
                     SELECT 
                         m.disciplina AS disciplina, 
                         f.bimestre AS bimestre, 
@@ -158,133 +159,134 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us I
                     GROUP BY m.disciplina, f.bimestre
                 ", $dadosAluno['aluno_id']);
 
-                $faltasPorDisciplina = array();
+                    $faltasPorDisciplina = array();
 
-                foreach ($faltasPorDisciplinaEBimestre as $falta) {
-                    if (!isset($faltasPorDisciplina[$falta['disciplina']])) {
-                        $faltasPorDisciplina[$falta['disciplina']] = array();
+                    foreach ($faltasPorDisciplinaEBimestre as $falta) {
+                        if (!isset($faltasPorDisciplina[$falta['disciplina']])) {
+                            $faltasPorDisciplina[$falta['disciplina']] = array();
+                        }
+                        $faltasPorDisciplina[$falta['disciplina']][$falta['bimestre']] = $falta['total_faltas'];
                     }
-                    $faltasPorDisciplina[$falta['disciplina']][$falta['bimestre']] = $falta['total_faltas'];
-                }
 
-                foreach ($faltasPorDisciplina as $disciplina => $faltas) {
-                    foreach ($bimestres as $bimestre) {
-                        if (!isset($faltasPorDisciplina[$disciplina][$bimestre])) {
-                            $faltasPorDisciplina[$disciplina][$bimestre] = 0;
+                    foreach ($faltasPorDisciplina as $disciplina => $faltas) {
+                        foreach ($bimestres as $bimestre) {
+                            if (!isset($faltasPorDisciplina[$disciplina][$bimestre])) {
+                                $faltasPorDisciplina[$disciplina][$bimestre] = 0;
+                            }
                         }
                     }
-                }
 
-                $datasetsFaltas = array();
-                foreach ($bimestres as $bimestre) {
-                    $data = array();
-                    foreach ($faltasPorDisciplina as $disciplina => $faltas) {
-                        $data[] = $faltas[$bimestre];
+                    $datasetsFaltas = array();
+                    foreach ($bimestres as $bimestre) {
+                        $data = array();
+                        foreach ($faltasPorDisciplina as $disciplina => $faltas) {
+                            $data[] = $faltas[$bimestre];
+                        }
+                        $datasetsFaltas[] = array(
+                            'label' => 'Bimestre ' . $bimestre,
+                            'data' => $data,
+                            'backgroundColor' => 'rgba(255, 99, 132, 0.5)',
+                            'borderColor' => 'rgba(255, 99, 132, 1)',
+                            'borderWidth' => 1
+                        );
                     }
-                    $datasetsFaltas[] = array(
-                        'label' => 'Bimestre ' . $bimestre,
-                        'data' => $data,
-                        'backgroundColor' => 'rgba(255, 99, 132, 0.5)',
-                        'borderColor' => 'rgba(255, 99, 132, 1)',
-                        'borderWidth' => 1
-                    );
-                }
-                ?>
-                <canvas id="faltasPorDisciplinaBimestre" height="250px"></canvas>
-            </div>
+                    ?>
+                    <canvas id="faltasPorDisciplinaBimestre" height="250px"></canvas>
+                </div>
 
-            <hr class="linha-horizontal">
-            <div class="col-4 linha-vertical"><br>
-                <h4><img src="../assets/img/calendario.png" width="30px" alt="Ícone de calendário."> Próximas avaliações e eventos</h4>
-                <h6>Acompanhe abaixo suas datas importantes. </h6><br>
-                <?php
-                $eventosAluno = $dadosAluno["classe_id"];
-                $eventos = DB::query("SELECT * FROM evento WHERE classe_id = %i ORDER BY inicio DESC LIMIT 4", $eventosAluno);
+                <hr class="linha-horizontal">
+                <div class="col-4"><br>
+                    <h4><img src="../assets/img/calendario.png" width="30px" alt="Ícone de calendário."> Próximas avaliações e eventos</h4>
+                    <h6>Acompanhe abaixo suas datas importantes. </h6><br>
+                    <?php
+                    $eventosAluno = $dadosAluno["classe_id"];
+                    $eventos = DB::query("SELECT * FROM evento WHERE classe_id = %i ORDER BY inicio DESC LIMIT 4", $eventosAluno);
 
-                if ($eventos) {
-                    foreach ($eventos as $evento) {
-                        echo '<div class="row">';
-                        echo '<div class="col-12">';
-                        echo '<h5>' . $evento["titulo"] . '</h5>';
-                        echo '</div>';
-                        echo '<div class="col-12">';
-                        echo '<h6>' . $evento["descricao"] . '</h6>';
-                        echo '</div>';
-                        echo '<div class="col-6">';
-                        echo '<br>';
-                        $inicio_formatado = date('d/m/Y', strtotime($evento["inicio"]));
-                        echo '<h6>De: ' . $inicio_formatado . '</h6>';
-                        echo '</div>';
-                        echo '<div class="col-6">';
-                        echo '<br>';
-                        $termino_formatado = date('d/m/Y', strtotime($evento["termino"]));
-                        echo '<h6>Até: ' . $termino_formatado . '</h6>';
-                        echo '</div>';
-                        echo '<hr class="linha-horizontal"><br>';
-                        echo '</div>';
+                    if ($eventos) {
+                        foreach ($eventos as $evento) {
+                            echo '<div class="row">';
+                            echo '<div class="col-12">';
+                            echo '<h5>' . $evento["titulo"] . '</h5>';
+                            echo '</div>';
+                            echo '<div class="col-12">';
+                            echo '<h6>' . $evento["descricao"] . '</h6>';
+                            echo '</div>';
+                            echo '<div class="col-6">';
+                            echo '<br>';
+                            $inicio_formatado = date('d/m/Y', strtotime($evento["inicio"]));
+                            echo '<h6>De: ' . $inicio_formatado . '</h6>';
+                            echo '</div>';
+                            echo '<div class="col-6">';
+                            echo '<br>';
+                            $termino_formatado = date('d/m/Y', strtotime($evento["termino"]));
+                            echo '<h6>Até: ' . $termino_formatado . '</h6>';
+                            echo '</div>';
+                            echo '<hr class="linha-horizontal"><br>';
+                            echo '</div>';
+                        }
+                    } else {
+                        echo '<p>Nenhum evento disponível no momento.</p>';
                     }
-                } else {
-                    echo '<p>Nenhum evento disponível no momento.</p>';
-                }
-                ?>
-            </div>
+                    ?>
+                </div>
 
-            <div class="col-4 linha-vertical linha-vertical2"><br>
-                <h4><img src="../assets/img/medalha.png" width="30px" alt="Ícone de medalha."> Conquistas escolares</h4>
-                <h6>Visualize suas conquistas! </h6><br>
-                <?php
-                $conquistaAluno = $dadosAluno["aluno_id"];
-                $conquistas = DB::query("SELECT * FROM conquista WHERE aluno_id = %i ORDER BY data_conquista DESC LIMIT 4", $conquistaAluno);
+                <div class="col-4 linha-vertical linha-vertical2"><br>
+                    <h4><img src="../assets/img/medalha.png" width="30px" alt="Ícone de medalha."> Conquistas escolares</h4>
+                    <h6>Visualize suas conquistas! </h6><br>
+                    <?php
+                    $conquistaAluno = $dadosAluno["aluno_id"];
+                    $conquistas = DB::query("SELECT * FROM conquista WHERE aluno_id = %i ORDER BY data_conquista DESC LIMIT 4", $conquistaAluno);
 
-                if ($conquistas) {
-                    foreach ($conquistas as $conquista) {
-                        echo '<div class="row">';
-                        echo '<div class="col-12">';
-                        echo '<h5>' . $conquista["titulo"] . '</h5>';
-                        echo '</div>';
-                        echo '<div class="col-12">';
-                        echo '<h6>' . $conquista["descricao"] . '</h6>';
-                        echo '</div>';
-                        echo '<div class="col-12">';
-                        $data_conquista_formatada = date('d/m/Y', strtotime($conquista["data_conquista"]));
-                        echo '<br>';
-                        echo '<h6>Alcançada em: ' . $data_conquista_formatada . '</h6>';
-                        echo '</div>';
-                        echo '<hr class="linha-horizontal"><br>';
-                        echo '</div>';
+                    if ($conquistas) {
+                        foreach ($conquistas as $conquista) {
+                            echo '<div class="row">';
+                            echo '<div class="col-12">';
+                            echo '<h5>' . $conquista["titulo"] . '</h5>';
+                            echo '</div>';
+                            echo '<div class="col-12">';
+                            echo '<h6>' . $conquista["descricao"] . '</h6>';
+                            echo '</div>';
+                            echo '<div class="col-12">';
+                            $data_conquista_formatada = date('d/m/Y', strtotime($conquista["data_conquista"]));
+                            echo '<br>';
+                            echo '<h6>Alcançada em: ' . $data_conquista_formatada . '</h6>';
+                            echo '</div>';
+                            echo '<hr class="linha-horizontal"><br>';
+                            echo '</div>';
+                        }
+                    } else {
+                        echo '<p>Nenhuma conquista disponível no momento.</p>';
                     }
-                } else {
-                    echo '<p>Nenhuma conquista disponível no momento.</p>';
-                }
-                ?>
-            </div>
+                    ?>
+                </div>
 
-            <div class="col-4 linha-vertical2"><br>
-                <h4><img src="../assets/img/pasta.png" width="30px" alt="Ícone de mão dando saudação."> Materiais de apoio</h4>
-                <h6>Acesse abaixo os recursos educacionais disponíveis. </h6><br>
-                <?php
-                $escolaridadeAluno = $dadosAluno["escolaridade"];
-                $recursos = DB::query("SELECT * FROM recurso_educacional WHERE escolaridade = %s ORDER BY created_at DESC LIMIT 4", $escolaridadeAluno);
+                <div class="col-4"><br>
+                    <h4><img src="../assets/img/pasta.png" width="30px" alt="Ícone de mão dando saudação."> Materiais de apoio</h4>
+                    <h6>Acesse abaixo os recursos educacionais disponíveis. </h6><br>
+                    <?php
+                    $escolaridadeAluno = $dadosAluno["escolaridade"];
+                    $recursos = DB::query("SELECT * FROM recurso_educacional WHERE escolaridade = %s ORDER BY created_at DESC LIMIT 4", $escolaridadeAluno);
 
-                if ($recursos) {
-                    foreach ($recursos as $recurso) {
-                        echo '<div class="row">';
-                        echo '<div class="col-8">';
-                        echo '<h5>' . $recurso["titulo"] . '</h5>';
-                        echo '</div>';
-                        echo '<div class="col-8">';
-                        echo '<h6>' . $recurso["descricao"] . '</h6>';
-                        echo '</div>';
-                        echo '<div class="col-4">';
-                        echo '<a href="' . $recurso["url"] . '" target="_blank"><Strong>Acessar</Strong></a>';
-                        echo '</div>';
-                        echo '<hr class="linha-horizontal"><br>';
-                        echo '</div>';
+                    if ($recursos) {
+                        foreach ($recursos as $recurso) {
+                            echo '<div class="row">';
+                            echo '<div class="col-8">';
+                            echo '<h5>' . $recurso["titulo"] . '</h5>';
+                            echo '</div>';
+                            echo '<div class="col-8">';
+                            echo '<h6>' . $recurso["descricao"] . '</h6>';
+                            echo '</div>';
+                            echo '<div class="col-4">';
+                            echo '<a href="' . $recurso["url"] . '" target="_blank"><Strong>Acessar</Strong></a>';
+                            echo '</div>';
+                            echo '<hr class="linha-horizontal"><br>';
+                            echo '</div>';
+                        }
+                    } else {
+                        echo '<p>Nenhum recurso educacional disponível no momento.</p>';
                     }
-                } else {
-                    echo '<p>Nenhum recurso educacional disponível no momento.</p>';
-                }
-                ?>
+                    ?>
+                </div>
             </div>
         </div>
 </body>

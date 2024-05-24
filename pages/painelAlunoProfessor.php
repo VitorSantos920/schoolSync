@@ -37,7 +37,7 @@ require_once '../db/config.php';
 date_default_timezone_set('America/Sao_Paulo');
 
 session_start();
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['email'])|| $_SESSION['categoria'] != "Professor") {
     header('Location: ./index.php');
     exit;
 }
@@ -83,6 +83,8 @@ foreach ($faltasPorDisciplinaBimestre as $falta) {
     }
     $faltasData[$falta['bimestre']][$falta['disciplina']] = $falta['total_faltas'];
 }
+
+$dadosProfessor = DB::queryFirstRow("SELECT *, pr.id as 'prof_id' FROM usuario us INNER JOIN professor pr ON pr.usuario_id = us.id WHERE us.id = %i", $_SESSION['id']);
 
 ?>
 
@@ -135,7 +137,7 @@ foreach ($faltasPorDisciplinaBimestre as $falta) {
     <?php include_once "../components/sidebarProfessor.php"; ?>
     <main>
         <div class="container">
-            <h3><img src="../assets/img/maozinha.png" width="30px" alt="Ícone de mão dando saudação."> Olá!</h3>
+            <h3><img src="../assets/img/maozinha.png" width="30px" alt="Ícone de mão dando saudação."> Olá, <?php echo $dadosProfessor["nome"] ?>!</h3>
             <h1><?php echo "Confira o Desempenho Acadêmico de " . $fila2['nome']; ?></h1><br>
 
             <div class="row">
