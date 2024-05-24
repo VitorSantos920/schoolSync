@@ -13,6 +13,49 @@ if (!isset($_SESSION['email']) || $_SESSION['categoria'] != "Aluno") {
 
 $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'aluno_id' FROM usuario us INNER JOIN aluno al ON al.usuario_id = us.id WHERE us.id = %i", $_SESSION['id']);
 
+// Consulta SQL para recuperar as médias das notas do aluno em cada disciplina por bimestre
+$notasPorDisciplinaBimestre = DB::query("
+    SELECT m.disciplina AS disciplina, n.bimestre AS bimestre, AVG(n.nota) AS media_nota
+    FROM nota n
+    INNER JOIN materia m ON n.materia_id = m.id
+    WHERE n.aluno_id = %i
+    GROUP BY m.disciplina, n.bimestre
+    ORDER BY m.disciplina, n.bimestre", $aluno_id);
+
+// Preparando dados para o gráfico de notas por bimestre
+$notasData = array();
+$disciplinas = [];
+foreach ($notasPorDisciplinaBimestre as $nota) {
+    if (!in_array($nota['disciplina'], $disciplinas)) {
+        $disciplinas[] = $nota['disciplina'];
+    }
+    if (!isset($notasData[$nota['bimestre']])) {
+        $notasData[$nota['bimestre']] = array_fill_keys($disciplinas, null); // Inicializando todas as disciplinas com null
+    }
+    $notasData[$nota['bimestre']][$nota['disciplina']] = $nota['media_nota'];
+}
+
+// Consulta SQL para recuperar as faltas do aluno em cada disciplina por bimestre
+$faltasPorDisciplinaBimestre = DB::query("
+    SELECT m.disciplina AS disciplina, f.bimestre AS bimestre, COUNT(*) AS total_faltas
+    FROM falta f
+    INNER JOIN materia m ON f.materia_id = m.id
+    WHERE f.aluno_id = %i
+    GROUP BY m.disciplina, f.bimestre
+    ORDER BY m.disciplina, f.bimestre", $aluno_id);
+
+// Preparando dados para o gráfico de faltas por bimestre
+$faltasData = array();
+foreach ($faltasPorDisciplinaBimestre as $falta) {
+    if (!isset($faltasData[$falta['bimestre']])) {
+        $faltasData[$falta['bimestre']] = array_fill_keys($disciplinas, 0); // Inicializando todas as disciplinas com 0
+    }
+    $faltasData[$falta['bimestre']][$falta['disciplina']] = $falta['total_faltas'];
+}
+
+$dadosProfessor = DB::queryFirstRow("SELECT *, pr.id as 'prof_id' FROM usuario us INNER JOIN professor pr ON pr.usuario_id = us.id WHERE us.id = %i", $_SESSION['id']);
+
+
 ?>
 
 <!DOCTYPE html>
