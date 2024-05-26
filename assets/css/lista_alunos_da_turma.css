@@ -1,7 +1,11 @@
 @import url(./global.css);
 
-body{
-    background-color: white;
+body {
+    background-color: var(--background-color);
+}
+
+main {
+    margin-left: 22rem;
 }
 
 #cabecalhoListaAluno {
@@ -23,7 +27,7 @@ body{
     font-weight: var(--fontWeight-bold);
 }
 
-#tabelaCorpo {
+.tabelaCorpo {
     text-align: center;
     font-size: var(--fontSize-sm);
     font-family: var(--fontFamily-roboto);
@@ -36,12 +40,13 @@ body{
     font-family: var(--fontFamily-poppins);
     font-weight: var(--fontWeight-regular);
     border-radius: var(--borderRadius-xs);
-    background-color: #C9CDD2;
+    background-color: #c9cdd2;
 }
 
 .dropdown .dropdown-menu {
-    background-color: #E0E1E2;
+    background-color: #e0e1e2;
     box-shadow: var(--boxShadow-base);
+    padding: 0.5rem;
 }
 
 .dropdown .dropdown-menu .btn {
@@ -49,9 +54,9 @@ body{
     font-family: var(--fontFamily-poppins);
     font-weight: var(--fontWeight-regular);
     border-radius: var(--borderRadius-xs);
-    background-color: #C8CBD9;
-    margin-left: var(--spacing-10);
-    margin-bottom: var(--spacing-2);
+    background-color: #c8cbd9;
+    margin: 4px 0;
+    width: 100%;
 }
 
 .dropdown .dropdown-menu #deletarAluno {
@@ -62,7 +67,42 @@ body{
     margin-right: var(--spacing-3);
 }
 
-#edtAlunoModal #edtAlunoModalLabel {
-    flex: auto;
-    text-align: center;
+#edtAlunoModal .col-md-6 {
+    padding-left: 0;
+}
+
+@media screen and (max-width: 980px) {
+    #tabela-lista-alunos {
+        border: 0;
+    }
+    #tabela-lista-alunos thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+    #tabela-lista-alunos tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: 0.625em;
+    }
+    #tabela-lista-alunos td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: 0.8em;
+        text-align: right !important;
+    }
+    #tabela-lista-alunos td::before {
+        content: attr(data-label);
+        float: left;
+        text-transform: uppercase;
+        color: var(--brand);
+    }
+    #tabela-lista-alunos td:last-child {
+        border-bottom: 0;
+    }
 }

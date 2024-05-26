@@ -1,61 +1,64 @@
-@import url(./global.css);
-
-body{
-    background-color: white;
-}
-
-#cabecalho {
-    font-size: var(--fontSize-xl);
-    font-family: var(--fontFamily-poppins);
-    font-weight: var(--fontWeight-bold);
-}
-
-.form-label {
-    font-size: var(--fontSize-xs);
-    font-family: var(--fontFamily-poppins);
-    font-weight: var(--fontWeight-regular);
-}
-
-.form-control {
-    font-size: var(--fontSize-sm);
-    font-family: var(--fontFamily-roboto);
-    font-weight: var(--fontWeight-regular);
-    border-radius: var(--borderRadius-sm);
-}
-
-.btn {
-    border-radius: var(--borderRadius-sm);
-    font-size: var(--fontSize-md);
-    font-family: var(--fontFamily-poppins);
-    font-weight: var(--fontWeight-bold);
-    color: white;
-    background-color: var(--brand-color);
-    box-shadow: var(--boxShadow-base);
-}
-
-.btn:hover {
-    color: white;
-    background-color: var(--brand-color-dark);
-}
-
-.forms .btn:active {
-    color: white;
-    background-color: var(--brand-color);
-}
-
-.container .row #ladoDireito {
-    display: flex;
-    align-items: end;
-    background-color: var(--brand-color);
-}
-
-#politicaPrivacidade {
-    font-size: var(--fontSize-sm);
-    font-family: var(--fontFamily-roboto);
-    font-weight: var(--fontWeight-regular);
-}
-
-.forms #erro{
-    color: black;
-    background-color: red;
-}
+@import url(./global.css);
+
+body{
+    background-color: white;
+}
+
+#cabecalho {
+    font-size: var(--fontSize-xl);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-bold);
+}
+
+.form-label {
+    font-size: var(--fontSize-xs);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-regular);
+}
+
+.form-control {
+    font-size: var(--fontSize-sm);
+    font-family: var(--fontFamily-roboto);
+    font-weight: var(--fontWeight-regular);
+    border-radius: var(--borderRadius-sm);
+}
+
+.btn {
+    border-radius: var(--borderRadius-sm);
+    font-size: var(--fontSize-md);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-bold);
+    color: white;
+    background-color: var(--brand-color);
+    box-shadow: var(--boxShadow-base);
+}
+
+.btn:hover {
+    color: white;
+    background-color: var(--brand-color-dark);
+}
+
+.forms .btn:active {
+    color: white;
+    background-color: var(--brand-color);
+}
+
+.container .row #ladoDireito {
+    display: flex;
+    align-items: end;
+    background-color: var(--brand-color);
+}
+
+#politicaPrivacidade {
+    font-size: var(--fontSize-sm);
+    font-family: var(--fontFamily-roboto);
+    font-weight: var(--fontWeight-regular);
+}
+
+.exibir-erro .erro{
+    color: var(--danger-default);
+    font-size: var(--fontSize-xs);
+    font-family: var(--fontFamily-roboto);
+    font-weight: var(--fontWeight-regular);
+    margin-left: var(--spacing-3);
+}

@@ -4,11 +4,7 @@ require_once '../db/config.php';
 
 date_default_timezone_set('America/Sao_Paulo');
 
-session_start();
-
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+if (isset($_POST['email'])) {
     //Pegar os dados recebido pelo input
     $nome = $_POST['nome'];
     $email = $_POST['email'];
@@ -26,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     //Validar o email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $erros[] = 'Email inválido';
+        $erros["emailInvalido"] = 'Email inválido';
     }
 
     //Verifica se o email existe
@@ -37,43 +33,58 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cpfExiste = DB::queryFirstRow('select * from professor where cpf=%s', $cpf);
 
     if ($cpfExiste != false) {
-        $erros[0] = 'O cpf já está em uso';
+        $erros["cpfEmUso"] = 'O cpf já está em uso';
     }
 
     if ($emailExiste != false) {
-        $erros[1] = 'O email já está em uso';
+        $erros["emailEmUso"] = 'O email já está em uso';
     }
 
     if (empty($erros)) {
-        DB::insert('usuario', [
-            'nome' => $nome,
-            'email' => $email,
-            'senha' => $senhaCriptografada,
-            'categoria' => 'Professor',
-            'created_at' => date('Y-m-d H:i:s')
-        ]);
+        try {
 
-        $usuario_id = DB::insertId();
+            DB::insert('usuario', [
+                'nome' => $nome,
+                'email' => $email,
+                'senha' => $senhaCriptografada,
+                'categoria' => 'Professor',
+                'created_at' => date('Y-m-d H:i:s')
+            ]);
 
-        DB::insert('professor', [
-            'cpf' => $cpf,
-            'usuario_id' => $usuario_id
-        ]);
+            $usuario_id = DB::insertId();
 
-        $user = DB::query('select * from professor where usuario_id=%i', $usuario_id);
+            DB::insert('professor', [
+                'cpf' => $cpf,
+                'usuario_id' => $usuario_id,
+                'status_professor' => 1
+            ]);
 
-        $_SESSION['dados'] = $user;
-        header('Location: pages/pagina-inicial-professor.php');
+            $user = DB::query('select * from professor where usuario_id=%i', $usuarwwio_id);
+
+            session_start();
+
+            $_SESSION["id"] = $usuario_id;
+            $_SESSION["email"] = $email;
+            $_SESSION['categoria'] = "Professor";
+
+
+            $response = ["status" => 1, "message" => "O professor '{$nome}' foi cadastrado com sucesso. Redirecionando à sua página inicial de professor...", "url" => "https://schoolsync.alphi.media/schoolsync/admin/pages/pagina-inicial-professor.php"];
+            echo json_encode($response);
+        } catch (\Throwable $e) {
+            echo json_encode(["status" => 0, "error" => $e, "swalMessage" => "Ocorreu um erro interno ao realizar o cadastro do professor. Desculpe o transtorno!"]);
+        }
+
+
         exit;
     }
-    $_SESSION['erros'] = $erros;
-    echo var_dump($_SESSION['erros']);
-    exit;
-    header('Location: /School_sync/pages/cadastroProfessor.php');
+
+    // $_SESSION['erros'] = $erros;
+    $erros["status"] = -1;
+    echo json_encode($erros);
+    // header('Location: /schoolSync/pages/cadastroProfessor.php');
+
     exit;
 } else {
-    header('Location: /School_sync/pages/cadastroProfessor.php');
+    header('Location: ../pages/permissao.php');
     exit;
 }
-
-?>

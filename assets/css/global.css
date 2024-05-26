@@ -1,90 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400..700&family=Poppins:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap');
+
 @import url(./variables.css);
 
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
+* {
     margin: 0;
     padding: 0;
-    border: 0;
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
@@ -92,6 +12,7 @@ video {
 
 html {
     font-size: 16px;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -101,11 +22,22 @@ body {
 ul,
 ol {
     list-style-type: none;
+    padding: 0;
 }
 
 a {
     text-decoration: none;
     color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
 }
 
 article,
@@ -124,5 +56,36 @@ section {
 
 :is(input.form-control, textarea.form-control, select.form-control):focus {
     box-shadow: none;
+
     border-color: var(--brand-color) !important;
+}
+
+main {
+    margin-left: 19rem;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-title {
+    color: var(--brand-color);
+}
+
+.modal-body fieldset:not(fieldset:first-child) {
+    margin-top: var(--spacing-7);
+}
+
+.saudacao {
+    gap: var(--spacing-2);
+
+    margin-bottom: var(--spacing-9);
+}
+
+.saudacao__titulo {
+    color: var(--brand-color);
+
+    font-size: var(--fontSize-4xl);
+
+    font-weight: var(--fontWeight-bold);
 }

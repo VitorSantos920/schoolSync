@@ -1,1 +1,28 @@
-@import url(./global.css);
+@import url(./global.css);
+
+#tudo {
+    background:linear-gradient(TO left,#cecece 100%, transparent 0%);
+    width: 100%;
+    height: max-content;
+    
+   
+    
+}
+
+
+#tudo .logo-container #logo {
+    font-size: var(--fontSize-4xl);
+    font-weight: var(--fontWeight-bold);
+    padding: 17rem ;
+}
+
+.headerList {
+    padding-left: 45rem;
+    display: flex; /* Define a lista como um flex container */
+    list-style-type: none; /* Remove os pontos/bolinhas padrão da lista */
+    align-items: flex-start
+}
+
+.headerList li {
+    margin-right: 12rem; /* Espaçamento entre os itens da lista */
+}

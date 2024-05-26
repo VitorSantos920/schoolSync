@@ -1,0 +1,36 @@
+@import url(./global.css);
+
+table.table th {
+    background-color: var(--brand-color);
+}
+
+table.table td {
+    background-color: transparent;
+}
+
+.acoes input {
+    outline: 0;
+    padding: 0 var(--spacing-2);
+    border: 1px solid var(--level-gray400);
+    flex-grow: 0.5;
+}
+
+.acoes button {
+    background-color: var(--brand-color);
+    border: 1px solid var(--brand-color);
+}
+
+.acoes button:hover {
+    background-color: transparent;
+    border-color: var(--brand-color);
+}
+
+.modal .modal-title {
+    color: var(--brand-color);
+    font-size: var(--fontSize-2xl);
+    font-weight: var(--fontWeight-bold);
+}
+
+.modal .modal-footer .btn:last-child {
+    background-color: var(--brand-color);
+}
