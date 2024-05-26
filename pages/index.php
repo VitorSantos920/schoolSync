@@ -1,5 +1,5 @@
 <?php
-include_once "../db/config.phg";
+include_once "../db/config.php";
 ?>
 
 <!DOCTYPE html>
