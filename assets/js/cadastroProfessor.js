@@ -1,3 +1,7 @@
+$(document).ready(function () {
+    VMasker($('#cpf')).maskPattern('999.999.999-99');
+});
+
 $('#form-cadastro').submit(function (e) {
     e.preventDefault();
 
@@ -7,6 +11,24 @@ $('#form-cadastro').submit(function (e) {
         senha: $('#senha').val(),
         cpf: $('#cpf').val(),
     };
+
+    if (dadosRegistro.senha.length < 7) {
+        $('#senha + div').html(
+            '<div class="erro">Insira uma senha com, no mínimo, 7 caracteres.</div>'
+        );
+        return;
+    } else {
+        $('#senha + div').html('');
+    }
+
+    if (dadosRegistro.senha != $('#confirmar-senha').val()) {
+        $('#confirmar-senha + div').html(
+            "<div class='erro'>As senhas não coincidem!</div>"
+        );
+        return;
+    } else {
+        $('#confirmar-senha + div').html('');
+    }
 
     $.ajax({
         type: 'POST',
@@ -41,7 +63,7 @@ $('#form-cadastro').submit(function (e) {
                                     );
                             } else {
                                 exibirErros
-                                    .eq(1)
+                                    .eq(3)
                                     .html(
                                         `<div class='erro'>${errorMessage}</div>`
                                     );

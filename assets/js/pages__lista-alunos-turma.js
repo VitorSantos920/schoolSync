@@ -29,7 +29,6 @@ function editarAluno() {
         escolaridade: $('#escolaridade').val(),
         classe: $('#classe').val(),
         escola: $('#escola').val(),
-        status: $('#status').val(),
         genero: $('#genero').val(),
     };
 
@@ -92,7 +91,7 @@ function carregaTabelaListaAlunos() {
 
     $.ajax({
         type: 'POST',
-        url: '../backend/carregaTabelaListaAlunos.php',
+        url: '../backend/carregar-tabela-lista-alunos.php',
         data: {
             classeId,
             liberado: 1,
@@ -101,7 +100,10 @@ function carregaTabelaListaAlunos() {
             response = JSON.parse(response);
             console.log(response);
             $('#tbody-lista-alunos').html(response.tableBody);
-            $('#quantidade').html(response.quantidadeAlunos);
+
+            response.quantidadeAlunos == 1
+                ? $('#quantidade').text(`${response.quantidadeAlunos} Aluno`)
+                : $('#quantidade').text(`${response.quantidadeAlunos} Alunos`);
         },
     });
 }
@@ -111,13 +113,30 @@ function deletarAluno(idAluno) {
 
     $.ajax({
         type: 'POST',
-        url: '../backend/deletar-aluno',
+        url: '../backend/deletar-aluno.php',
         data: {
             idAluno,
         },
         success: function (response) {
             response = JSON.parse(response);
             console.log(response);
+            switch (response.status) {
+                case -1:
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro Interno!',
+                        text: response.swalMessage,
+                    });
+                    break;
+                case 1:
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Aluno excluído!',
+                        text: response.swalMessage,
+                    });
+                    carregaTabelaListaAlunos();
+                    break;
+            }
         },
         error: (e) => console.log(e),
     });

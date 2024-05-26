@@ -16,16 +16,10 @@ try {
     "escolaridade" => $_POST['escolaridade'],
     "data_nascimento" => $_POST['dataNascimento'],
     "classe_id" => $_POST['classe'],
-    "status_aluno" => $_POST['status'],
     "escola" => $_POST['escola'],
   ], "id = %i", $_POST['idAluno']);
 
   DB::query("UPDATE usuario SET nome = %s WHERE id = %i", $_POST['nome'], $usuario_id);
-
-  // DB::update("usuario", [
-  //   "nome" => $_POST['nome']
-  // ], "id=%i", $usuario_id);
-
 
   echo json_encode(["status" => 1, "swalMessage" => "Os dados do aluno foram editados com sucesso!"]);
 } catch (\Throwable $e) {

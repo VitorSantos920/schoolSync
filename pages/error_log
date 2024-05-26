@@ -1,10 +1,154 @@
-[19-May-2024 03:35:22 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
-[19-May-2024 03:35:22 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
-[19-May-2024 03:36:16 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
-[19-May-2024 03:36:16 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
-[19-May-2024 03:37:19 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
-[19-May-2024 03:37:19 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
-[19-May-2024 03:38:09 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
-[19-May-2024 03:38:09 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
-[19-May-2024 04:56:40 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
-[19-May-2024 04:56:40 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 13:57:07 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 13:57:07 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 13:57:12 America/Sao_Paulo] PHP Warning:  Undefined variable $aluno_id in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAluno.php on line 17
+[25-May-2024 13:57:12 America/Sao_Paulo] PHP Warning:  Undefined variable $aluno_id in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAluno.php on line 39
+[25-May-2024 13:57:15 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 13:57:15 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 13:57:20 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 13:57:22 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 13:57:22 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 41
+[25-May-2024 13:58:19 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 13:58:19 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 13:58:24 America/Sao_Paulo] PHP Warning:  Undefined variable $aluno_id in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAluno.php on line 17
+[25-May-2024 13:58:24 America/Sao_Paulo] PHP Warning:  Undefined variable $aluno_id in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAluno.php on line 39
+[25-May-2024 14:01:05 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 14:01:05 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 17:36:57 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 17:37:01 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 17:37:01 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 41
+[25-May-2024 17:37:04 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 17:37:04 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 17:37:18 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 17:37:18 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 41
+[25-May-2024 18:00:40 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 18:00:40 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 18:00:44 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 10
+[25-May-2024 18:00:44 America/Sao_Paulo] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php:12
+Stack trace:
+#0 /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php(12): mysqli_query()
+#1 {main}
+  thrown in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 12
+[25-May-2024 18:00:56 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 10
+[25-May-2024 18:00:56 America/Sao_Paulo] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php:12
+Stack trace:
+#0 /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php(12): mysqli_query()
+#1 {main}
+  thrown in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 12
+[25-May-2024 18:01:03 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 18:01:03 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 18:01:22 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 18:01:22 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 18:01:26 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 18:01:26 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 18:01:33 America/Sao_Paulo] PHP Warning:  Undefined variable $aluno_id in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 94
+[25-May-2024 18:01:33 America/Sao_Paulo] PHP Warning:  Undefined variable $aluno_id in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 136
+[25-May-2024 18:01:33 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 18:01:33 America/Sao_Paulo] PHP Warning:  Undefined variable $fila2 in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 271
+[25-May-2024 18:01:33 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 271
+[25-May-2024 18:01:33 America/Sao_Paulo] PHP Warning:  Undefined variable $filaMedia in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 279
+[25-May-2024 18:01:33 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 279
+[25-May-2024 18:01:33 America/Sao_Paulo] PHP Warning:  Undefined variable $filaFalta in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 289
+[25-May-2024 18:01:33 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 289
+[25-May-2024 18:01:33 America/Sao_Paulo] PHP Warning:  Undefined variable $evento_classe_id in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 307
+[25-May-2024 18:02:27 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 18:02:29 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 18:02:29 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 18:02:31 America/Sao_Paulo] PHP Warning:  Undefined variable $aluno_id in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 94
+[25-May-2024 18:02:31 America/Sao_Paulo] PHP Warning:  Undefined variable $aluno_id in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 136
+[25-May-2024 18:02:31 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 18:02:31 America/Sao_Paulo] PHP Warning:  Undefined variable $fila2 in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 271
+[25-May-2024 18:02:31 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 271
+[25-May-2024 18:02:31 America/Sao_Paulo] PHP Warning:  Undefined variable $filaMedia in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 279
+[25-May-2024 18:02:31 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 279
+[25-May-2024 18:02:31 America/Sao_Paulo] PHP Warning:  Undefined variable $filaFalta in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 289
+[25-May-2024 18:02:31 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 289
+[25-May-2024 18:02:31 America/Sao_Paulo] PHP Warning:  Undefined variable $evento_classe_id in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 307
+[25-May-2024 18:22:01 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 19
+[25-May-2024 18:22:01 America/Sao_Paulo] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php:23
+Stack trace:
+#0 /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php(23): mysqli_query()
+#1 {main}
+  thrown in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 23
+[25-May-2024 18:34:20 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 18:34:20 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 18:34:32 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 18:44:52 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 18:44:52 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 19:13:28 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 19:16:44 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home/vfzzdvmy/public_html/schoolsync/admin/pages/pagina-inicial-professor.php on line 13
+[25-May-2024 19:16:44 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home/vfzzdvmy/public_html/schoolsync/admin/pages/pagina-inicial-professor.php on line 15
+[25-May-2024 19:16:44 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 19:16:44 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home/vfzzdvmy/public_html/schoolsync/admin/pages/pagina-inicial-professor.php on line 39
+[25-May-2024 19:16:49 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 19:16:49 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 19:18:26 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 19:19:05 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home/vfzzdvmy/public_html/schoolsync/admin/pages/pagina-inicial-professor.php on line 13
+[25-May-2024 19:19:05 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home/vfzzdvmy/public_html/schoolsync/admin/pages/pagina-inicial-professor.php on line 15
+[25-May-2024 19:19:05 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 19:19:05 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home/vfzzdvmy/public_html/schoolsync/admin/pages/pagina-inicial-professor.php on line 39
+[25-May-2024 19:19:07 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 19:19:07 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 19:26:27 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 19:27:12 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home/vfzzdvmy/public_html/schoolsync/admin/pages/pagina-inicial-professor.php on line 13
+[25-May-2024 19:27:12 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home/vfzzdvmy/public_html/schoolsync/admin/pages/pagina-inicial-professor.php on line 15
+[25-May-2024 19:27:12 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 19:27:12 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home/vfzzdvmy/public_html/schoolsync/admin/pages/pagina-inicial-professor.php on line 39
+[25-May-2024 19:27:13 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 19:27:13 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 19:29:12 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 19:29:38 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 19:29:38 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 19:51:26 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:32:42 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 21:32:42 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 21:45:00 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:45:02 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:45:02 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 21:46:45 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:46:45 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 21:48:33 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:48:33 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 21:49:25 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:49:25 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 21:49:37 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:49:37 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 21:49:48 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:49:48 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 21:51:19 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 21:51:19 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 21:51:24 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:51:27 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:51:27 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 21:51:28 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:51:30 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:51:30 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 21:51:58 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:51:58 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 21:52:48 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:52:48 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 21:53:54 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 19
+[25-May-2024 21:53:54 America/Sao_Paulo] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php:23
+Stack trace:
+#0 /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php(23): mysqli_query()
+#1 {main}
+  thrown in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 23
+[25-May-2024 21:54:29 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:54:29 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 21:55:55 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:55:55 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 21:56:13 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:56:13 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 21:57:28 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:57:28 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 21:57:36 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:57:36 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 21:57:47 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 21:57:47 America/Sao_Paulo] PHP Warning:  Undefined variable $quantidadeAlunos in /home/vfzzdvmy/public_html/schoolsync/admin/pages/lista_alunos_da_turma.php on line 79
+[25-May-2024 21:58:59 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 22:01:18 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 22:01:43 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 22:01:49 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 22:01:51 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17
+[25-May-2024 22:07:58 America/Sao_Paulo] PHP Warning:  include_once(../db/config.phg): Failed to open stream: No such file or directory in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 22:07:58 America/Sao_Paulo] PHP Warning:  include_once(): Failed opening '../db/config.phg' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vfzzdvmy/public_html/schoolsync/admin/pages/index.php on line 2
+[25-May-2024 22:20:50 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 17

@@ -44,7 +44,14 @@ session_start();
 
                         <div class="mt-4">
                             <label for="senha" class="form-label">Senha</label>
-                            <input type="password" name="senha" class="form-control" id="senha" placeholder="**********" min="6" max="12" required>
+                            <input type="password" name="senha" class="form-control" id="senha" placeholder="**********" min="7" max="12" required>
+                            <div class="exibir-erro"></div>
+                        </div>
+
+                        <div class="mt-4">
+                            <label for="confirmar-senha" class="form-label">Confirme sua senha</label>
+                            <input type="password" name="confirmar-senha" class="form-control" id="confirmar-senha" placeholder="**********" min="7" max="12" required>
+                            <div class="exibir-erro"></div>
                         </div>
 
                         <div class="mt-4">
@@ -76,6 +83,7 @@ session_start();
 
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/sweetalert2.all.min.js"></script>
+    <script src="../plugins/vanilla-masker.js"></script>
     <script src="../assets/js/cadastroProfessor.js"></script>
 </body>
 

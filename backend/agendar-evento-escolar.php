@@ -27,5 +27,4 @@ try {
   echo json_encode(["status" => 1, "swalMessage" => "O evento '$_POST[nome]' foi agendado com sucesso!"]);
 } catch (\Throwable $err) {
   echo json_encode(["status" => -1, "swalMessage" => "Algo deu errado na criação do aluno. Pedimos desculpas pelo transtorno!", "error" => $err]);
-  //throw $th;
 }

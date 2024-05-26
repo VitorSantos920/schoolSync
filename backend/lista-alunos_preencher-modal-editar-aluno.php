@@ -61,24 +61,15 @@ try {
                         <input type='text' class='form-control' id='escola' name='escola' value='$aluno[escola]'>
                     </div>
                     <div class='col-md-6'>
-                        <label for='status' class='form-label'>Status do Aluno</label>
-                        <select class='form-control form-select' id='status' name='status'>
-                            <option value='' disabled>Selecione</option>
-                            <option value='1' " . ($aluno['status_aluno'] == 1 ? "selected" : "") . ">Ativo</option>
-                            <option value='0' " . ($aluno['status_aluno'] == 0 ? "selected" : "") . ">Inativo</option>
-                        </select>
+                      <label for='genero' class='form-label'>Gênero do Aluno</label>
+                      <select class='form-control form-select' id='genero' name='genero'>
+                        <option value='' disabled>Selecione</option>
+                        <option value='Feminino' " . ($aluno['genero'] == 'Feminino' ? "selected" : "") . ">Feminino</option>
+                        <option value='Masculino' " . ($aluno['genero'] == 'Masculino' ? "selected" : "") . ">Masculino</option>
+                      </select>
                     </div>
                 </div>
               </div>
-
-              <div>
-                <label for='genero' class='form-label'>Gênero do Aluno</label>
-                <select class='form-control form-select' id='genero' name='genero'>
-                  <option value='' disabled>Selecione</option>
-                  <option value='Feminino' " . ($aluno['genero'] == 'Feminino' ? "selected" : "") . ">Feminino</option>
-                  <option value='Masculino' " . ($aluno['genero'] == 'Masculino' ? "selected" : "") . ">Masculino</option>
-                </select>
-              <div>
                 ";
   echo json_encode(["modalBody" => $modalBody]);
 } catch (\Throwable $e) {
