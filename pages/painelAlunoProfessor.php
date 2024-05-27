@@ -259,7 +259,10 @@ foreach ($faltasPorDisciplinaBimestre as $falta) {
 
 <body>
 
-    <?php include_once "../components/sidebarProfessor.php"; ?>
+    <?php
+    include_once "../components/sidebarProfessor.php";
+    include_once "../components/Header.php";
+    ?>
 
     <main>
 

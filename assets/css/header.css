@@ -11,7 +11,7 @@ a.dropdown-item:active {
     font-family: var(--fontFamily-poppins);
     padding: 1rem 3rem;
     justify-content: space-between;
-    border-bottom: 0.5px solid var(--level-gray400);
+    margin-left: 16rem;
 }
 
 .header button {

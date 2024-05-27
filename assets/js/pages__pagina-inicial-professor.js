@@ -53,7 +53,7 @@ function criarResponsavel() {
 
     if (
         !verificaNomeUsuario(dadosRegistro.nome, 'responsável') ||
-        !verificaEmailUsuarioUsuario(dadosRegistro.email, 'responsável')
+        !verificaEmailUsuario(dadosRegistro.email, 'responsável')
     ) {
         return;
     }
@@ -334,13 +334,32 @@ function verificaNomeUsuario(nome, categoria) {
     if (!regexNome.test(nome)) {
         Swal.fire({
             icon: 'error',
-            title: `Erro ao cadastrar o ${categoria}`,
+            title: `Erro ao cadastrar o ${categoria}!`,
             text: `Não é possível cadastrar um ${categoria} com este nome. Verifique-o e tente novamente!`,
         });
 
         return false;
     }
 
+    if (nome.length < 3) {
+        Swal.fire({
+            icon: 'error',
+            title: `Erro ao cadastrar o ${categoria}!`,
+            text: `O nome do ${categoria} é muito curto!`,
+        });
+
+        return false;
+    }
+
+    if (!nome.includes(' ')) {
+        Swal.fire({
+            icon: 'error',
+            title: `Erro ao cadastrar o ${categoria}!`,
+            text: `É necessário inserir, no mínimo, o nome e sobrenome do ${categoria}!`,
+        });
+
+        return false;
+    }
     return true;
 }
 

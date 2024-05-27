@@ -1,13 +1,18 @@
+<?php
+require_once "../db/config.php";
+
+session_start();
+
+$nomeUsuario = DB::queryFirstField("SELECT u.nome FROM usuario u WHERE u.id = %i", $_SESSION['id']);
+?>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/header.css">
     <script src="https://kit.fontawesome.com/4ac8bcd2f5.js" crossorigin="anonymous" defer></script>
 </head>
 
 <header class="header">
-    <h2>Painel</h2>
-
     <div class="container-pesquisa">
         <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -23,8 +28,8 @@
 
             <div>
                 <div>
-                    <p>Maria</p>
-                    <small>Aluno</small>
+                    <p><?php echo $nomeUsuario ?></p>
+                    <small><?php echo $_SESSION['categoria']; ?></small>
                 </div>
                 <div class="dropdown">
                     <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">

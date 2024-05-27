@@ -33,7 +33,9 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
 <body>
   <?php
   include_once "../components/sidebarProfessor.php";
+  include_once "../components/Header.php"
   ?>
+
   <section class="saudacao d-flex align-items-center">
     <img width="30" src="../assets/img/hand.svg" alt="Emoji de mão amarela acenando.">
     <h2 class="saudacao__titulo">Olá, professor (a) <?php echo $dadosProfessor["nome"] ?>!</h2>
@@ -210,7 +212,7 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
 
                   <fieldset>
                     <label for='ipt-dataNascimento-aluno' class='form-label'>Data de Nascimento</label>
-                    <input type='date' name='ipt-dataNascimento-aluno' id='ipt-dataNascimento-aluno' class='form-control' required>
+                    <input type='date' name='ipt-dataNascimento-aluno' max="2016-12-31" id='ipt-dataNascimento-aluno' class='form-control' required>
                   </fieldset>
 
                   <fieldset>

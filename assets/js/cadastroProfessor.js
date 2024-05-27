@@ -12,6 +12,13 @@ $('#form-cadastro').submit(function (e) {
         cpf: $('#cpf').val(),
     };
 
+    if (
+        !verificaNomeUsuario(dadosRegistro.nome) ||
+        !verificaEmailUsuario(dadosRegistro.email)
+    ) {
+        return;
+    }
+
     if (dadosRegistro.senha.length < 7) {
         $('#senha + div').html(
             '<div class="erro">Insira uma senha com, no mínimo, 7 caracteres.</div>'
@@ -104,3 +111,55 @@ $('#form-cadastro').submit(function (e) {
         error: (e) => console.log(e),
     });
 });
+
+function verificaNomeUsuario(nome) {
+    const regexNome =
+        /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*[^\d\s][A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*$/;
+
+    if (!regexNome.test(nome)) {
+        Swal.fire({
+            icon: 'error',
+            title: `Erro ao cadastrar o professor!`,
+            text: `Não é possível cadastrar um professor com este nome. Verifique-o e tente novamente!`,
+        });
+
+        return false;
+    }
+
+    if (nome.length < 3) {
+        Swal.fire({
+            icon: 'error',
+            title: `Erro ao cadastrar o professor!`,
+            text: `O nome do professor é muito curto!`,
+        });
+
+        return false;
+    }
+
+    if (!nome.includes(' ')) {
+        Swal.fire({
+            icon: 'error',
+            title: `Erro ao cadastrar o professor!`,
+            text: `É necessário inserir, no mínimo, o nome e sobrenome do professor!`,
+        });
+
+        return false;
+    }
+    return true;
+}
+
+function verificaEmailUsuario(email) {
+    const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (!regexEmail.test(email)) {
+        Swal.fire({
+            icon: 'error',
+            title: `Erro ao cadastrar o professor`,
+            text: `Não é possível cadastrar um professor com este email. Verifique-o e tente novamente!`,
+        });
+
+        return false;
+    }
+
+    return true;
+}
