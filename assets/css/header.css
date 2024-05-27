@@ -1,28 +1,88 @@
-@import url(./global.css);
-
-#tudo {
-    background:linear-gradient(TO left,#cecece 100%, transparent 0%);
-    width: 100%;
-    height: max-content;
-    
-   
-    
-}
-
-
-#tudo .logo-container #logo {
-    font-size: var(--fontSize-4xl);
-    font-weight: var(--fontWeight-bold);
-    padding: 17rem ;
-}
-
-.headerList {
-    padding-left: 45rem;
-    display: flex; /* Define a lista como um flex container */
-    list-style-type: none; /* Remove os pontos/bolinhas padrão da lista */
-    align-items: flex-start
-}
-
-.headerList li {
-    margin-right: 12rem; /* Espaçamento entre os itens da lista */
+@import url(./global.css);
+
+a.dropdown-item:active {
+    background-color: transparent;
+    color: inherit;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    font-family: var(--fontFamily-poppins);
+    padding: 1rem 3rem;
+    justify-content: space-between;
+    border-bottom: 0.5px solid var(--level-gray400);
+}
+
+.header button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.header svg {
+    color: var(--level-gray500);
+}
+
+.header h2 {
+    font-family: var(--fontFamily-poppins);
+    font-size: var(--fontSize-4xl);
+    font-weight: var(--fontWeight-bold);
+    margin-right: var(--spacing-13);
+}
+
+.container-pesquisa {
+    width: 40%;
+    border-radius: var(--borderRadius-xs);
+    overflow: hidden;
+    background-color: #fff;
+    position: relative;
+    color: var(--level-gray500);
+}
+
+.container-pesquisa input {
+    color: var(--level-gray500);
+    outline: 0;
+    padding: var(--spacing-1) var(--spacing-3);
+    width: 94%;
+    font-family: var(--fontFamily-poppins);
+    border: none;
+}
+
+.container-pesquisa i {
+    position: absolute;
+}
+
+.acoes-usuario {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.acoes-usuario button#modo-claro-escuro,
+button#modo-claro-escuro i {
+    font-size: 2.25rem;
+}
+
+.acoes-usuario .perfil {
+    display: flex;
+    align-items: center;
+}
+
+.acoes-usuario .perfil > div {
+    display: flex;
+    gap: 2.2rem;
+    align-items: center;
+}
+
+.acoes-usuario .perfil > div p {
+    font-weight: var(--fontWeight-bold);
+}
+
+.acoes-usuario .perfil > div small {
+    font-size: 0.875rem;
+}
+
+.acoes-usuario .perfil > div button {
+    border: none;
 }

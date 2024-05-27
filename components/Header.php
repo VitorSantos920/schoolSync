@@ -1,45 +1,59 @@
-<head>
-<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css"/>
-
-<link rel="stylesheet" type="text/css" href="../assets/css/header.css"/>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.0.0-3/css/ionicons.min.css">
-
-</head>
-
-<aside id="tudo">
-    <div class="logo-container">
-        <a id="logo" href="/">Painel</a>
-    </div>
-
-    <ul class="headerList">
-
-        <li>
-            <a href="">
-                <!-- Ícone de uma barra de pesquisa da Ionicons -->
-                <i class="fas fa-search"></i>   
-            </a>
-        </li>
-        <li>
-            <a href="">
-                <!-- Ícone da lua do Font Awesome -->
-                <i class="fas fa-moon"></i>   
-            </a>
-        </li>
-        <li>
-            <a href="">
-                <!-- Ícone de seta para baixo do Font Awesome -->
-                <i class="fas fa-chevron-down"></i>   
-            </a>
-        </li>
-        
-        <li>
-            <a href="">
-                <i class="fas fa-bell"></i>   
-            </a>
-        </li>
-    </ul>
-</aside>
-
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <script src="https://kit.fontawesome.com/4ac8bcd2f5.js" crossorigin="anonymous" defer></script>
+</head>
+
+<header class="header">
+    <h2>Painel</h2>
+
+    <div class="container-pesquisa">
+        <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+
+    <div class="acoes-usuario">
+        <button id="modo-claro-escuro">
+            <i class="fas fa-moon"></i>
+        </button>
+
+        <div class="perfil" style="display: flex; align-items: center;">
+            <img src="https://picsum.photos/id/237/536/354" style="border-radius: 50%; width: 40px; height: 40px; margin-right: .625rem" alt="">
+
+            <div>
+                <div>
+                    <p>Maria</p>
+                    <small>Aluno</small>
+                </div>
+                <div class="dropdown">
+                    <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fa-solid fa-user"></i>
+                                Perfil
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fa-solid fa-gear"></i>
+                                Configurações
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <button>
+        <i class="fa-solid fa-bell" style="font-size: 1.75rem;"></i>
+    </button>
+</header>
+
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
