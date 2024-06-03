@@ -71,6 +71,10 @@ main {
     padding-left: 0;
 }
 
+#nome_aluno_lista{
+    text-decoration: underline;
+}
+
 @media screen and (max-width: 980px) {
     #tabela-lista-alunos {
         border: 0;

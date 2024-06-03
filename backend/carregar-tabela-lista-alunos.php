@@ -22,7 +22,7 @@ if ($alunosClasse != null) {
 
     $tableBody .= "
     <tr class='tabelaCorpo'>
-        <td data-label='Nome Completo'><a href='./painelAlunoProfessor.php?aluno_id=$aluno[aluno_id]'>$user[nome] </a></td>
+        <td data-label='Nome Completo'><a id='nome_aluno_lista' href='./painelAlunoProfessor.php?aluno_id=$aluno[aluno_id]'>$user[nome] </a></td>
         <td data-label='Responsável'>$user_responsavel[nome] </td>
         <td data-label='Email do Responsável'>$user_responsavel[email] </td>
         <td data-label='Data de Criação'>$dataCriacao</td>
