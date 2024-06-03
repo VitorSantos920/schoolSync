@@ -9,12 +9,7 @@ require_once '../db/config.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['action'] == 'acessar_perfil_aluno') {
 
-        header("Location: /schoolSync/admin/pages/painelAlunoProfessor.php?aluno_id={$_POST['id_aluno']}");
-
-        exit;
-    } elseif ($_POST['action'] == 'detalhes') {
-
-        header("Location: /schoolSync/admin/pages/painelAluno.php?aluno_id={$_POST['id_aluno']}");
+        header("Location: /schoolSync/admin/pages/painelAlunoProfessor.php?aluno_id={$_POST['aluno_id']}");
 
         exit;
     } elseif ($_POST['action'] == 'salvar') {

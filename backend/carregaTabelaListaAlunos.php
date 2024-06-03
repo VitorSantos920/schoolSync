@@ -39,13 +39,6 @@ if ($alunosClasse != null) {
                         </li>
   
                         <li>
-                            <button class='btn'>
-                                <i class='fa-solid fa-folder icone'></i>
-                                Ver Detalhes
-                            </button>
-                        </li>
-  
-                        <li>
                             <button type='button' class='btn' data-bs-toggle='modal' data-bs-target='#edtAlunoModal' onclick='abrirModalEditarAluno({$aluno['aluno_id']})'>
                                 <i class='fa-solid fa-pen icone'></i>
                                 Editar Aluno</button>
