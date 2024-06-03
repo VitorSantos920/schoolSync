@@ -1,15 +1,13 @@
 <?php
 require_once '../db/config.php';
-
 session_start();
+
 if (!isset($_SESSION['email']) || $_SESSION['categoria'] != "Administrador") {
   header('Location: ./permissao.php');
   exit;
 }
 
-$dadosAdministrador = DB::queryFirstRow("SELECT * FROM  usuario us INNER JOIN  administrador adm ON adm.usuario_id = us.id WHERE us.id=%i", $_SESSION['id']);
-
-
+$dadosAdministrador = DB::queryFirstRow("SELECT * FROM usuario us INNER JOIN administrador adm ON adm.usuario_id = us.id WHERE us.id=%i", $_SESSION['id']);
 ?>
 
 <!DOCTYPE html>
@@ -25,10 +23,11 @@ $dadosAdministrador = DB::queryFirstRow("SELECT * FROM  usuario us INNER JOIN  a
 
 <body>
   <?php
-  include "../components/sidebar.php";
+  include_once "../components/sidebarAdmin.php";
+  include_once "../components/Header.php";
   ?>
-  <main>
 
+  <main>
     <section class="saudacao d-flex align-items-center">
       <img width="30" src="../assets/img/hand.svg" alt="Emoji de mão amarela acenando.">
       <h2 class="saudacao__titulo">Olá, <?php echo $dadosAdministrador['nome'] ?>!</h2>
@@ -42,12 +41,11 @@ $dadosAdministrador = DB::queryFirstRow("SELECT * FROM  usuario us INNER JOIN  a
         Recursos Educacionais
       </a>
     </section>
-
   </main>
+
   <script src="../assets/js/jquery.min.js"></script>
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
   <script src=""></script>
-
 </body>
 
 </html>

@@ -1,9 +1,3 @@
-<?php
-require_once "../db/config.php";
-
-$recursosEducacionais = DB::query("SELECT * FROM recurso_educacional");
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -25,13 +19,12 @@ $recursosEducacionais = DB::query("SELECT * FROM recurso_educacional");
 </head>
 
 <body>
-  <?php
-  include_once "../components/sidebar.php";
-  ?>
+  <?php include_once "../components/sidebarAdmin.php"; ?>
+
   <main>
     <button class="btn btn-success" onclick="modalCriacaoMaterialApoio()">Criar Material de Apoio</button>
     <div class="table-responsive">
-      <table class="table table-borderless align-middle caption-top" id="table-users">
+      <table class="table table-borderless align-middle caption-top" id="table-recursos-educacionais">
         <caption>Lista de Recursos Educacionais</caption>
         <thead>
           <tr>
@@ -44,37 +37,11 @@ $recursosEducacionais = DB::query("SELECT * FROM recurso_educacional");
             <th>Ações</th>
           </tr>
         </thead>
-        <tbody>
-          <?php
-          if ($recursosEducacionais) {
-            foreach ($recursosEducacionais as $recursoEducacional) {
-              echo "
-                <tr>
-                  <td>{$recursoEducacional['id']}</td>
-                  <td>{$recursoEducacional['titulo']}</td>
-                  <td>{$recursoEducacional['descricao']}</td>
-                  <td>
-                    <a style='text-decoration: underline' href='{$recursoEducacional['url']}' target='_blank'>Acessar</a>
-                  </td>
-                  <td>{$recursoEducacional['escolaridade']}</td>
-                  <td>{$recursoEducacional['tipo']}</td>
-                  <td>
-                    <button class='btn btn-warning' onclick='modalEditarMaterialApoio()'>Editar</button>
-                    <button class='btn btn-danger' onclick='excluirRecurso(2)'>Excluir</button>
-                  </td>
-                </tr>
-              ";
-            }
-          } else {
-            echo "
-              <tr>
-                <td colspan='6' class='text-center'>Nenhum recurso educacional cadastrado no sistema.</td>
-              </tr>
-            ";
-          }
-          ?>
+        <tbody id="tbody-recursos-educacionais">
+
         </tbody>
       </table>
+
       <div class="modal fade" id="modalEditarRecurso" tabindex="-1" aria-labelledby="modalEditarRecurso" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -82,7 +49,7 @@ $recursosEducacionais = DB::query("SELECT * FROM recurso_educacional");
               <h2 class="modal-title">Editar Material de Apoio</h2>
             </div>
             <div class="modal-body">
-
+              <!-- Conteúdo do modal de edição -->
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -91,8 +58,6 @@ $recursosEducacionais = DB::query("SELECT * FROM recurso_educacional");
           </div>
         </div>
       </div>
-
-
     </div>
 
     <div class="modal fade" id="criacaoMaterialApoio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -106,7 +71,6 @@ $recursosEducacionais = DB::query("SELECT * FROM recurso_educacional");
           </div>
           <div class="modal-body">
             <form action="#" method="post">
-
               <fieldset>
                 <label for="ipt-nome-material" class="form-label">Nome/Título do Material</label>
                 <input type="text" name="ipt-nome-material" id="ipt-nome-material" class="form-control" placeholder="Números Romanos" required>
@@ -140,7 +104,6 @@ $recursosEducacionais = DB::query("SELECT * FROM recurso_educacional");
                   <option value="0" selected disabled>Tipo</option>
                   <option value="pdf">PDF</option>
                   <option value="site">Site da Internet</option>
-
                 </select>
               </fieldset>
             </form>
@@ -159,7 +122,6 @@ $recursosEducacionais = DB::query("SELECT * FROM recurso_educacional");
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/sweetalert2.all.min.js"></script>
   <script src="../assets/js/pages__recursos-educacionais.js"></script>
-
 </body>
 
 </html>

@@ -1,4 +1,5 @@
 <?php
+
 require_once("../db/config.php");
 
 //Verifica se a variável email está setada
@@ -6,6 +7,7 @@ if (isset($_POST["email"])) {
     //Pegar a senha digitada pelo usuário e atribuir numa variável
     $senha = $_POST["senha"];
     $verifica_usuario = DB::queryFirstRow("SELECT * FROM usuario WHERE email=%s", $_POST["email"]); //pega todos os dados do usuário do banco
+
     //usar o método password_verify para comparar a senha digitada com a do banco
     if (isset($verifica_usuario) && password_verify($senha, $verifica_usuario['senha'])) {
         $response = [];
@@ -24,30 +26,40 @@ if (isset($_POST["email"])) {
         switch ($categoria) {
             case "Aluno":
                 $response["categoria"] = "Aluno";
-                $response["link"] = "http://localhost/schoolSync/pages/painelAluno.php";
+                $response["link"] = "https://schoolsync.alphi.media/schoolsync/admin/pages/painelAluno.php";
                 break;
+
             case "Professor":
                 $response["categoria"] = "Professor";
-                $response["link"] = "http://localhost/schoolSync/pages/pagina-inicial-professor.php";
+                $response["link"] = "https://schoolsync.alphi.media/schoolsync/admin/pages/pagina-inicial-professor.php";
                 break;
+
             case "Responsavel":
                 $response["categoria"] = "Responsavel";
-                $response["link"] = "http://localhost/schoolSync/pages/painelAluno.php";
+                $response["link"] = "https://schoolsync.alphi.media/schoolsync/admin/pages/pagina-inicial-responsavel.php";
                 break;
+
             case "Administrador":
                 $response["categoria"] = "Administrador";
-                $response["link"] = "http://localhost/schoolSync/pages/pagina-inicial-administrador.php";
+                $response["link"] = "https://schoolsync.alphi.media/schoolsync/admin/pages/pagina-inicial-administrador.php";
                 break;
+
             default:
                 break;
         }
+
         echo json_encode($response);
+
         exit;
     } else {
+
         echo json_encode(["status" => -1, "message" => "Dados inválidos"]);
+
         exit;
     }
 } else {
+
     //Se o usuario tentar entrar pela url
+
     header("Location: ../pages/index.php");
 }

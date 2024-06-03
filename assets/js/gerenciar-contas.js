@@ -2,19 +2,17 @@ function abrirModalEditarUsuario(idUsuario) {
     console.log(idUsuario);
     $.ajax({
         type: 'POST',
-        url: '../backend/preencher-modal-editar-usuario.php',
+        url: '../backend/gerenciar-contas_preencher-modal-editar-usuario.php',
         data: {
             idUsuario,
         },
         success: function (response) {
             response = JSON.parse(response);
             console.log(response);
-
             $('#modalEditarUsuario .modal-body').html(response.html);
         },
         error: (err) => console.log(err),
     });
-
     $('#modalEditarUsuario').modal('show');
 }
 
@@ -23,16 +21,13 @@ function editarUsuario() {
     let nome = $('#ipt-nome').val();
     let email = $('#ipt-email').val();
     let categoria = $('#select-categoria').val();
-
     console.log(categoria);
-
     let data = {
         idUsuario,
         nome,
         email,
         categoria,
     };
-
     switch (categoria) {
         case 'Aluno':
             data.escola = $('#ipt-escola-aluno').val();
@@ -40,12 +35,10 @@ function editarUsuario() {
             data.genero = $('#select-genero-aluno').val();
             data.escolaridade = $('#select-escolaridade').val();
             break;
-
         case 'Responsavel':
             data.cpf = $('#ipt-cpf-responsavel').val();
             data.telefone = $('#ipt-telefone-responsavel').val();
             break;
-
         case 'Administrador':
             data.cargo = $('#ipt-cargo-adm').val();
             break;
@@ -53,7 +46,6 @@ function editarUsuario() {
             data.cpf = $('#cpf-professor').val();
             break;
     }
-
     for (const key in data) {
         if (!data[key]) {
             Swal.fire({
@@ -76,7 +68,6 @@ function editarUsuario() {
 
 function excluirUsuario(idUsuario) {
     console.log(idUsuario);
-
     $.ajax({
         type: 'POST',
         url: '',
@@ -88,7 +79,6 @@ function excluirUsuario(idUsuario) {
 
 function pesquisarUsuario() {
     let pesquisa = $('#pesquisa-usuario').val();
-
     console.log(pesquisa);
     $.ajax({
         type: 'POST',

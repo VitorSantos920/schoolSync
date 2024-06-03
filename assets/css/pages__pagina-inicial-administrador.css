@@ -1,43 +1,33 @@
-@import url('../css/global.css');
-
-body :is(h2, h3, h5) {
-    font-family: var(--fontFamily-poppins);
-    font-weight: var(--fontWeight-bold);
-    margin: 0;
-}
-
-.saudacao {
-    gap: var(--spacing-2);
-    margin-bottom: var(--spacing-9);
-}
-
-.saudacao__titulo {
-    color: var(--brand-color);
-    font-size: var(--fontSize-xl);
-}
-
-.acoes {
-    width: 80%;
-    gap: var(--spacing-10);
-}
-
-.acoes a.acoes__acao {
-    background-color: var(--brand-color);
-    min-height: 50px;
-    padding: var(--spacing-2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--borderRadius-sm);
-    transition: 0.25s;
-    flex-grow: 1;
-    font-weight: var(--fontWeight-bold);
-    color: #fff;
-    border: 1px solid var(--brand-color);
-}
-
-.acoes a.acoes__acao:hover {
-    border: 1px solid var(--brand-color);
-    background-color: transparent;
-    color: var(--level-gray600);
-}
+@import url('../css/global.css');
+
+body :is(h2, h3, h5) {
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-bold);
+    margin: 0;
+}
+
+.acoes {
+    width: 80%;
+    gap: var(--spacing-10);
+}
+
+.acoes a.acoes__acao {
+    background-color: var(--brand-color);
+    min-height: 50px;
+    padding: var(--spacing-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--borderRadius-sm);
+    transition: 0.25s;
+    flex-grow: 1;
+    font-weight: var(--fontWeight-bold);
+    color: #fff;
+    border: 1px solid var(--brand-color);
+}
+
+.acoes a.acoes__acao:hover {
+    border: 1px solid var(--brand-color);
+    background-color: transparent;
+    color: var(--level-gray600);
+}
