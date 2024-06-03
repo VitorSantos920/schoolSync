@@ -51,6 +51,32 @@ session_start();
 
             <div class="accordion-item">
                 <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Sobre a equipe por trás do SchoolSync
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p>Somos um grupo de estudantes do 5° semestre de Análise e Desenvolvimento de Sistemas (ADS), da Faculdade de Tecnologia (FATEC) de Campinas. Para nosso Trabalho de Graduação (TG), queremos desenvolver um produto com impacto e benefícios reais para os usuários, chamado SchoolSync.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Como nos contatar ?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p>Para entrar em contato utilize o email: schoolsync@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                         Quais são os principais recursos oferecidos pelo SchoolSync?
                     </button>
