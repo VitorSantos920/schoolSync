@@ -8,29 +8,41 @@ if (!isset($_POST['email'])) {
   exit;
 }
 
-try {
+$emailExistente = DB::queryFirstField("SELECT COUNT(*) FROM usuario u WHERE u.email = %s", $_POST['email']);
 
-  DB::insert("usuario", [
-    "nome" => $_POST['nome'],
-    "email" => $_POST['email'],
-    "senha" => password_hash($_POST['senha'], PASSWORD_DEFAULT),
-    "categoria" => "Aluno",
-    "imagem_perfil" => "",
-    "created_at" => DB::sqleval("NOW()")
-  ]);
+if ($emailExistente > 0) {
+  echo json_encode(["status" => 0, "swalMessage" => "Este email já foi cadastrado no sistema. Por favor, insira um email diferente!"]);
+  exit;
+} else {
+  try {
+    DB::insert("usuario", [
+      "nome" => $_POST['nome'],
+      "email" => $_POST['email'],
+      "senha" => password_hash($_POST['senha'], PASSWORD_DEFAULT),
+      "categoria" => "Aluno",
+      "imagem_perfil" => "",
+      "created_at" => DB::sqleval("NOW()")
+    ]);
 
-  DB::insert("aluno", [
-    "usuario_id" => DB::insertId(),
-    "responsavel_id" => 1,
-    "genero" => $_POST['genero'],
-    "escolaridade" => $_POST['escolaridade'],
-    "data_nascimento" => $_POST['dataNascimento'],
-    "classe_id" => 1,
-    "status_aluno" => 1,
-    "escola" => $_POST['escola']
-  ]);
+    DB::insert("aluno", [
+      "usuario_id" => DB::insertId(),
+      "responsavel_id" => $_POST['responsavel'],
+      "genero" => $_POST['genero'],
+      "escolaridade" => $_POST['escolaridade'],
+      "data_nascimento" => $_POST['dataNascimento'],
+      "classe_id" => $_POST['classe'],
+      "status_aluno" => 1,
+      "escola" => $_POST['escola']
+    ]);
 
-  echo json_encode(["status" => 1, "swalMessage" => "O aluno {$_POST['nome']} foi criado com sucesso!"]);
-} catch (\Throwable $e) {
-  echo json_encode(["status" => -1, "swalMessage" => 'Algo deu errado na criação do aluno. Tente novamente mais tarde!', "messageError" => "Erro: " . $e]);
+    $quantidadeFilhosAtual = DB::queryFirstField("SELECT quantidade_filho FROM responsavel res WHERE res.id = %i", $_POST['responsavel']);
+
+    DB::update("responsavel", [
+      "quantidade_filho" => $quantidadeFilhosAtual + 1,
+    ], "id = %i", $_POST['responsavel']);
+
+    echo json_encode(["status" => 1, "swalMessage" => "O aluno '{$_POST['nome']}' foi criado com sucesso!"]);
+  } catch (\Throwable $e) {
+    echo json_encode(["status" => -1, "swalMessage" => 'Algo deu errado na criação do aluno. Pedimos desculpas pelo transtorno!', "messageError" => "Erro: " . $e]);
+  }
 }

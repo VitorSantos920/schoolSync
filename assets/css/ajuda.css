@@ -1,0 +1,15 @@
+@import url('./global.css');
+
+.accordion-item {
+    margin-top: 1rem;
+}
+
+.accordion-header button {
+    font-weight: var(--fontWeight-medium);
+}
+
+.accordion-button:not(.collapsed) {
+    color: #fff !important;
+    background-color: var(--brand-color) !important;
+    box-shadow: none !important;
+}
