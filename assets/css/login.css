@@ -1,5 +1,4 @@
 @import url(../assets/css/global.css);
-
 @import url(../assets/css/global.css);
 @import url(../assets/css/variables.css);
 
@@ -50,7 +49,7 @@ input[type='password'],
 button {
     width: 100%;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     outline: none;
@@ -69,32 +68,21 @@ button:hover {
     background-color: #ffa500;
 }
 
-.logo-text{
-    font-size: var(--fontSize-5xl);
-    font-family: var(--fontFamily-poppins);
-    font-weight: var(--fontWeight-bold);
-    color: var(--brand-color);
-}
-
-.sub-text{
-    font-size: var(--fontSize-sm);
-    font-family: var(--fontFamily-roboto);
-    font-weight: var(--fontWeight-regular);
-    color: #717171;
-}
-
 .link{
     color: #0066FF;
     text-decoration: underline;
 }
 
-.example-login::placeholder{
-    font-size: var(--fontSize-xs);
-    color: var(--level-gray400);
-}
-.link-text{
-    text-decoration: underline;
+.link-forgotpassword{
     color: #0066FF;
+    text-decoration: underline;
+    text-align: right;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-top: -10px; /* Ajusta a posição vertical do link */
+    margin-bottom: 20px; /* Adiciona espaço abaixo do link */
 }
 
 .logo-text{
