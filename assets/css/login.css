@@ -36,7 +36,8 @@ input[type='email'],
 input[type='password'],
 button {
     width: 100%;
-    padding: var(--spacing-3);
+    padding: 10px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: var(--borderRadius-xs);
     outline: none;
@@ -56,26 +57,21 @@ button:hover {
     background-color: var(--brand-color);
 }
 
-.logo-text {
-    font-size: var(--fontSize-5xl);
-    font-family: var(--fontFamily-poppins);
-    font-weight: var(--fontWeight-bold);
-    color: var(--brand-color);
-}
-
-.link {
-    color: #0066ff;
+.link{
+    color: #0066FF;
     text-decoration: underline;
 }
 
-.example-login::placeholder {
-    font-size: var(--fontSize-xs);
-    color: var(--level-gray400);
+.link-forgotpassword{
+    color: #0066FF;
+    text-decoration: underline;
+    text-align: right;
 }
 
-.link-text {
-    text-decoration: underline;
-    color: #0066ff;
+.forgot-password {
+    text-align: right;
+    margin-top: -10px; /* Ajusta a posição vertical do link */
+    margin-bottom: 20px; /* Adiciona espaço abaixo do link */
 }
 
 .logo-text {
@@ -114,4 +110,11 @@ button:hover {
     main {
         padding: 2rem 2rem;
     }
+}
+
+.esqueceuSenha-text{
+    font-size: var(--fontSize-xl);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-bold);
+    color: var(--level-gray900);
 }

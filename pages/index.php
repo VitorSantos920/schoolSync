@@ -30,8 +30,10 @@ include_once "../db/config.php";
                     <input type="email" id="email" name="email" placeholder="abc@email.com" class="example-login" required><br><br>
 
                     <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" placeholder="************" class="example-login" required><br><br>
-
+                    <input type="password" id="senha" name="senha" placeholder="************"  class="example-login" required><br><br>
+                    
+                    <p class="sub-text forgot-password"> <a class="link-forgotpassword" href=../pages/esqueceuSenha.php>Esqueceu a senha?</a></p>
+                    
                     <button type="submit" onclick="realizar_login()">REALIZAR LOGIN</button>
 
                     <p class="sub-text">É um professor e ainda não possui cadastro? <a class="link" href=../pages/cadastroProfessor.php>Crie uma conta!</a></p>
