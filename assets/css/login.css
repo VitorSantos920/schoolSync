@@ -113,3 +113,10 @@ button:hover {
     top: 7vh;  /* Posição a 50% da altura da janela do navegador */
     z-index: -1;
 }
+
+.esqueceuSenha-text{
+    font-size: var(--fontSize-xl);
+    font-family: var(--fontFamily-poppins);
+    font-weight: var(--fontWeight-bold);
+    color: var(--level-gray900);
+}

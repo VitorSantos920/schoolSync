@@ -28,7 +28,7 @@
                     <label for="senha">Senha:</label>
                     <input type="password" id="senha" name="senha" placeholder="************"  class="example-login" required><br><br>
                     
-                    <p class="sub-text forgot-password"> <a class="link-forgotpassword" href=../pages/cadastroProfessor.php>Esqueceu a senha?</a></p>
+                    <p class="sub-text forgot-password"> <a class="link-forgotpassword" href=../pages/esqueceuSenha.php>Esqueceu a senha?</a></p>
                     
                     <button type="submit" onclick="realizar_login()">REALIZAR LOGIN</button>
 
