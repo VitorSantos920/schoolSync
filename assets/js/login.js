@@ -125,5 +125,63 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Função para lidar com o envio do formulário de recuperação de senha
+    function handleFormSubmit(event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+        redirecionarParaLogin(); // Chama a função para enviar o email de recuperação
+    }
+
+    // Função da pág de esqueceu a senha para redirecionar para o login e mostrar mensagem de sucesso
+    function redirecionarParaLogin() {
+        $.ajax({
+            type: 'POST',
+            url: '../backend/send_reset_email.php',
+            data: { email: $('#email').val() },
+            success: function (response) {
+                response = JSON.parse(response);
+                if (response.status === 'success') {
+                    // Exibir modal de sucesso
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: 'Seu pedido foi enviado e em breve você receberá seu login temporário!',
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                    }).then(() => {
+                        window.location.href = 'index.php'; // Redirecionar para a tela de login
+                    });
+                } else if (response.status === 'invalid') {
+                    // Exibir modal de e-mail inválido
+                    Swal.fire({
+                        title: 'Email Inválido!',
+                        text: 'Por favor, insira um email válido.',
+                        icon: 'warning',
+                        confirmButtonText: 'OK',
+                    });
+                } else {
+                    // Exibir modal de erro genérico
+                    Swal.fire({
+                        title: 'Erro!',
+                        text: 'Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente mais tarde.',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
+                }
+            },
+            error: function (erro) {
+                // Exibir modal de erro genérico
+                Swal.fire({
+                    title: 'Erro!',
+                    text: 'Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente mais tarde.',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                });
+            },
+        });
+    }
+
+    // Adiciona um ouvinte de evento ao formulário de recuperação de senha
+    document.getElementById('formRecuperarSenha').addEventListener('submit', handleFormSubmit);
+
     realizar_login();
+
 });
