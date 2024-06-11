@@ -38,7 +38,21 @@ $aluno_id = $_GET['aluno_id'];
                 <?php
                 // Verifica se o script está sendo acessado através do URL correto
                 if (isset($_GET['aluno_id'])) {
-                    echo '<li><a href="../pages/gerenciarAluno.php?aluno_id=' . $aluno_id . '"><i class="fa-solid fa-square-poll-vertical"></i> Gerenciar aluno</a></li>';
+                    echo '<li><a href="../pages/gerenciarAluno.php?aluno_id=' . $aluno_id . '"><i class="fa-solid fa-book"></i> Gerenciar aluno</a></li>';
+                }
+                ?>
+
+                <?php
+                // Verifica se o script está sendo acessado através do URL correto
+                if (isset($_GET['aluno_id'])) {
+                    echo '<li><a href="../pages/ver-eventos.php?aluno_id=' . $aluno_id . '"><i class="fa-solid fa-calendar"></i> Eventos escolares</a></li>';
+                }
+                ?>
+
+                <?php
+                // Verifica se o script está sendo acessado através do URL correto
+                if (isset($_GET['aluno_id'])) {
+                    echo '<li><a href="../pages/ver-conquistas.php?aluno_id=' . $aluno_id . '"><i class="fa-solid fa-award"></i> Conquistas do aluno</a></li>';
                 }
                 ?>
             </ul>
