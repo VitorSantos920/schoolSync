@@ -74,7 +74,7 @@ mysqli_close($conn);
 </head>
 
 <body>
-    <?php include_once "../components/sidebarProfessor.php"; ?>
+    <?php include_once "../components/sidebarAdmin.php"; ?>
     <?php include_once "../components/Header.php"; ?>
     <main>
         <div class="container">
