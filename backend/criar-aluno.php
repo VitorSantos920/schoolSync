@@ -20,18 +20,18 @@ if ($emailExistente > 0) {
       "email" => $_POST['email'],
       "senha" => password_hash($_POST['senha'], PASSWORD_DEFAULT),
       "categoria" => "Aluno",
+      "status" => 1,
       "imagem_perfil" => "",
-      "created_at" => DB::sqleval("NOW()")
+      "cadastrado_em" => DB::sqleval("NOW()")
     ]);
 
     DB::insert("aluno", [
       "usuario_id" => DB::insertId(),
       "responsavel_id" => $_POST['responsavel'],
+      "classe_id" => $_POST['classe'],
       "genero" => $_POST['genero'],
       "escolaridade" => $_POST['escolaridade'],
       "data_nascimento" => $_POST['dataNascimento'],
-      "classe_id" => $_POST['classe'],
-      "status_aluno" => 1,
       "escola" => $_POST['escola']
     ]);
 

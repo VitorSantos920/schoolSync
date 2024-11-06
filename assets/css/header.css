@@ -1,88 +1,84 @@
 @import url(./global.css);
 
 a.dropdown-item:active {
-    background-color: transparent;
-    color: inherit;
+  background-color: transparent;
+  color: inherit;
 }
 
 .header {
-    display: flex;
-    align-items: center;
-    font-family: var(--fontFamily-poppins);
-    padding: 1rem 3rem;
-    justify-content: space-between;
-    margin-left: 16rem;
-}
+  display: flex;
+  align-items: center;
+  font-family: var(--fontFamily-poppins);
+  padding: 1rem 0;
+  justify-content: space-between;
 
-.header button {
+  button {
     cursor: pointer;
     border: none;
     background-color: transparent;
-}
+  }
 
-.header svg {
+  svg {
     color: var(--level-gray500);
-}
+  }
 
-.header h2 {
+  h2 {
     font-family: var(--fontFamily-poppins);
     font-size: var(--fontSize-4xl);
     font-weight: var(--fontWeight-bold);
     margin-right: var(--spacing-13);
-}
+  }
 
-.container-pesquisa {
+  .container-pesquisa {
     width: 40%;
     border-radius: var(--borderRadius-xs);
     overflow: hidden;
     background-color: #fff;
     position: relative;
     color: var(--level-gray500);
-}
 
-.container-pesquisa input {
-    color: var(--level-gray500);
-    outline: 0;
-    padding: var(--spacing-1) var(--spacing-3);
-    width: 94%;
-    font-family: var(--fontFamily-poppins);
-    border: none;
-}
+    input:focus + svg {
+      color: var(--brand-color);
+    }
 
-.container-pesquisa i {
-    position: absolute;
-}
+    svg {
+      position: absolute;
+      right: 0.625rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
 
-.acoes-usuario {
+  .acoes-usuario {
     display: flex;
     align-items: center;
     gap: 2rem;
-}
 
-.acoes-usuario button#modo-claro-escuro,
-button#modo-claro-escuro i {
-    font-size: 2.25rem;
-}
+    button#modo-claro-escuro svg {
+      font-size: 2.25rem;
+    }
 
-.acoes-usuario .perfil {
-    display: flex;
-    align-items: center;
-}
+    .perfil {
+      display: flex;
+      align-items: center;
 
-.acoes-usuario .perfil > div {
-    display: flex;
-    gap: 2.2rem;
-    align-items: center;
-}
+      > div {
+        display: flex;
+        gap: 2.2rem;
+        align-items: center;
 
-.acoes-usuario .perfil > div p {
-    font-weight: var(--fontWeight-bold);
-}
+        p {
+          font-weight: var(--fontWeight-bold);
+        }
 
-.acoes-usuario .perfil > div small {
-    font-size: 0.875rem;
-}
+        small {
+          font-size: 0.875rem;
+        }
 
-.acoes-usuario .perfil > div button {
-    border: none;
+        button {
+          border: none;
+        }
+      }
+    }
+  }
 }

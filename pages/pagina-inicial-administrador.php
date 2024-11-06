@@ -1,8 +1,7 @@
 <?php
-require_once '../db/config.php';
-session_start();
+require_once '../backend/init-configs.php';
 
-if (!isset($_SESSION['email']) || $_SESSION['categoria'] != "Administrador") {
+if ($_SESSION['categoria'] != "Administrador") {
   header('Location: ./permissao.php');
   exit;
 }
@@ -16,32 +15,37 @@ $dadosAdministrador = DB::queryFirstRow("SELECT * FROM usuario us INNER JOIN adm
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Administrador | Página Inicial</title>
+  <title>Página Inicial - Administrador | SchoolSync</title>
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/pages__pagina-inicial-administrador.css">
 </head>
 
 <body>
-  <?php
-  include_once "../components/sidebarAdmin.php";
-  include_once "../components/Header.php";
-  ?>
+  <div class="wrapper">
+    <div class="content-wrapper">
+      <?php
+      include_once "../components/sidebarAdmin.php";
+      include_once "../components/Header.php";
+      ?>
 
-  <main>
-    <section class="saudacao d-flex align-items-center">
-      <img width="30" src="../assets/img/hand.svg" alt="Emoji de mão amarela acenando.">
-      <h2 class="saudacao__titulo">Olá, <?php echo $dadosAdministrador['nome'] ?>!</h2>
-    </section>
+      <main>
+        <section class="saudacao d-flex align-items-center">
+          <img width="30" src="../assets/img/hand.svg" alt="Emoji de mão amarela acenando.">
+          <h2 class="saudacao__titulo">Olá, <?php echo $dadosAdministrador['nome'] ?>!</h2>
+        </section>
 
-    <section class="acoes d-flex flex-wrap">
-      <a class="acoes__acao" href="./gerenciar-contas.php">
-        Gerenciar Contas
-      </a>
-      <a class="acoes__acao" href="./recursos-educacionais.php">
-        Recursos Educacionais
-      </a>
-    </section>
-  </main>
+        <section class="acoes d-flex flex-wrap">
+          <a class="acoes__acao" href="./gerenciar-contas.php">
+            Gerenciar Contas
+          </a>
+          <a class="acoes__acao" href="./recursos-educacionais.php">
+            Recursos Educacionais
+          </a>
+        </section>
+      </main>
+    </div>
+  </div>
+
 
   <script src="../assets/js/jquery.min.js"></script>
   <script src="../assets/js/bootstrap.bundle.min.js"></script>

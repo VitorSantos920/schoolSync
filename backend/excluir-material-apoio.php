@@ -7,7 +7,6 @@ if (!isset($_POST['idRecurso'])) {
 }
 
 try {
-
   $nomeRecurso = DB::queryFirstField("SELECT re.titulo FROM recurso_educacional re WHERE re.id = %i", $_POST['idRecurso']);
 
   DB::delete("recurso_educacional", "id=%i", $_POST['idRecurso']);

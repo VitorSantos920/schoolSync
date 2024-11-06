@@ -8,25 +8,37 @@ if (!isset($_POST['liberado'])) {
   exit;
 }
 
-$alunosClasse = DB::query("SELECT *, al.id as 'aluno_id' FROM aluno al INNER JOIN usuario us ON al.usuario_id = us.id WHERE classe_id = %i AND al.status_aluno <> 0 ORDER BY us.nome", $_POST['classeId']);
+$alunosClasse = DB::query(
+  "SELECT
+    al.id as aluno_id,
+    us.nome as aluno_nome,
+    us.status as aluno_status,
+    us.cadastrado_em as aluno_data_criacao,
+    resp_us.nome as responsavel_nome,
+    resp_us.email as responsavel_email
+  FROM aluno al
+  INNER JOIN usuario us ON al.usuario_id = us.id
+  INNER JOIN responsavel resp ON al.responsavel_id = resp.id
+  INNER JOIN usuario resp_us ON resp.usuario_id = resp_us.id
+  WHERE al.classe_id = %i AND us.status <> 0
+  ORDER BY us.nome",
+  $_POST['classeId']
+);
 
 $quantidadeAlunos = DB::count();
+$tableBody = "";
 
 if ($alunosClasse != null) {
   foreach ($alunosClasse as $aluno) {
-    $user = DB::queryFirstRow('SELECT * FROM usuario WHERE id=%i', $aluno['usuario_id']);
-    $responsavel = DB::queryFirstField('SELECT usuario_id FROM responsavel WHERE id=%i', $aluno['responsavel_id']);
-    $user_responsavel = DB::queryFirstRow('SELECT nome, email FROM usuario WHERE id=%i', $responsavel);
-
-    $dataCriacao = date('d/m/Y H:m:i', strtotime($user['created_at']));
+    $dataCriacao = date('d/m/Y H:m:i', strtotime($aluno['aluno_data_criacao']));
 
     $tableBody .= "
     <tr class='tabelaCorpo'>
-        <td data-label='Nome Completo'><a href='./painelAlunoProfessor.php?aluno_id=$aluno[aluno_id]'>$user[nome] </a></td>
-        <td data-label='Responsável'>$user_responsavel[nome] </td>
-        <td data-label='Email do Responsável'>$user_responsavel[email] </td>
+        <td data-label='Nome Completo'><a href='./painelAlunoProfessor.php?aluno_id=$aluno[aluno_id]'>$aluno[aluno_nome] </a></td>
+        <td data-label='Responsável'>$aluno[responsavel_nome] </td>
+        <td data-label='Email do Responsável'>$aluno[responsavel_email] </td>
         <td data-label='Data de Criação'>$dataCriacao</td>
-        <td data-label='status'>" . ($aluno['status_aluno'] == 1 ? '<i class="fa-solid fa-circle" style="color: #128308;"></i>' : '<i class="fa-solid fa-circle" style="color: #e81324"></i>') . "</td>
+        <td data-label='status'>" . ($aluno['aluno_status'] == 1 ? '<i class="fa-solid fa-circle" style="color: #128308;"></i>' : '<i class="fa-solid fa-circle" style="color: #e81324"></i>') . "</td>
         <td data-label='Ações'>
             <div class='dropdown'>
                 <button class='btn btn-secondary dropdown-toggle' id='btnPrincipal' type='button' data-bs-toggle='dropdown' aria-expanded='false'>

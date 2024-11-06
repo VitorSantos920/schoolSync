@@ -24,27 +24,29 @@ if ($emailExistente > 0) {
 } else if ($cpfExistente > 0) {
   dadoExistente('CPF');
 } else {
+  $nome = htmlspecialchars($_POST['nome'], ENT_NOQUOTES);
+  $email = htmlspecialchars($_POST['email']);
+
   try {
     DB::insert("usuario", [
-      "nome" => $_POST['nome'],
-      "email" => $_POST['email'],
+      "nome" => $nome,
+      "email" => $email,
       "senha" => password_hash($_POST['senha'], PASSWORD_DEFAULT),
-      "categoria" => "Responsavel",
+      "categoria" => "Responsável",
+      "status" => 1,
       "imagem_perfil" => "",
-      "created_at" => DB::sqleval("NOW()")
+      "cadastrado_em" => DB::sqleval("NOW()")
     ]);
 
     DB::insert("responsavel", [
       "usuario_id" => DB::insertId(),
-      "cpf" => $_POST['cpf'],
       "telefone" => $_POST['telefone'],
+      "cpf" => $_POST['cpf'],
       "quantidade_filho" => 0,
-      "status_responsavel" => 1
     ]);
 
-    echo json_encode(["status" => 1, "swalMessage" => "O responsável {$_POST['nome']} foi criado com sucesso!"]);
+    echo json_encode(["status" => 1, "swalMessage" => "O(A) responsável {$_POST['nome']} foi criado(a) com sucesso!"]);
   } catch (\Throwable $e) {
-
     echo json_encode(["status" => -1, "swalMessage" => 'Algo deu errado na criação do responsável. Tente novamente mais tarde!', "messageError" => "Erro: " . $e]);
   }
 }

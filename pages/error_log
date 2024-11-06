@@ -1,0 +1,25 @@
+[16-Jun-2024 19:10:54 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 9
+[16-Jun-2024 19:10:54 America/Sao_Paulo] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in /home/vfzzdvmy/public_html/schoolsync/admin/components/Header.php on line 4
+[16-Jun-2024 19:10:58 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 9
+[16-Jun-2024 19:13:07 America/Sao_Paulo] PHP Warning:  Undefined variable $aluno_id in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAluno.php on line 33
+[16-Jun-2024 19:13:07 America/Sao_Paulo] PHP Warning:  Undefined variable $aluno_id in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAluno.php on line 75
+[16-Jun-2024 19:13:07 America/Sao_Paulo] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in /home/vfzzdvmy/public_html/schoolsync/admin/components/Header.php on line 4
+[16-Jun-2024 19:14:41 America/Sao_Paulo] PHP Warning:  Undefined variable $aluno_id in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAluno.php on line 33
+[16-Jun-2024 19:14:41 America/Sao_Paulo] PHP Warning:  Undefined variable $aluno_id in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAluno.php on line 75
+[16-Jun-2024 19:14:41 America/Sao_Paulo] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in /home/vfzzdvmy/public_html/schoolsync/admin/components/Header.php on line 4
+[16-Jun-2024 19:15:22 America/Sao_Paulo] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in /home/vfzzdvmy/public_html/schoolsync/admin/components/Header.php on line 4
+[16-Jun-2024 19:16:13 America/Sao_Paulo] PHP Warning:  Undefined variable $aluno_id in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAluno.php on line 33
+[16-Jun-2024 19:16:13 America/Sao_Paulo] PHP Warning:  Undefined variable $aluno_id in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAluno.php on line 75
+[16-Jun-2024 19:16:13 America/Sao_Paulo] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in /home/vfzzdvmy/public_html/schoolsync/admin/components/Header.php on line 4
+[16-Jun-2024 19:17:40 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 9
+[16-Jun-2024 19:17:40 America/Sao_Paulo] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in /home/vfzzdvmy/public_html/schoolsync/admin/components/Header.php on line 4
+[16-Jun-2024 19:18:05 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 9
+[16-Jun-2024 19:18:10 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 10
+[16-Jun-2024 19:18:10 America/Sao_Paulo] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php:13
+Stack trace:
+#0 /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php(13): mysqli_query()
+#1 {main}
+  thrown in /home/vfzzdvmy/public_html/schoolsync/admin/pages/painelAlunoProfessor.php on line 13
+[16-Jun-2024 19:18:11 America/Sao_Paulo] PHP Warning:  Undefined array key "aluno_id" in /home/vfzzdvmy/public_html/schoolsync/admin/components/sidebarProfessor.php on line 9
+[16-Jun-2024 19:18:14 America/Sao_Paulo] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in /home/vfzzdvmy/public_html/schoolsync/admin/components/Header.php on line 4
+[16-Jun-2024 19:18:32 America/Sao_Paulo] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in /home/vfzzdvmy/public_html/schoolsync/admin/components/Header.php on line 4

@@ -1,0 +1,26 @@
+body {
+  font-family: var(--fontFamily-poppins);
+}
+
+.filhos h3 {
+  color: var(--level-gray900);
+  font-family: var(--fontFamily-poppins);
+  font-weight: var(--fontWeight-bold);
+}
+
+.filhos__lista-filhos li {
+  border-radius: var(--borderRadius-md);
+  background-color: var(--level-gray200);
+  color: var(--level-gray600);
+  font-family: var(--fontFamily-poppins);
+  font-weight: var(--fontWeight-medium);
+}
+
+.filhos .filhos__lista-filhos li:not(li:first-child) {
+  margin-top: var(--spacing-4);
+}
+
+.filhos__lista-filhos li a {
+  padding: var(--spacing-6) var(--spacing-8);
+  width: 100%;
+}

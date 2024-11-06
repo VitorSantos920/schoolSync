@@ -11,11 +11,11 @@ $idUsuario = $_POST['idUsuario'];
 
 $dadosUsuario = DB::queryFirstRow("SELECT *, us.id as 'tblUsuario_id' FROM usuario us WHERE us.id = %i", $idUsuario);
 
-$dadosCompletos = retornaDadosCompletosPorCategoria($dadosUsuario);
 
 function retornaDadosCompletosPorCategoria($dadosUsuario)
 {
-  $categoria = $dadosUsuario['categoria'];
+  $categoria = trim($dadosUsuario['categoria']);
+
   $idUsuario = $dadosUsuario['tblUsuario_id'];
 
   switch ($categoria) {
@@ -45,18 +45,22 @@ function retornaDadosCompletosPorCategoria($dadosUsuario)
   }
 }
 
+$dadosCompletos = retornaDadosCompletosPorCategoria($dadosUsuario);
+
 montaEstruturaFormulario($dadosCompletos);
 
 function montaEstruturaFormulario($dadosCompletos)
 {
+  $categoria = $dadosCompletos['categoria'] == 'Responsavel' ? 'Responsável' : $dadosCompletos['categoria'];
+
   $html = "<form method='POST'>
     <input type='number' id='id-usuario' class='form-control' disabled value='{$dadosCompletos['tblUsuario_id']}' required>
     <fieldset>
-      <label for='ipt-nome' class='form-label'>Nome do {$dadosCompletos['categoria']}</label>
+      <label for='ipt-nome' class='form-label'>Nome do {$categoria}</label>
       <input type='text' name='ipt-nome' id='ipt-nome' class='form-control' value='{$dadosCompletos['nome']}' required>
     </fieldset>
     <fieldset>
-      <label for='ipt-email' class='form-label'>Email do {$dadosCompletos['categoria']}</label>
+      <label for='ipt-email' class='form-label'>Email do {$categoria}</label>
       <input type='text' name='ipt-email' id='ipt-email' class='form-control' value='{$dadosCompletos['email']}' required>
     </fieldset>";
 
@@ -166,6 +170,6 @@ function montaEstruturaFormulario($dadosCompletos)
   }
 
   $html .= "</form>";
-  $retorno = ["dadosCompletos" => $dadosCompletos, "html" => $html];
+  $retorno = ["html" => $html];
   echo json_encode($retorno);
 }

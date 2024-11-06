@@ -26,22 +26,22 @@ if (isset($_POST["email"])) {
         switch ($categoria) {
             case "Aluno":
                 $response["categoria"] = "Aluno";
-                $response["link"] = "https://schoolsync.alphi.media/schoolsync/admin/pages/painelAluno.php";
+                $response["link"] = "../pages/pagina-inicial-aluno.php";
                 break;
 
             case "Professor":
                 $response["categoria"] = "Professor";
-                $response["link"] = "https://schoolsync.alphi.media/schoolsync/admin/pages/pagina-inicial-professor.php";
+                $response["link"] = "../pages/pagina-inicial-professor.php";
                 break;
 
             case "Responsavel":
                 $response["categoria"] = "Responsavel";
-                $response["link"] = "https://schoolsync.alphi.media/schoolsync/admin/pages/pagina-inicial-responsavel.php";
+                $response["link"] = "../pages/pagina-inicial-responsavel.php";
                 break;
 
             case "Administrador":
                 $response["categoria"] = "Administrador";
-                $response["link"] = "https://schoolsync.alphi.media/schoolsync/admin/pages/pagina-inicial-administrador.php";
+                $response["link"] = "../pages/pagina-inicial-administrador.php";
                 break;
 
             default:

@@ -15,9 +15,9 @@ if (!isset($_POST['nome'])) {
 try {
   DB::insert("classe", [
     "nome" => $_POST['nome'],
-    "serie" => $_POST['escolaridade'],
     "professor_id" => $idProfessor,
-    "created_at" => DB::sqleval("NOW()")
+    "serie" => $_POST['escolaridade'],
+    "criado_em" => DB::sqleval("NOW()")
   ]);
 
   echo json_encode(["status" => 1, "swalMessage" => "A turma '{$_POST['nome']}' foi criada com sucesso!"]);

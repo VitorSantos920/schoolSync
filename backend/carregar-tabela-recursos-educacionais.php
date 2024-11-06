@@ -17,20 +17,20 @@ if (empty($recursosEducacionais)) {
     </tr>
   ";
 } else {
-  foreach ($recursosEducacionais as $recursoEducacional) {
+  foreach ($recursosEducacionais as $recurso) {
     $tableBody .= "
       <tr>
-        <td>{$recursoEducacional['id']}</td>
-        <td>{$recursoEducacional['titulo']}</td>
-        <td>{$recursoEducacional['descricao']}</td>
+        <td>{$recurso['id']}</td>
+        <td>{$recurso['titulo']}</td>
+        <td>{$recurso['descricao']}</td>
         <td>
-          <a style='text-decoration: underline' href='{$recursoEducacional['url']}' target='_blank'>Acessar</a>
+          <a style='text-decoration: underline' href='{$recurso['url']}' target='_blank'>Acessar</a>
         </td>
-        <td>{$recursoEducacional['escolaridade']}</td>
-        <td>{$recursoEducacional['tipo']}</td>
+        <td>{$recurso['escolaridade']}</td>
+        <td>{$recurso['tipo']}</td>
         <td>
-          <button class='btn btn-warning' onclick='modalEditarMaterialApoio()'>Editar</button>
-          <button class='btn btn-danger' onclick='excluirRecurso({$recursoEducacional['id']})'>Excluir</button>
+          <button class='btn btn-warning' onclick='modalEditarMaterialApoio({$recurso['id']})'>Editar</button>
+          <button class='btn btn-danger' onclick='excluirRecurso({$recurso['id']})'>Excluir</button>
         </td>
       </tr>
     ";
