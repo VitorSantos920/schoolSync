@@ -1,0 +1,84 @@
+@import url(./global.css);
+
+a.dropdown-item:active {
+  background-color: transparent;
+  color: inherit;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  font-family: var(--fontFamily-poppins);
+  padding: 1rem 0;
+  justify-content: space-between;
+
+  button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+  }
+
+  svg {
+    color: var(--level-gray500);
+  }
+
+  h2 {
+    font-family: var(--fontFamily-poppins);
+    font-size: var(--fontSize-4xl);
+    font-weight: var(--fontWeight-bold);
+    margin-right: var(--spacing-13);
+  }
+
+  .container-pesquisa {
+    width: 40%;
+    border-radius: var(--borderRadius-xs);
+    overflow: hidden;
+    background-color: #fff;
+    position: relative;
+    color: var(--level-gray500);
+
+    input:focus + svg {
+      color: var(--brand-color);
+    }
+
+    svg {
+      position: absolute;
+      right: 0.625rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .acoes-usuario {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    button#modo-claro-escuro svg {
+      font-size: 2.25rem;
+    }
+
+    .perfil {
+      display: flex;
+      align-items: center;
+
+      > div {
+        display: flex;
+        gap: 2.2rem;
+        align-items: center;
+
+        p {
+          font-weight: var(--fontWeight-bold);
+        }
+
+        small {
+          font-size: 0.875rem;
+        }
+
+        button {
+          border: none;
+        }
+      }
+    }
+  }
+}

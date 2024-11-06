@@ -1,0 +1,69 @@
+@import url(../assets/css/global.css);
+@import url(../assets/css/variables.css);
+
+main {
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: var(--borderRadius-xs);
+  max-width: 500px;
+  padding: var(--spacing-11);
+  position: relative;
+  text-align: center;
+
+  .boy-image {
+    height: auto;
+    left: -300px;
+    max-width: 100%;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .logo {
+    margin-bottom: var(--spacing-1);
+    width: 100px;
+  }
+
+  .logo-text {
+    color: var(--brand-color);
+    font-family: var(--fontFamily-poppins);
+    font-size: var(--fontSize-5xl);
+    font-weight: var(--fontWeight-bold);
+  }
+
+  .sub-text {
+    color: var(--level-gray500);
+    font-family: var(--fontFamily-roboto);
+    font-size: var(--fontSize-sm);
+    font-weight: var(--fontWeight-regular);
+    margin-bottom: var(--spacing-8);
+  }
+
+  label {
+    display: block;
+    margin-bottom: var(--spacing-3);
+    text-align: left;
+  }
+
+  button[type='submit'] {
+    box-shadow: var(--boxShadow-base);
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  .link {
+    color: #0066ff;
+    text-decoration: underline;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .boy-image {
+    display: none;
+  }
+}

@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400..700&family=Poppins:wght@400;500;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+@import url(./variables.css);
+
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background-color);
+  min-height: 100vh;
+  font-family: var(--fontFamily-montserrat);
+}
+
+.wrapper {
+  padding: 0 2.5rem;
+  max-width: 1480px;
+  margin: 0 auto;
+
+  .content-wrapper {
+    margin-left: 0;
+    transition: 500ms;
+
+    &.sidebar-show {
+      margin-left: 288px;
+      margin-right: auto;
+    }
+  }
+}
+
+ul,
+ol {
+  list-style-type: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+:is(input.form-control, textarea.form-control, select.form-control) {
+  padding: var(--spacing-3);
+  border: 1px solid #ccc;
+  border-radius: var(--borderRadius-xs);
+  outline: none;
+
+  &:focus {
+    box-shadow: none;
+    border-color: var(--brand-color) !important;
+  }
+}
+
+fieldset {
+  margin-bottom: 1.2rem;
+}
+
+.btn-schoolsync {
+  background-color: var(--brand-color);
+  border: 1px solid var(--brand-color);
+  border-radius: var(--borderRadius-xs);
+  color: #fff;
+  margin-bottom: var(--spacing-8);
+  padding: var(--spacing-3);
+  transition: 250ms;
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: 600;
+
+  &:hover {
+    background-color: transparent;
+    box-shadow: none;
+    color: var(--brand-color);
+  }
+}
+
+.modal {
+  .modal-header {
+    border-bottom: none;
+  }
+
+  .modal-title {
+    color: var(--brand-color);
+  }
+
+  .modal-body fieldset:not(fieldset:first-child) {
+    margin-top: var(--spacing-7);
+  }
+}
+
+.saudacao {
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-9);
+
+  .saudacao__titulo {
+    color: var(--brand-color);
+    font-size: var(--fontSize-2xl);
+    font-weight: var(--fontWeight-bold);
+  }
+
+  img {
+    animation: acenar 1s infinite alternate-reverse
+      cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+}
+
+@keyframes acenar {
+  from {
+    transform: rotate(10deg);
+  }
+
+  to {
+    transform: rotate(-10deg);
+  }
+}

@@ -1,0 +1,83 @@
+@import url(./global.css);
+
+body {
+  background-color: white;
+}
+
+.container__left-side {
+  flex-grow: 1;
+  padding: var(--spacing-10) calc(var(--spacing-11) * 2);
+
+  .container__header {
+    margin-bottom: var(--spacing-9);
+
+    div {
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-6);
+      margin-bottom: var(--spacing-2);
+
+      h1 {
+        color: var(--brand-color);
+        font-family: var(--fontFamily-poppins);
+        font-size: var(--fontSize-5xl);
+        font-weight: var(--fontWeight-bold);
+      }
+
+      img {
+        max-width: 15%;
+      }
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: var(--spacing-2);
+    }
+  }
+}
+
+.container__right-side {
+  min-height: 100vh;
+  background-color: var(--brand-color);
+  width: 40vw;
+}
+
+.exibir-erro .erro {
+  color: var(--danger-default);
+  font-size: var(--fontSize-xs);
+  font-family: var(--fontFamily-roboto);
+  font-weight: var(--fontWeight-regular);
+  margin-left: var(--spacing-3);
+}
+
+.senha-requisitos p {
+  color: #707070;
+}
+
+p.invalid {
+  color: red;
+}
+
+p.valid {
+  color: green;
+}
+
+#politica-privacidade {
+  font-size: var(--fontSize-sm);
+  font-family: var(--fontFamily-roboto);
+  font-weight: var(--fontWeight-regular);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.exibir-erro .erro {
+  color: var(--danger-default);
+  font-size: var(--fontSize-xs);
+  font-family: var(--fontFamily-roboto);
+  font-weight: var(--fontWeight-regular);
+  margin-left: var(--spacing-3);
+}

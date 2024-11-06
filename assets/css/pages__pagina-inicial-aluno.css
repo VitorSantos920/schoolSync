@@ -1,0 +1,44 @@
+.row {
+  padding-top: 2rem;
+
+  &:last-child {
+    padding: 0 0 2rem;
+  }
+
+  > div {
+    padding: 0;
+  }
+}
+
+:is(.avaliacoes, .agenda-escolar) {
+  border-right: 1px solid var(--level-gray400);
+}
+
+:is(.avaliacoes, .agenda-escolar, .materiais-apoio) {
+  padding: 1.55rem;
+  border-top: 1px solid var(--level-gray400);
+
+  header p {
+    margin: 0.5rem 0 1.5rem;
+  }
+
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h4,
+    button {
+      font-weight: var(--fontWeight-medium);
+    }
+
+    h4 {
+      font-size: var(--fontSize-lg);
+      margin-bottom: var(--spacing-1);
+    }
+
+    p {
+      color: var(--level-gray600);
+    }
+  }
+}
