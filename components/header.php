@@ -1,14 +1,20 @@
+<?php
+require_once "../db/config.php";
+
+session_start();
+
+$nomeUsuario = DB::queryFirstField("SELECT u.nome FROM usuario u WHERE u.id = %i", $_SESSION['id']);
+?>
+
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/header.css">
+    <script src="https://kit.fontawesome.com/4ac8bcd2f5.js" crossorigin="anonymous" defer></script>
 </head>
 
 <header class="header">
-    <button class="btn" onclick="toggleSidebar()" aria-controls="sidebar">
-        <i class="fa-solid fa-bars"></i>
-    </button>
-
     <div class="container-pesquisa">
-        <input type="text" class="form-control" id="pesquisa" placeholder="Pesquisar">
+        <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
         <i class="fa-solid fa-magnifying-glass"></i>
     </div>
 
@@ -22,7 +28,7 @@
 
             <div>
                 <div>
-                    <p><?php echo $dadosUsuario['nome'] ?></p>
+                    <p><?php echo $nomeUsuario ?></p>
                     <small><?php echo $_SESSION['categoria']; ?></small>
                 </div>
                 <div class="dropdown">
@@ -55,22 +61,4 @@
     </button>
 </header>
 
-<script src="../assets/js/jquery.min.js"></script>
-<script src="https://kit.fontawesome.com/4ac8bcd2f5.js" crossorigin="anonymous"></script>
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
-<script>
-    function toggleSidebar() {
-        const sidebar = document.querySelector('#sidebar');
-        const contentWrapper = document.querySelector('.content-wrapper');
-
-        sidebar.classList.toggle('show');
-        contentWrapper.classList.toggle('sidebar-show')
-
-        const expandida = sidebar.classList.contains('show');
-
-        sidebar.setAttribute('aria-expanded', expandida);
-        sidebar.setAttribute('aria-hidden', !expandida);
-
-        expandida ? sidebar.removeAttribute('inert') : sidebar.setAttribute('inert', '');
-    }
-</script>
