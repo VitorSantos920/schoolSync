@@ -64,7 +64,6 @@
     const contentWrapper = document.querySelector('.content-wrapper');
 
     sidebar.classList.add('show');
-    contentWrapper.classList.toggle('sidebar-show')
 
     const expandida = sidebar.classList.contains('show');
 

@@ -28,6 +28,7 @@ body {
 
   .content-wrapper {
     margin-left: 0;
+    transition: 500ms;
   }
 }
 

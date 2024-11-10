@@ -90,9 +90,15 @@
     <script>
         function closeSidebar() {
             const sidebar = document.querySelector('#sidebar');
-            // const contentWrapper = document.querySelector('.content-wrapper');
 
             sidebar.classList.remove('show');
+
+            const expandida = sidebar.classList.contains('show');
+
+            sidebar.setAttribute('aria-expanded', expandida);
+            sidebar.setAttribute('aria-hidden', !expandida);
+
+            expandida ? sidebar.removeAttribute('inert') : sidebar.setAttribute('inert', '');
         }
     </script>
 </body>
