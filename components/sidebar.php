@@ -4,7 +4,10 @@
 
 <body>
     <aside id="sidebar" aria-expanded="false" aria-hidden="true" inert>
-        <a id="logo" href="index.php">SchoolSync</a>
+        <header style="margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+            <a style="margin: 0; font-size: 2rem; text-align: left;" id="logo" href="index.php">SchoolSync</a>
+            <button onclick="closeSidebar()" class="btn" type="button"><i class="fa-solid fa-xmark" style="margin: 0;"></i></button>
+        </header>
 
         <section>
             <div>
@@ -83,4 +86,13 @@
             </div>
         </section>
     </aside>
+
+    <script>
+        function closeSidebar() {
+            const sidebar = document.querySelector('#sidebar');
+            // const contentWrapper = document.querySelector('.content-wrapper');
+
+            sidebar.classList.remove('show');
+        }
+    </script>
 </body>

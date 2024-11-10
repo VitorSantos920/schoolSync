@@ -28,12 +28,6 @@ body {
 
   .content-wrapper {
     margin-left: 0;
-    transition: 500ms;
-
-    &.sidebar-show {
-      margin-left: 288px;
-      margin-right: auto;
-    }
   }
 }
 

@@ -3,7 +3,7 @@
 </head>
 
 <header class="header">
-  <button class="btn" onclick="toggleSidebar()" aria-controls="sidebar">
+  <button class="btn" onclick="openSidebar()" aria-controls="sidebar">
     <i class="fa-solid fa-bars"></i>
   </button>
 
@@ -59,11 +59,11 @@
 <script src="https://kit.fontawesome.com/4ac8bcd2f5.js" crossorigin="anonymous"></script>
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
 <script>
-  function toggleSidebar() {
+  function openSidebar() {
     const sidebar = document.querySelector('#sidebar');
     const contentWrapper = document.querySelector('.content-wrapper');
 
-    sidebar.classList.toggle('show');
+    sidebar.classList.add('show');
     contentWrapper.classList.toggle('sidebar-show')
 
     const expandida = sidebar.classList.contains('show');
