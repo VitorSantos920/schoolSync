@@ -1,17 +1,12 @@
 <?php
+require_once "../backend/init-configs.php";
 
 if (!isset($_POST['nome'])) {
   header('Location: ../pages/permissao.php');
   exit;
 }
 
-require_once "../db/config.php";
-
-date_default_timezone_set("America/Sao_Paulo");
-
-session_start();
-
-$professor_id = DB::queryFirstField("SELECT pr.id FROM professor pr WHERE pr.usuario_id = %i", $_SESSION['id']);
+$professor_id = DB::queryFirstField("SELECT pr.id FROM professor pr WHERE pr.usuario_id = %i", $dadosUsuario['id']);
 
 try {
   DB::insert("evento", [

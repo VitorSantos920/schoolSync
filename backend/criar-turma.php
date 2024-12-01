@@ -17,6 +17,7 @@ try {
     "nome" => $_POST['nome'],
     "professor_id" => $idProfessor,
     "serie" => $_POST['escolaridade'],
+    "bimestre_atual" => 1,
     "criado_em" => DB::sqleval("NOW()")
   ]);
 

@@ -261,15 +261,6 @@ function criarTurma() {
   });
 }
 
-function limparInputs(inputsId) {
-  inputsId.forEach((id) => {
-    let element = $(id);
-    let elementTagName = element.prop('tagName');
-
-    elementTagName == 'SELECT' ? element.val(-1) : element.val('');
-  });
-}
-
 function verificarInputsVazios(valuesInput, categoria) {
   let campos = [];
 
@@ -435,7 +426,7 @@ function modalCriacaoMaterialApoio() {
   $('#ipt-nome-material').val('');
   $('#ipt-descricao-material').val('');
   $('#ipt-url-material').val('');
-  $('#select-escolaridade').val(0);
+  $('#select-escolaridade-material').val(0);
   $('#select-tipo-material').val(0);
 }
 
@@ -443,7 +434,7 @@ function criarMaterialApoio() {
   let nomeMaterial = $('#ipt-nome-material').val();
   let descricaoMaterial = $('#ipt-descricao-material').val();
   let urlMaterial = $('#ipt-url-material').val();
-  let escolaridade = $('#select-escolaridade').val();
+  let escolaridade = $('#select-escolaridade-material').val();
   let tipoMaterial = $('#select-tipo-material').val();
 
   if (

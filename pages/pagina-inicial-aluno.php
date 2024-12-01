@@ -9,20 +9,25 @@ if ($_SESSION['categoria'] != "Aluno" && $_SESSION['categoria'] != "Responsavel"
 
 $alunoId;
 $sectionSaudacao = "";
+$desempenhoAcademico = "";
 
 if ($_SESSION['categoria'] == "Responsavel" && !isset($_GET['aluno_id'])) {
     header('Location: ./pagina-inicial-responsavel.php');
 } elseif ($_SESSION['categoria'] == "Responsavel" && isset($_GET['aluno_id'])) {
     $alunoId = $_GET['aluno_id'];
     $nomeResponsavel = DB::queryFirstField("SELECT us.nome FROM aluno al INNER JOIN responsavel res ON al.responsavel_id = res.id INNER JOIN usuario us ON res.usuario_id = us.id WHERE al.id = %i", $alunoId);
+    $nomeAluno = DB::queryFirstField("SELECT us.nome FROM aluno al INNER JOIN usuario us ON al.usuario_id = us.id WHERE al.id = %i", $alunoId);
+    $desempenhoAcademico = "<h1>Desempenho Acadêmico de:  {$nomeAluno}</h1>";
 } else {
-    $alunoId = $_SESSION['id'];
+    $alunoId = DB::queryFirstField("SELECT id FROM aluno WHERE usuario_id = %i", $dadosUsuario['id']);
+
     $sectionSaudacao = "
         <section class='saudacao d-flex align-items-center'>
             <img width='30' src='../assets/img/hand.svg' alt='Emoji de mão amarela acenando.'>
             <h2 class='saudacao__titulo'>Olá, {$dadosUsuario['nome']}!</h2>
         </section>
     ";
+    $desempenhoAcademico = "<h1>Confira seu Desempenho Acadêmico</h1>";
 }
 
 
@@ -64,9 +69,9 @@ $dadosAluno = DB::queryFirstRow(
             ?>
 
             <main>
-                <?= $sectionSaudacao ?>
+                <?= $sectionSaudacao; ?>
 
-                <h1>Confira seu Desempenho Acadêmico</h1>
+                <h1><?= $desempenhoAcademico; ?></h1>
                 <input type="hidden" id="id-aluno" value=<?= $alunoId ?> disabled>
 
                 <div class="row">

@@ -49,3 +49,12 @@ function verificarEmailUsuario(email, categoria) {
 
   return true;
 }
+
+function limparInputs(inputsId) {
+  inputsId.forEach((id) => {
+    let element = $(id);
+    let elementTagName = element.prop('tagName');
+
+    elementTagName == 'SELECT' ? element.val(-1) : element.val('');
+  });
+}

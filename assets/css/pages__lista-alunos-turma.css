@@ -2,15 +2,108 @@
   font-size: var(--fontSize-2xl);
   font-family: var(--fontFamily-poppins);
   font-weight: var(--fontWeight-bold);
+
+  + ul {
+    list-style-type: disc;
+    list-style-position: inside;
+  }
 }
 
-#search {
+div:where(.swal2-container) input:where(.swal2-input) {
+  padding: var(--spacing-3);
+  border: 1px solid #ccc;
   border-radius: var(--borderRadius-xs);
-  font-family: var(--fontFamily-roboto);
-  font-weight: var(--fontWeight-regular);
+  outline: none;
+
+  &:focus {
+    border-color: var(--brand-color) !important;
+    box-shadow: none !important;
+  }
 }
 
-#tabelaCabecalho {
+.container-acoes {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .btn-secoes button {
+    border-bottom: 3px solid var(--level-gray400);
+    border-radius: 0;
+    transition: 250ms;
+
+    &.secao-atual {
+      border-bottom-color: var(--brand-color);
+    }
+  }
+
+  #search {
+    border-radius: var(--borderRadius-xs);
+    font-family: var(--fontFamily-roboto);
+    font-weight: var(--fontWeight-regular);
+    max-width: 30%;
+  }
+
+  .dropdown-toggle,
+  .dropdown-toggle:active {
+    color: #fff;
+  }
+
+  .dropdown-menu {
+    background-color: #e0e1e2;
+    box-shadow: var(--boxShadow-base);
+    padding: 0.5rem;
+
+    button,
+    a {
+      margin-bottom: var(--spacing-3);
+    }
+
+    a,
+    button {
+      width: 100%;
+      font-size: var(--fontSize-sm);
+    }
+  }
+}
+
+#edtTurmaModal .modal-body {
+  padding-top: 0;
+
+  fieldset {
+    margin-top: 0;
+    display: flex;
+    gap: 1rem;
+
+    div {
+      flex-grow: 1;
+    }
+  }
+
+  table.table {
+    td {
+      width: 30%;
+      vertical-align: middle;
+      border: none;
+
+      &:first-child svg {
+        margin-right: var(--spacing-3);
+      }
+
+      button svg {
+        font-size: var(--fontSize-xs);
+      }
+    }
+  }
+
+  h3,
+  h4 {
+    color: var(--brand-color);
+    font-weight: var(--fontWeight-medium);
+  }
+}
+
+.tabelaCabecalho {
   text-align: center;
   font-size: var(--fontSize-md);
   font-family: var(--fontFamily-poppins);
@@ -31,37 +124,49 @@
   background-color: #c9cdd2;
 }
 
-.dropdown .dropdown-menu {
+:is(#tabela-lista-alunos, #tabela-avaliacoes-turma) .dropdown .dropdown-menu {
   background-color: #e0e1e2;
   box-shadow: var(--boxShadow-base);
   padding: 0.5rem;
 }
 
-.dropdown .dropdown-menu .btn {
+:is(#tabela-lista-alunos, #tabela-avaliacoes-turma)
+  .dropdown
+  .dropdown-menu
+  .btn {
   font-family: var(--fontFamily-poppins);
   font-weight: var(--fontWeight-regular);
   border-radius: var(--borderRadius-xs);
-  background-color: #c8cbd9;
   margin: 4px 0;
   width: 100%;
+
+  &:not(.btn-danger, .btn-success) {
+    background-color: #c8cbd9;
+  }
 }
 
-.dropdown .dropdown-menu #deletarAluno {
+#tabela-lista-alunos .dropdown .dropdown-menu #deletarAluno {
   background-color: var(--danger-default);
 }
 
-.dropdown .dropdown-menu .btn .icone {
+#tabela-lista-alunos .dropdown .dropdown-menu .btn .icone {
   margin-right: var(--spacing-3);
 }
 
 #edtAlunoModal .col-md-6 {
   padding-left: 0;
+  margin-top: 0;
+}
+
+.swal2-actions button {
+  margin: 0.3125rem;
 }
 
 @media screen and (max-width: 980px) {
   #tabela-lista-alunos {
     border: 0;
   }
+
   #tabela-lista-alunos thead {
     border: none;
     clip: rect(0 0 0 0);
@@ -72,23 +177,27 @@
     position: absolute;
     width: 1px;
   }
+
   #tabela-lista-alunos tr {
     border-bottom: 3px solid #ddd;
     display: block;
     margin-bottom: 0.625em;
   }
+
   #tabela-lista-alunos td {
     border-bottom: 1px solid #ddd;
     display: block;
     font-size: 0.8em;
     text-align: right !important;
   }
+
   #tabela-lista-alunos td::before {
     content: attr(data-label);
     float: left;
     text-transform: uppercase;
     color: var(--brand);
   }
+
   #tabela-lista-alunos td:last-child {
     border-bottom: 0;
   }

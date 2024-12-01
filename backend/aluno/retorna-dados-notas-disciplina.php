@@ -9,11 +9,24 @@ if (!isset($_POST['idAluno'])) {
   exit;
 }
 
+$notasAluno = DB::query("SELECT 
+    nt.*,
+    av.representacao AS representacao_avaliacao,
+    av.titulo AS titulo_avaliacao,
+    av.descricao AS descricao_avaliacao,
+    av.data_prevista,
+    av.realizada,
+    mt.nome AS 'nome_materia',
+    mt.id AS 'materia_id'
+FROM 
+    nota nt
+INNER JOIN 
+    avaliacao av ON nt.avaliacao_id = av.id
+INNER JOIN 
+    materia mt ON av.materia_id = mt.id
+WHERE 
+    nt.aluno_id = %i", $_POST['idAluno']);
 
-
-
-
-$notasAluno = DB::query("SELECT *, mt.nome as 'nome_materia' FROM nota nt INNER JOIN materia mt ON nt.materia_id = mt.id WHERE nt.aluno_id = %i", $_POST['idAluno']);
 
 $medias = [];
 

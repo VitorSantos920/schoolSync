@@ -7,21 +7,32 @@ h3 {
   font-size: var(--fontSize-2xl);
 }
 
-main :is(button.btn, a.btn) {
-  font-weight: var(--fontWeight-medium);
-  color: #fff;
-  font-size: var(--fontSize-md);
-  font-family: var(--fontFamily-poppins);
-}
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 2rem 0;
 
-main
-  button.btn:not(.btn-info, .btn-secondary, #criacaoMaterialApoio button.btn) {
-  margin-top: var(--spacing-4);
-  background-color: var(--success-default);
-
-  &:hover {
-    background-color: var(--success-hover);
+  :is(button.btn, a.btn) {
+    font-weight: var(--fontWeight-medium);
     color: #fff;
+    font-size: var(--fontSize-md);
+    font-family: var(--fontFamily-poppins);
+  }
+
+  button.btn:is(
+      .adicionar-material,
+      .adicionar-responsavel button,
+      .adicionar-turma button,
+      .adicionar-aluno button
+    ) {
+    margin-top: var(--spacing-4);
+    background-color: var(--success-default);
+
+    &:hover {
+      background-color: var(--success-hover);
+      color: #fff;
+    }
   }
 }
 
@@ -36,20 +47,46 @@ main
 
   .turmas__quantidade {
     color: var(--level-gray900);
+    margin-bottom: var(--spacing-3);
   }
 
   .turmas__lista-turmas {
     padding: 0;
+    max-height: 240px;
+    overflow-y: auto;
+    position: relative;
+    padding-right: var(--spacing-2);
+
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--brand-color);
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: var(--level-gray200);
+      border-radius: 4px;
+    }
 
     li {
       border-radius: var(--borderRadius-md);
-      background-color: var(--level-gray200);
+      border: 1px solid var(--level-gray400);
       color: var(--level-gray600);
       font-family: var(--fontFamily-poppins);
       font-weight: var(--fontWeight-medium);
+      transition: 250ms;
 
       &:not(li:first-child) {
         margin-top: var(--spacing-4);
+      }
+
+      &:hover {
+        background-color: var(--brand-color);
+        border-color: var(--brand-color);
+        color: #fff;
       }
 
       a {
@@ -190,6 +227,16 @@ main
 
   fieldset {
     margin-top: var(--spacing-6);
+
+    &:nth-child(4) {
+      display: flex;
+      gap: var(--spacing-6);
+      flex-wrap: wrap;
+
+      > div {
+        flex-grow: 1;
+      }
+    }
   }
 
   button[type='submit'] {

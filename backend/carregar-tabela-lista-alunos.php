@@ -1,7 +1,5 @@
 <?php
-require_once "../db/config.php";
-
-date_default_timezone_set("America/Sao_Paulo");
+require_once "./init-configs.php";
 
 if (!isset($_POST['liberado'])) {
   header('Location: ../pages/permissao.php');
@@ -34,7 +32,7 @@ if ($alunosClasse != null) {
 
     $tableBody .= "
     <tr class='tabelaCorpo'>
-        <td data-label='Nome Completo'><a href='./painelAlunoProfessor.php?aluno_id=$aluno[aluno_id]'>$aluno[aluno_nome] </a></td>
+        <td data-label='Nome Completo'><a href='./pagina-inicial-aluno-professor.php?id_aluno=$aluno[aluno_id]'>$aluno[aluno_nome] </a></td>
         <td data-label='Responsável'>$aluno[responsavel_nome] </td>
         <td data-label='Email do Responsável'>$aluno[responsavel_email] </td>
         <td data-label='Data de Criação'>$dataCriacao</td>
@@ -46,7 +44,7 @@ if ($alunosClasse != null) {
                 </button>
                     <ul class='dropdown-menu'>
                         <li>
-                            <a href='./painelAlunoProfessor.php?id_aluno={$aluno['aluno_id']}' class='btn'>
+                            <a href='./pagina-inicial-aluno-professor.php?id_aluno={$aluno['aluno_id']}' class='btn'>
                                 <i class='fa-solid fa-user icone'></i>
                                 Acessar Perfil
                             </a>

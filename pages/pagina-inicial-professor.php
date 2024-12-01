@@ -1,9 +1,10 @@
 <?php
 require_once "../backend/init-configs.php";
 
-$materiaisApoio = DB::query("SELECT * FROM recurso_educacional LIMIT 6");
 
-$dadosProfessor = DB::queryFirstRow("SELECT *, pr.id as 'prof_id' FROM usuario us INNER JOIN professor pr ON pr.usuario_id = us.id WHERE us.id = %i", $_SESSION['id']);
+$dadosProfessor = DB::queryFirstRow("SELECT *, pr.id as 'prof_id' FROM usuario us INNER JOIN professor pr ON pr.usuario_id = us.id WHERE us.id = %i", $dadosUsuario['id']);
+
+$materiaisApoio = DB::query("SELECT * FROM recurso_educacional WHERE professor_id = %i LIMIT 6", $dadosProfessor['prof_id']);
 
 $turmasProfessor = DB::query("SELECT * FROM classe cl WHERE cl.professor_id = %i", $dadosProfessor['prof_id']);
 
@@ -38,9 +39,9 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
         <h2 class="saudacao__titulo">Olá, professor (a) <?php echo $dadosProfessor["nome"] ?>!</h2>
       </section>
 
-      <main style="display: grid; grid-template-columns: 1fr 2fr; gap: 1.5rem; padding: 2rem 0">
+      <main>
         <section class="turmas">
-          <h3 class="turmas__quantidade">Suas turmas (<?php echo $quantidadeTurmasProfessor; ?>)</h3>
+          <h3 class="turmas__quantidade">Minhas turmas (<?php echo $quantidadeTurmasProfessor; ?>)</h3>
 
           <ul class="turmas__lista-turmas">
             <?php
@@ -358,14 +359,14 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
                     </fieldset>
 
                     <fieldset>
-                      <label for="select-escolaridade" class="form-label">Selecione a escolaridade ideal para este Material</label>
-                      <select class="form-control form-select" name="select-escolaridade" id="select-escolaridade">
+                      <label for="select-escolaridade-material" class="form-label">Selecione a escolaridade ideal para este Material</label>
+                      <select class="form-control form-select" name="select-escolaridade-material" id="select-escolaridade-material">
                         <option value="0" selected disabled>Escolaridade</option>
-                        <option value="1">1°Ano</option>
-                        <option value="2">2°Ano</option>
-                        <option value="3">3°Ano</option>
-                        <option value="4">4°Ano</option>
-                        <option value="5">5°Ano</option>
+                        <option value="1">1° Ano</option>
+                        <option value="2">2° Ano</option>
+                        <option value="3">3° Ano</option>
+                        <option value="4">4° Ano</option>
+                        <option value="5">5° Ano</option>
                       </select>
                     </fieldset>
 
@@ -392,30 +393,24 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
         <section class="agendar-evento-escolar">
           <h3>Agendar novo evento escolar aos alunos</h3>
           <form id="form-agendar-evento">
-            <div>
-              <div>
-                <fieldset>
-                  <label for="nome-evento" class="form-label">Nome/Título do Evento</label>
-                  <input type="text" name="nome-evento" id="nome-evento" class="form-control" placeholder="Olimpíada Brasileira de Matemática">
-                </fieldset>
-              </div>
+            <fieldset>
+              <label for="nome-evento" class="form-label">Nome/Título do Evento</label>
+              <input type="text" name="nome-evento" id="nome-evento" class="form-control" placeholder="Olimpíada Brasileira de Matemática">
+            </fieldset>
 
-              <div>
-                <fieldset>
-                  <label for="classe-evento" class="form-label">Classe do Evento</label>
-                  <select name="classe-evento" id="classe-evento" class="form-control form-select">
-                    <option value="-1" selected disabled>Selecione</option>
-                    <?php
-                    foreach ($turmasProfessor as $turma) {
-                      echo "
+            <fieldset>
+              <label for="classe-evento" class="form-label">Classe do Evento</label>
+              <select name="classe-evento" id="classe-evento" class="form-control form-select">
+                <option value="-1" selected disabled>Selecione</option>
+                <?php
+                foreach ($turmasProfessor as $turma) {
+                  echo "
                       <option value='{$turma['id']}'>$turma[nome]</option>
                     ";
-                    }
-                    ?>
-                  </select>
-                </fieldset>
-              </div>
-            </div>
+                }
+                ?>
+              </select>
+            </fieldset>
 
             <fieldset>
               <label for="descricao-evento" class="form-label">Descrição do Evento</label>

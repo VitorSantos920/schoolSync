@@ -19,25 +19,25 @@ try {
   $modalBody = "<div class='container'>
                 <input type='hidden' id='id-aluno' value='$aluno[id]'/>
                 <div class='row'>
-                  <div class='col-md-6'>
+                  <fieldset class='col-md-6'>
                       <label for='nome' class='form-label'>Nome</label>
-                      <input type='text' class='form-control' id='nome' name='nome' value='$aluno[nome]'>
-                  </div>
+                      <input type='text' class='form-control' id='nome' name='nome' value='$aluno[nome]' placeholder='Augusto Alves Silva'>
+                  </fieldset>
 
-                  <div class='col-md-6'>
+                  <fieldset class='col-md-6'>
                       <label for='data_nascimento' class='form-label'>Data de Nascimento</label>
                       <input type='date' class='form-control' id='data_nascimento' name='data_nascimento' value='$aluno[data_nascimento]'>
-                  </div>
+                  </fieldset>
                 </div>
               </div>
 
               <div class='container'>
                 <div class='row'>
-                    <div class='col-md-6'>
+                    <fieldset class='col-md-6'>
                         <label for='escolaridade' class='form-label'>Escolaridade</label>
-                        <input type='text' class='form-control' id='escolaridade' name='escolaridade' value='$aluno[escolaridade]'>
-                    </div>
-                    <div class='col-md-6'>
+                        <input type='text' class='form-control' id='escolaridade' name='escolaridade' value='$aluno[escolaridade]' placeholder='3'>
+                    </fieldset>
+                    <fieldset class='col-md-6'>
                         <label for='classe' class='form-label'>Classe</label>
                         <select class='form-control form-select' name='classe' id='classe'>
                           <option value='' disabled>Selecione</option>
@@ -48,26 +48,26 @@ try {
     $modalBody .= "<option value='{$classe['id']}' $selected>$classe[nome]</option>";
   }
 
-  $modalBody .= "                      
+  $modalBody .= "
                         </select>
-                    </div>
+                    </fieldset>
                 </div>
               </div>
 
               <div class='container'>
                 <div class='row'>
-                    <div class='col-md-6'>
+                    <fieldset class='col-md-6'>
                         <label for='escola' class='form-label'>Escola</label>
-                        <input type='text' class='form-control' id='escola' name='escola' value='$aluno[escola]'>
-                    </div>
-                    <div class='col-md-6'>
+                        <input type='text' class='form-control' id='escola' name='escola' value='$aluno[escola]' placeholder='Escola Estadual Carlos Gomes'>
+                    </fieldset>
+                    <fieldset class='col-md-6'>
                       <label for='genero' class='form-label'>Gênero do Aluno</label>
                       <select class='form-control form-select' id='genero' name='genero'>
                         <option value='' disabled>Selecione</option>
                         <option value='Feminino' " . ($aluno['genero'] == 'Feminino' ? "selected" : "") . ">Feminino</option>
                         <option value='Masculino' " . ($aluno['genero'] == 'Masculino' ? "selected" : "") . ">Masculino</option>
                       </select>
-                    </div>
+                    </fieldset>
                 </div>
               </div>
                 ";
