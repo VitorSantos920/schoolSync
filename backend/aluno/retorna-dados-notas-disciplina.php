@@ -3,30 +3,32 @@ require_once "../../db/config.php";
 
 date_default_timezone_set("America/Sao_Paulo");
 
-
 if (!isset($_POST['idAluno'])) {
   header('Location: ../../pages/permissao.php');
   exit;
 }
 
-$notasAluno = DB::query("SELECT 
-    nt.*,
-    av.representacao AS representacao_avaliacao,
-    av.titulo AS titulo_avaliacao,
-    av.descricao AS descricao_avaliacao,
-    av.data_prevista,
-    av.realizada,
-    mt.nome AS 'nome_materia',
-    mt.id AS 'materia_id'
-FROM 
-    nota nt
-INNER JOIN 
-    avaliacao av ON nt.avaliacao_id = av.id
-INNER JOIN 
-    materia mt ON av.materia_id = mt.id
-WHERE 
-    nt.aluno_id = %i", $_POST['idAluno']);
+$notasAluno = DB::query(
+  " SELECT
+      nt.*,
+      av.representacao AS representacao_avaliacao,
+      av.titulo AS titulo_avaliacao,
+      av.descricao AS descricao_avaliacao,
+      av.data_prevista,
+      av.realizada,
+      mt.nome AS 'nome_materia',
+      mt.id AS 'materia_id'
+    FROM nota nt
+    INNER JOIN avaliacao av ON nt.avaliacao_id = av.id
+    INNER JOIN materia mt ON av.materia_id = mt.id
+    WHERE nt.aluno_id = %i",
+  $_POST['idAluno']
+);
 
+$materias_unicas = [];
+foreach ($notasAluno as $nota) {
+  $materias_unicas[$nota['materia_id']] = $nota['nome_materia'];
+}
 
 $medias = [];
 
@@ -35,12 +37,10 @@ foreach ($notasAluno as $nota) {
   $bimestre_atual = $nota['bimestre_atual'];
   $nota_valor = $nota['nota'];
 
-  // Inicializa o array se ainda não existir
   if (!isset($medias[$bimestre_atual])) {
-    $medias[$bimestre_atual] = []; // Cria um novo bimestre
+    $medias[$bimestre_atual] = [];
   }
 
-  // Inicializa a matéria se ainda não existir
   if (!isset($medias[$bimestre_atual][$materia_id])) {
     $medias[$bimestre_atual][$materia_id] = [
       "nome_materia" => $nota['nome_materia'],
@@ -49,19 +49,32 @@ foreach ($notasAluno as $nota) {
     ];
   }
 
-  // Soma a nota e incrementa a quantidade
   $medias[$bimestre_atual][$materia_id]['soma'] += $nota_valor;
   $medias[$bimestre_atual][$materia_id]['quantidade'] += 1;
 }
 
-// Agora vamos calcular a média
-$medias_resultantes = [];
+foreach ($materias_unicas as $materia_id => $nome_materia) {
+  foreach (array_keys($medias) as $bimestre) {
+    if (!isset($medias[$bimestre][$materia_id])) {
+      $medias[$bimestre][$materia_id] = [
+        "nome_materia" => $nome_materia,
+        'soma' => 0,
+        'quantidade' => 0
+      ];
+    }
+  }
+}
 
+// Calcula as médias
+$medias_resultantes = [];
 foreach ($medias as $bimestre => $materias) {
   foreach ($materias as $materia_id => $dados) {
-    $media = $dados['soma'] / $dados['quantidade'];
-    // Armazena a média no formato desejado
-    $medias_resultantes[$bimestre][$materia_id] = ["nome_materia" => $dados['nome_materia'], "media" => $media];
+    $media = $dados['quantidade'] > 0 ? $dados['soma'] / $dados['quantidade'] : 0;
+
+    $medias_resultantes[$bimestre][$materia_id] = [
+      "nome_materia" => $dados['nome_materia'],
+      "media" => $media
+    ];
   }
 }
 
