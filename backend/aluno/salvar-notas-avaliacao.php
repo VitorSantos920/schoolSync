@@ -24,18 +24,30 @@ try {
 
     $bimestreAtual = DB::queryFirstField("SELECT bimestre_atual FROM classe WHERE id = %i", $classeId);
 
-    DB::insertUpdate(
-      'nota',
-      [
+    $existeNota = DB::queryFirstField(
+      "SELECT COUNT(*) FROM nota WHERE aluno_id = %i AND avaliacao_id = %i AND bimestre_atual = %i",
+      $alunoId,
+      $avaliacaoId,
+      $bimestreAtual
+    );
+
+    if ($existeNota) {
+      DB::update(
+        'nota',
+        ['nota' => $notaValor],
+        'aluno_id = %i AND avaliacao_id = %i AND bimestre_atual = %i',
+        $alunoId,
+        $avaliacaoId,
+        $bimestreAtual
+      );
+    } else {
+      DB::insert('nota', [
         'aluno_id' => $alunoId,
         'avaliacao_id' => $avaliacaoId,
         'nota' => $notaValor,
         'bimestre_atual' => $bimestreAtual
-      ],
-      [
-        'nota' => $notaValor
-      ]
-    );
+      ]);
+    }
   }
 
   echo json_encode(['status' => 1, 'swalMessage' => 'Notas salvas com sucesso.']);

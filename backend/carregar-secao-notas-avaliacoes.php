@@ -103,6 +103,14 @@ try {
     $botoes .= $botao . $card;
   }
 
+  if (empty($botoes)) {
+    echo json_encode([
+      'status' => 0,
+      'message' => 'As avaliações marcadas como concluídas aparecerão aqui, em sua respectiva matéria!'
+    ]);
+    exit;
+  }
+
   echo json_encode([
     'status' => 1,
     'botoes' => $botoes

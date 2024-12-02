@@ -267,6 +267,8 @@ function carregarSecaoNotasAvaliacoes() {
               });
             });
           break;
+        case 0:
+          $('#notas').html(`<p>${response.message}</p>`);
       }
     },
   });
