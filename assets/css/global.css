@@ -98,7 +98,18 @@ fieldset {
   &:hover {
     background-color: transparent;
     box-shadow: none;
-    color: var(--brand-color);
+    border: 1px solid var(--brand-color);
+  }
+}
+
+.btn.btn-schoolsync-bg {
+  border: 1px solid var(--brand-color);
+  background-color: var(--brand-color);
+  color: #fff;
+
+  &:hover {
+    background-color: transparent;
+    color: var(--level-gray800);
   }
 }
 

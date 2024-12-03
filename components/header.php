@@ -7,15 +7,15 @@
     <i class="fa-solid fa-bars"></i>
   </button>
 
-  <div class="container-pesquisa">
+  <!-- <div class="container-pesquisa">
     <input type="text" class="form-control" id="pesquisa" placeholder="Pesquisar">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </div>
+  </div> -->
 
   <div class="acoes-usuario">
-    <button id="modo-claro-escuro">
+    <!-- <button id="modo-claro-escuro">
       <i class="fas fa-moon"></i>
-    </button>
+    </button> -->
 
     <div class="perfil" style="display: flex; align-items: center;">
       <img src="https://picsum.photos/id/237/536/354" style="border-radius: 50%; width: 40px; height: 40px; margin-right: .625rem" alt="">
@@ -50,9 +50,9 @@
 
   </div>
 
-  <button>
+  <!-- <button>
     <i class="fa-solid fa-bell" style="font-size: 1.75rem;"></i>
-  </button>
+  </button> -->
 </header>
 
 <script src="../assets/js/jquery.min.js"></script>

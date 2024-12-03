@@ -10,6 +10,15 @@
   }
 }
 
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+figcaption {
+  margin: 1rem 0;
+}
+
 :is(.avaliacoes, .agenda-escolar) {
   border-right: 1px solid var(--level-gray400);
 }
@@ -26,6 +35,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 1rem;
 
     h4,
     button {
@@ -40,5 +50,29 @@
     p {
       color: var(--level-gray600);
     }
+  }
+}
+
+#modalDetalhesAvaliacao {
+  h5 {
+    margin-bottom: var(--spacing-3);
+
+    + p {
+      margin-bottom: var(--spacing-6);
+
+      &#descricao-avaliacao {
+        text-align: justify;
+      }
+    }
+
+    svg {
+      margin-right: var(--spacing-1);
+    }
+  }
+
+  #created-at {
+    font-style: italic;
+    color: var(--level-gray500);
+    font-size: var(--fontSize-xs);
   }
 }

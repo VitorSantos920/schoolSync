@@ -49,7 +49,7 @@ $quantidadeTurmasProfessor = DB::queryFirstField("SELECT COUNT(*) as 'quantidade
               foreach ($turmasProfessor as $turma) {
                 echo "
                     <li class='turmas__turma'>
-                      <a href='./lista-alunos-turma.php?turma_id={$turma['id']}' class='d-flex align-items-center gap-2 justify-content-between'
+                      <a href='./lista-alunos-turma.php?turma_id={$turma['id']}' class='d-flex align-items-center gap-2 justify-content-between'>
                         <h4>{$turma['nome']} - {$turma['serie']}° Ano</h4>
                         >
                       </a>

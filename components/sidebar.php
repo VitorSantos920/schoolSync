@@ -13,40 +13,104 @@
             <div>
                 <p>Menu</p>
                 <ul class="sidebar__menu">
-                    <li>
-                        <a href="">
-                            <i class="fa-solid fa-square-poll-vertical"></i>
-                            <span>Painel</span>
-                        </a>
-                    </li>
+                    <?php
+                    if ($_SESSION['categoria'] == "Aluno") {
+                        echo "
 
-                    <li>
-                        <a href="">
-                            <i class="fa-solid fa-lightbulb"></i>
-                            <span>Recursos Educacionais</span>
-                        </a>
-                    </li>
+                            <li>
+                                <a href='./pagina-inicial-aluno.php'>
+                                    <i class='fa-solid fa-house-chimney'></i>
+                                    <span>Página Inicial</span>
+                                </a>
+                            </li>
 
-                    <li>
-                        <a href="">
-                            <i class="fa-solid fa-book"></i>
-                            <span>Matérias</span>
-                        </a>
-                    </li>
+                            <li>
+                                <a href=''>
+                                    <i class='fa-solid fa-lightbulb'></i>
+                                    <span>Recursos Educacionais</span>
+                                </a>
+                            </li>
 
-                    <li>
-                        <a href="">
-                            <i class="fa-solid fa-award"></i>
-                            <span>Conquistas Acadêmicas</span>
-                        </a>
-                    </li>
+                            <li>
+                                <a href=''>
+                                    <i class='fa-solid fa-book'></i>
+                                    <span>Matérias</span>
+                                </a>
+                            </li>
 
-                    <li>
-                        <a href="">
-                            <i class="fa-solid fa-calendar"></i>
-                            <span>Agenda Escolar</span>
-                        </a>
-                    </li>
+                            <li>
+                                <a href=''>
+                                    <i class='fa-solid fa-award'></i>
+                                    <span>Conquistas Acadêmicas</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href=''>
+                                    <i class='fa-solid fa-calendar'></i>
+                                    <span>Agenda Escolar</span>
+                                </a>
+                            </li>
+                            ";
+                    }
+
+                    if ($_SESSION['categoria'] == "Professor") {
+                        $dadosProfessor = DB::queryFirstRow("SELECT *, pr.id as 'prof_id' FROM usuario us INNER JOIN professor pr ON pr.usuario_id = us.id WHERE us.id = %i", $dadosUsuario['id']);
+                        $turmasProfessor = DB::query("SELECT * FROM classe cl WHERE cl.professor_id = %i", $dadosProfessor['prof_id']);
+
+                        echo "
+                            <li>
+                                <a href='./pagina-inicial-professor.php'>
+                                    <i class='fa-solid fa-house-chimney'></i>
+                                    <span>Página Inicial</span>
+                                </a>
+                            </li>
+                        ";
+
+                        if (!empty($turmasProfessor)) {
+                            foreach ($turmasProfessor as $turma) {
+                                echo "
+                                    <li>
+                                      <a href='./lista-alunos-turma.php?turma_id={$turma['id']}'>
+                                      <i class='fa-solid fa-chalkboard-user'></i>
+                                        {$turma['nome']} - {$turma['serie']}° Ano
+                                      </a>
+                                    </li>
+                                  ";
+                            }
+                        }
+                    }
+
+                    if ($_SESSION['categoria'] == "Responsavel") {
+
+                        $dadosResponsavel = DB::queryFirstRow("SELECT *, us.id as 'us_id', res.id as 'res_id' FROM usuario us INNER JOIN responsavel res ON res.usuario_id = us.id WHERE us.id = %i", $_SESSION['id']);
+                        $filhosResponsavel = DB::query("SELECT *, al.id as 'aluno_id' FROM aluno al INNER JOIN usuario us ON al.usuario_id = us.id WHERE al.responsavel_id = %i", $dadosResponsavel['res_id']);
+
+                        echo "
+                            <li>
+                                <a href='./pagina-inicial-responsavel.php'>
+                                    <i class='fa-solid fa-house-chimney'></i>
+                                    <span>Página Inicial</span>
+                                </a>
+                            </li>
+                        ";
+
+                        if (!empty($filhosResponsavel)) {
+                            foreach ($filhosResponsavel as $filho) {
+                                echo "
+                                    <li>
+                                        <a href='pagina-inicial-aluno.php?aluno_id=$filho[aluno_id]'>
+                                            <i class='fa-solid fa-child-reaching'></i>
+                                            <span>$filho[nome]</span>
+                                        </a>
+                                    </li>
+                                ";
+                            }
+                        }
+                    }
+                    ?>
+
+
 
                 </ul>
             </div>
@@ -69,7 +133,7 @@
                     </li>
 
                     <li>
-                        <a href="">
+                        <a href="ajuda.php">
                             <i class="fa-solid fa-circle-info"></i>
                             <span>Ajuda e Tutorial</span>
                         </a>

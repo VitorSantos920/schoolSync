@@ -50,12 +50,12 @@ if ($alunosClasse != null) {
                             </a>
                         </li>
   
-                        <li>
+                        <!--<li>
                             <button class='btn'>
                                 <i class='fa-solid fa-folder icone'></i>
                                 Ver Detalhes
                             </button>
-                        </li>
+                        </li>-->
   
                         <li>
                             <button type='button' class='btn' data-bs-toggle='modal' data-bs-target='#edtAlunoModal' onclick='abrirModalEditarAluno({$aluno['aluno_id']})'>

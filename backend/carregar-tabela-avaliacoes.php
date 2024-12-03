@@ -19,7 +19,7 @@ try {
         $botaoConfirmacao = "
           <button class='btn' disabled>
             <i class='fa-solid fa-circle-info'></i>
-            Avaliação já realizada
+            Avaliação Realizada
           </button>
         ";
       } else {
@@ -45,13 +45,19 @@ try {
                 </button>
                 <ul class='dropdown-menu'>
                     <li>
-                        <button type='button' class='btn' data-bs-toggle='modal' data-bs-target='#edtAlunoModal' onclick='abrirModalEditarAvaliacao({$avaliacao['id']})'>
+                        <button type='button' class='btn' onclick='abrirModalEditarAvaliacao({$avaliacao['id']})'>
                           <i class='fa-solid fa-pen icone'></i>
                           Editar Avaliação
                         </button>
                     </li>
                     <li>
-                        " .  $botaoConfirmacao . "
+                    " .  $botaoConfirmacao . "
+                    </li>
+                    <li>
+                        <button type='button' class='btn btn-danger' onclick='excluirAvaliacao({$avaliacao['id']})'>
+                          <i class='fa-solid fa-trash icone'></i>
+                          Deletar Avaliação
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -63,7 +69,7 @@ try {
   } else {
     $tableBody = "
       <tr>
-        <td colspan='4' class='text-center'>As avaliações adicionadas para esta turma aparecerão aqui.</td>
+        <td colspan='5' class='text-center'>As avaliações adicionadas para esta turma aparecerão aqui.</td>
       </tr>
     ";
   }

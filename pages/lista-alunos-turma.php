@@ -202,6 +202,23 @@ $classe = DB::queryFirstRow('SELECT * FROM classe WHERE id = %i', $classe_id);
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade" id="modalEditarAvaliacao" tabindex="-1" aria-labelledby="modalEditarUsuario" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title">Editar Avaliação</h2>
+                            </div>
+                            <div class="modal-body">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                <button type="submit" class="btn btn-success" onclick="editarAvaliacao()">Editar Avaliação</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </main>
         </div>
     </div>

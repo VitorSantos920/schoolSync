@@ -232,8 +232,6 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'id_aluno' FROM aluno al INN
                     }
                 })
 
-                console.log(retornaDatasets(bimestres))
-
                 const data = {
                     labels: labelsMaterias,
                     datasets: retornaDatasets(bimestres)
@@ -290,7 +288,7 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'id_aluno' FROM aluno al INN
     }
 
     function retornaDatasets(bimestres) {
-        const coresBimestres = ['#0DCAF0', '#3AD1EF', '#66D8EE', '#93DEEE'];
+        const coresBimestres = ['#4A90E2', '#50E3C2', '#F8E71C', '#D0021B'];
         let datasets = [];
 
         bimestres.forEach((bimestre, index) => {

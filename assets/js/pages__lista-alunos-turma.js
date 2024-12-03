@@ -37,7 +37,6 @@ function abrirModalEditarAluno(idAluno) {
     },
     success: function (response) {
       response = JSON.parse(response);
-      console.log(response);
 
       $('#edtAlunoModal .modal-body').html(response.modalBody);
     },
@@ -49,6 +48,7 @@ function abrirModalEditarAluno(idAluno) {
 
 function abrirModalAdicionarAvaliacao() {
   limparInputs([
+    'representacao-avaliacao',
     '#titulo-avaliacao',
     '#descricao-avaliacao',
     '#materia-avaliacao',
@@ -84,7 +84,6 @@ function adicionarAvaliacao() {
     data: dadosAvaliacao,
     success: function (response) {
       response = JSON.parse(response);
-      console.log(response);
 
       switch (response.status) {
         case -1:
@@ -115,9 +114,6 @@ function adicionarAvaliacao() {
 }
 
 function confirmarRealizacao(classeId, avaliacaoId) {
-  console.log(classeId);
-  console.log(avaliacaoId);
-
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success swal2-styled',
@@ -147,7 +143,6 @@ function confirmarRealizacao(classeId, avaliacaoId) {
           },
           success: function (response) {
             response = JSON.parse(response);
-            console.log(response);
 
             switch (response.status) {
               case -1:
@@ -207,8 +202,6 @@ function carregarSecaoNotasAvaliacoes() {
                   `tr[data-aluno-id="${alunoId}"][data-materia-id="${materiaId}"]`
                 );
 
-                console.log(linhaAluno);
-
                 const inputsNotas =
                   linhaAluno.querySelectorAll('.nota-avaliacao');
 
@@ -231,7 +224,6 @@ function carregarSecaoNotasAvaliacoes() {
                   },
                   success: function (response) {
                     response = JSON.parse(response);
-                    console.log(response);
 
                     switch (response.status) {
                       case -1:
@@ -301,7 +293,6 @@ function editarAluno() {
     data: dadosAlteracoes,
     success: function (response) {
       response = JSON.parse(response);
-      console.log(response);
 
       switch (response.status) {
         case -1:
@@ -351,7 +342,6 @@ function carregaTabelaListaAlunos() {
     },
     success: function (response) {
       response = JSON.parse(response);
-      console.log(response);
       $('#tbody-lista-alunos').html(response.tableBody);
 
       $('#quantidade').text(`${response.quantidadeAlunos}`);
@@ -371,7 +361,6 @@ function carregarTabelaAvaliacoes() {
     },
     success: function (response) {
       response = JSON.parse(response);
-      console.log(response);
       $('#tbody-avaliacoes-turma').html(response.tableBody);
     },
   });
@@ -405,7 +394,6 @@ function deletarAluno(idAluno) {
           },
           success: function (response) {
             response = JSON.parse(response);
-            console.log(response);
             switch (response.status) {
               case -1:
                 Swal.fire({
@@ -483,7 +471,6 @@ function fecharBimestreAtual() {
                   title: 'Erro Interno!',
                   text: response.swalMessage,
                 });
-                console.log(response);
                 break;
               case 1:
                 Swal.fire({
@@ -514,7 +501,6 @@ function abrirModalEditarTurma() {
     },
     success: function (response) {
       response = JSON.parse(response);
-      console.log(response);
 
       $('#edtTurmaModal .modal-body').html(response.modalBody);
     },
@@ -553,7 +539,6 @@ function removerMateriaClasse(idClasse, idMateria) {
           },
           success: function (response) {
             response = JSON.parse(response);
-            console.log(response);
             switch (response.status) {
               case -1:
                 Swal.fire({
@@ -652,7 +637,6 @@ function editarTurma() {
     },
     success: function (response) {
       response = JSON.parse(response);
-      console.log(response);
       switch (response.status) {
         case -1:
           Swal.fire({
@@ -676,4 +660,136 @@ function editarTurma() {
     },
     error: (e) => console.log(e),
   });
+}
+
+function abrirModalEditarAvaliacao(idAvaliacao) {
+  $.ajax({
+    type: 'POST',
+    url: '../backend/preencher-modal-editar-avaliacao.php',
+    data: {
+      idAvaliacao,
+    },
+    success: function (response) {
+      response = JSON.parse(response);
+
+      switch (response.status) {
+        case 1:
+          $('#modalEditarAvaliacao').modal('show');
+          $('#modalEditarAvaliacao .modal-body').html(response.modalBody);
+          break;
+
+        case -1:
+          console.log(response);
+          break;
+      }
+    },
+    error: (err) => console.log(err),
+  });
+}
+
+function editarAvaliacao() {
+  let dadosAvaliacao = {
+    idAvaliacao: $('#id-avaliacao').val(),
+    representacaoAvaliacao: $('#ipt-edit-representacao-avaliacao').val(),
+    tituloAvaliacao: $('#ipt-edit-nome-avaliacao').val(),
+    descricaoAvaliacao: $('#ipt-edit-descricao-avaliacao').val(),
+    materiaAvaliacao: $('#slct-edit-materia-avaliacao').val(),
+    dataPrevista: $('#ipt-edit-data-prevista-avaliacao').val(),
+  };
+
+  if (verificaInputsVazios(dadosAvaliacao)) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Opa, algo deu errado!',
+      text: 'Para realizar a edição de uma avaliação, é necessário o preenchimento de todos os campos.',
+    });
+
+    return;
+  }
+
+  $.ajax({
+    type: 'POST',
+    url: '../backend/editar-avaliacao.php',
+    data: dadosAvaliacao,
+    success: function (response) {
+      response = JSON.parse(response);
+
+      switch (response.status) {
+        case -1:
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro Interno',
+            text: response.swalMessage,
+          });
+
+          console.log(response.error);
+          break;
+        case 1:
+          Swal.fire({
+            icon: 'success',
+            title: 'Avaliação editada!',
+            text: response.swalMessage,
+          });
+
+          carregarTabelaAvaliacoes();
+          break;
+      }
+
+      $('#modalEditarAvaliacao').modal('hide');
+    },
+    error: (err) => console.log(err),
+  });
+}
+
+function excluirAvaliacao(idAvaliacao) {
+  console.log(idAvaliacao);
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-danger swal2-styled',
+      cancelButton: 'btn  btn-secondary',
+    },
+    buttonsStyling: false,
+  });
+  swalWithBootstrapButtons
+    .fire({
+      title: 'Tem certeza que deseja excluir esta avaliação?',
+      text: 'Esta ação não pode ser desfeita!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sim, deletar!',
+      cancelButtonText: 'Não, cancelar!',
+      reverseButtons: true,
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          type: 'POST',
+          url: '../backend/excluir-avaliacao.php',
+          data: {
+            idAvaliacao,
+          },
+          success: function (response) {
+            response = JSON.parse(response);
+            switch (response.status) {
+              case -1:
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Erro Interno!',
+                  text: response.swalMessage,
+                });
+                break;
+              case 1:
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Avaliação excluída!',
+                  text: response.swalMessage,
+                });
+                carregarTabelaAvaliacoes();
+                break;
+            }
+          },
+          error: (e) => console.log(e),
+        });
+      }
+    });
 }

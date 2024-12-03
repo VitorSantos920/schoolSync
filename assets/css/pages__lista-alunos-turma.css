@@ -114,6 +114,13 @@ div:where(.swal2-container) input:where(.swal2-input) {
   text-align: center;
   font-family: var(--fontFamily-roboto);
   font-weight: var(--fontWeight-regular);
+
+  tr td:nth-child(2) {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 265px;
+  }
 }
 
 .dropdown #btnPrincipal {

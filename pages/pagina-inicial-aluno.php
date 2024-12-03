@@ -18,8 +18,9 @@ if ($_SESSION['categoria'] == "Responsavel" && !isset($_GET['aluno_id'])) {
     $nomeResponsavel = DB::queryFirstField("SELECT us.nome FROM aluno al INNER JOIN responsavel res ON al.responsavel_id = res.id INNER JOIN usuario us ON res.usuario_id = us.id WHERE al.id = %i", $alunoId);
     $nomeAluno = DB::queryFirstField("SELECT us.nome FROM aluno al INNER JOIN usuario us ON al.usuario_id = us.id WHERE al.id = %i", $alunoId);
     $desempenhoAcademico = "<h1>Desempenho Acadêmico de:  {$nomeAluno}</h1>";
+    $dadosAluno = DB::queryFirstRow("SELECT al.id, al.classe_id, cl.serie FROM aluno al INNER JOIN classe cl ON al.classe_id = cl.id WHERE al.id = %i", $alunoId);
 } else {
-    $alunoId = DB::queryFirstField("SELECT id FROM aluno WHERE usuario_id = %i", $dadosUsuario['id']);
+    $dadosAluno = DB::queryFirstRow("SELECT al.id, al.classe_id, cl.serie FROM aluno al INNER JOIN classe cl ON al.classe_id = cl.id WHERE usuario_id = %i", $dadosUsuario['id']);
 
     $sectionSaudacao = "
         <section class='saudacao d-flex align-items-center'>
@@ -30,19 +31,9 @@ if ($_SESSION['categoria'] == "Responsavel" && !isset($_GET['aluno_id'])) {
     $desempenhoAcademico = "<h1>Confira seu Desempenho Acadêmico</h1>";
 }
 
-
-$dadosAluno = DB::queryFirstRow(
-    "SELECT *, al.id as 'aluno_id'
-    FROM aluno al
-    INNER JOIN responsavel res
-      ON al.responsavel_id = res.id
-    INNER JOIN usuario u
-      ON al.usuario_id = u.id
-    INNER JOIN usuario u_responsavel
-      ON res.usuario_id = u_responsavel.id
-    WHERE al.usuario_id = %i",
-    $alunoId
-);
+$avaliacoesClasse = DB::query("SELECT * FROM avaliacao WHERE classe_id = %i AND realizada <> 1 LIMIT 4", $dadosAluno['classe_id']);
+$eventosClasse = DB::query("SELECT * FROM evento WHERE classe_id = %i LIMIT 4", $dadosAluno['classe_id']);
+$recursosEducacionais = DB::query("SELECT * FROM recurso_educacional WHERE escolaridade = %i LIMIT 4", $dadosAluno['serie']);
 
 ?>
 
@@ -72,7 +63,7 @@ $dadosAluno = DB::queryFirstRow(
                 <?= $sectionSaudacao; ?>
 
                 <h1><?= $desempenhoAcademico; ?></h1>
-                <input type="hidden" id="id-aluno" value=<?= $alunoId ?> disabled>
+                <input type="hidden" id="id-aluno" value=<?= $dadosAluno['id'] ?> disabled>
 
                 <div class="row">
                     <article class="col-7">
@@ -101,14 +92,25 @@ $dadosAluno = DB::queryFirstRow(
                             <p>Acompanhe abaixo suas próximas avaliações da escola.</p>
                         </header>
 
-                        <section>
-                            <div class="avaliacoes__sobre">
-                                <h4 class="avaliacoes__titulo">Prova 1 de Matemática</h4>
-                                <p class="avaliacoes__data">06/05/2024</p>
-                            </div>
+                        <?php
+                        if (!empty($avaliacoesClasse)) {
+                            foreach ($avaliacoesClasse as $avaliacao) {
+                                $dataPrevista = date('d/m/Y H:i', strtotime($avaliacao['data_prevista']));
 
-                            <button class="btn">Detalhes</button>
-                        </section>
+                                echo "<section>
+                                        <div class='avaliacoes__sobre'>
+                                            <h4 class='avaliacoes__titulo'>$avaliacao[titulo]</h4>
+                                            <p class='avaliacoes__data'>$dataPrevista</p>
+                                        </div>
+
+                                        <button class='btn btn-schoolsync-bg' onclick='abrirModalDetalhesAvaliacao({$avaliacao['id']})'>Detalhes</button>
+                                    </section>";
+                            }
+                        } else {
+                            echo "<p>Não há avaliações futuras nesta classe.</p>";
+                        }
+                        ?>
+
                     </article>
 
                     <article class="agenda-escolar col-4">
@@ -120,11 +122,23 @@ $dadosAluno = DB::queryFirstRow(
                             <p>Visualize abaixo o resumo da sua agenda escolar.</p>
                         </header>
 
-                        <section>
-                            <h4>Prova 1 de Matemática</h4>
+                        <?php
+                        if (!empty($eventosClasse)) {
+                            foreach ($eventosClasse as $evento) {
+                                $dataInicio = date('d/m/Y H:i', strtotime($evento['inicio']));
+                                $dataTermino = date('d/m/Y H:i', strtotime($evento['termino']));
 
-                            <p>06/05/2024</->
-                        </section>
+                                echo "<section>
+                                        <h4>$evento[titulo]</h4>
+                                        <p>$dataInicio</p>
+                                        -
+                                        <p>$dataTermino</p>
+                                    </section>";
+                            }
+                        } else {
+                            echo "<p>Ainda não há eventos em sua agenda!</p>";
+                        }
+                        ?>
                     </article>
 
                     <article class="materiais-apoio col-4">
@@ -136,211 +150,52 @@ $dadosAluno = DB::queryFirstRow(
                             <p>Acesse abaixo os recursos educacionais disponíveis. </p>
                         </header>
 
-                        <section>
+                        <?php
+                        if (!empty($recursosEducacionais)) {
+                            foreach ($recursosEducacionais as $recurso) {
+                                echo "<section>
+                                        <h4>$recurso[titulo]</h4>
+                                        <button class='btn'>Detalhes</button>
+                                        <a class='btn' href='$recurso[url]' target='_blank'>Acessar</a>
+                                    </section>";
+                            }
+                            echo "<p>Visualizar mais</p>";
+                        } else {
+                            echo "<p>Não há materiais de apoio disponíveis para sua série.</p>";
+                        }
+                        ?>
+                        <!-- <section>
                             <h4>Prova 1 de Matemática</h4>
 
                             <p>06/05/2024</->
-                        </section>
+                        </section> -->
                     </article>
+                </div>
+
+                <div class="modal fade" id="modalDetalhesAvaliacao" tabindex="-1" aria-labelledby="modalMaterialApoio" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title">
+                                    <img src="../assets/img/material-apoio.svg" alt="Símbolo de pasta alaranjada dentro de um círculo.">
+                                    Detalhes da Avaliação "<span id="nome-avaliacao">Nome Avaliação (Representação)</span>"
+                                </h2>
+                            </div>
+
+                            <div class="modal-body"></div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        let idAluno = $('#id-aluno').val();
-
-        $(document).ready(function() {
-            carregarGraficoNotasDisciplina();
-            carregarGraficoFaltasDisciplina();
-        });
-
-        function carregarGraficoNotasDisciplina() {
-            $.ajax({
-                type: 'POST',
-                url: '../backend/aluno/retorna-dados-notas-disciplina.php',
-                data: {
-                    idAluno
-                },
-                success: function(response) {
-                    response = JSON.parse(response)
-
-                    let bimestres = new Array(Object.keys(response).length);
-                    let labelsMaterias = []
-
-                    Object.keys(response).forEach((bimestre, index) => {
-                        bimestres[index] = response[bimestre];
-                    });
-
-
-                    bimestres.forEach((bimestre) => {
-                        for (const key in bimestre) {
-                            if (!labelsMaterias.includes(bimestre[key].nome_materia)) {
-                                labelsMaterias.push(bimestre[key].nome_materia);
-                            }
-                        }
-                    })
-
-                    console.log(retornaDatasets(bimestres))
-
-                    const data = {
-                        labels: labelsMaterias,
-                        datasets: retornaDatasets(bimestres)
-                    };
-
-
-                    const config = {
-                        type: 'bar',
-                        data: data,
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    min: 0,
-                                    ticks: {
-                                        stepSize: 2
-                                    },
-                                    max: 10,
-                                    grid: {
-                                        display: false
-                                    }
-                                },
-                                x: {
-                                    grid: {
-                                        display: false
-                                    }
-                                }
-
-                            },
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                    align: 'start',
-                                    labels: {
-                                        boxHeight: 10,
-                                        boxWidth: 10,
-                                        usePointStyle: true,
-                                        padding: 20
-                                    }
-                                },
-                            }
-                        }
-                    };
-
-                    let myChart = new Chart(
-                        document.getElementById('grafico-medias-notas-disciplina').getContext('2d'),
-                        config
-                    );
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            })
-
-
-        }
-
-        function retornaDatasets(bimestres) {
-            const coresBimestres = ['#0DCAF0', '#3AD1EF', '#66D8EE', '#93DEEE'];
-            let datasets = [];
-
-            bimestres.forEach((bimestre, index) => {
-                let medias = [];
-
-                for (const key in bimestre) {
-                    medias.push(bimestre[key].media);
-                }
-
-                datasets.push({
-                    label: `${index + 1}° Bimestre`,
-                    backgroundColor: coresBimestres[index],
-                    data: medias
-                });
-            });
-
-            return datasets;
-        }
-
-        function carregarGraficoFaltasDisciplina() {
-            var ctx = document.getElementById('grafico-medias-faltas-disciplina').getContext('2d');
-            var lineChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['1º Bimestre', '2º Bimestre', '3º Bimestre', '4º Bimestre'],
-                    datasets: [{
-                            label: 'Matemática',
-                            data: [7, 8.5, 9, 8],
-                            borderColor: 'rgba(255, 99, 132, 1)',
-                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                            fill: false,
-                            tension: 0.1
-                        },
-                        {
-                            label: 'História',
-                            data: [6.5, 7, 8.5, 9],
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                            fill: false,
-                            tension: 0.1
-                        },
-                        {
-                            label: 'História',
-                            data: [7.5, 8, 9.5, 19],
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                            fill: false,
-                            tension: 0.1
-                        },
-                        {
-                            label: 'História',
-                            data: [8.5, 9, 11, 12],
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                            fill: false,
-                            tension: 0.1
-                        },
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            align: 'start',
-
-                            labels: {
-                                boxHeight: 10,
-                                boxWidth: 10,
-                                usePointStyle: true,
-                                padding: 20
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                stepSize: 2,
-                            },
-
-                            grid: {
-                                display: false
-                            }
-                        },
-
-                        x: {
-                            grid: {
-
-                                display: false
-                            }
-                        }
-                    }
-                }
-            });
-
-        }
-    </script>
+    <script src="../assets/js/pages__pagina-inicial-aluno.js"></script>
 </body>
 
 </html>
