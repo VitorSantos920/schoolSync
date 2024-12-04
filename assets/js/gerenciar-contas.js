@@ -116,5 +116,25 @@ function pesquisarUsuario() {
 }
 
 function abrirModalAdicionarUsuario() {
+  limparInputs([
+    '#ipt-nome-usuario',
+    '#ipt-email-usuario',
+    '#ipt-senha-usuario',
+    '#select-categoria',
+  ]);
+
   $('#modalAdicionarUsuario').modal('show');
+}
+
+function trocarCategoriaUsuario(categoria) {
+  switch (categoria) {
+    case 'Aluno':
+      break;
+    case 'Responsavel':
+      break;
+    case 'Administrador':
+      break;
+    case 'Professor':
+      break;
+  }
 }

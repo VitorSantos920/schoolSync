@@ -150,7 +150,7 @@ function montaEstruturaFormulario($dadosCompletos)
       </fieldset>
       <fieldset>
         <label for='ipt-telefone-responsavel' class='form-label'>Telefone do Responsável</label>
-        <input type='number' id='ipt-telefone-responsavel' name='ipt-telefone-responsavel' class='form-control' value='{$dadosCompletos['telefone']}' required>
+        <input type='number' id='ipt-telefone-responsavel' name='ipt-telefone-responsavel' placeholder='(99) 99999-9999' class='form-control' value='{$dadosCompletos['telefone']}' required>
       </fieldset>
       <fieldset>
         <label for='select-categoria' class='form-label'>Categoria do Usuário</label>

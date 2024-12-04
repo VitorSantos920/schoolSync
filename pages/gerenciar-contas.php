@@ -106,20 +106,20 @@ $usuarios = DB::query("SELECT * FROM usuario");
                   <form action="#" method="post">
                     <fieldset>
                       <label for="ipt-nome-usuario" class="form-label">Nome do usuário</label>
-                      <input type="text" name="ipt-nome-usuario" id="ipt-nome-usuario" class="form-control" placeholder="Números Romanos" required>
+                      <input type="text" name="ipt-nome-usuario" id="ipt-nome-usuario" class="form-control" placeholder="João Guilherme" required>
                     </fieldset>
                     <fieldset>
                       <label for="ipt-email-usuario" class="form-label">Email do usuário</label>
-                      <input type="email" name="ipt-email-usuario" id="ipt-email-usuario" class="form-control" placeholder="https://mundoescola.com.br" required>
+                      <input type="email" name="ipt-email-usuario" id="ipt-email-usuario" class="form-control" placeholder="email@exemplo.com" required>
                     </fieldset>
                     <fieldset>
                       <label for="ipt-senha-usuario" class="form-label">Senha do usuário</label>
-                      <input type="text" name="ipt-senha-usuario" id="ipt-senha-usuario" class="form-control" placeholder="https://mundoescola.com.br" required>
+                      <input type="password" name="ipt-senha-usuario" id="ipt-senha-usuario" class="form-control" placeholder="*********" required>
                     </fieldset>
                     <fieldset>
                       <label for="select-categoria" class="form-label">Selecione a categoria do usuário</label>
-                      <select class="form-control form-select" name="select-categoria" id="select-categoria">
-                        <option value="0" selected disabled>Categoria</option>
+                      <select class="form-control form-select" name="select-categoria" id="select-categoria" onchange="trocarCategoriaUsuario(this.value)">
+                        <option value="-1" selected disabled>Categoria</option>
                         <option value="Administrador">Administrador</option>
                         <option value="Professor">Professor</option>
                         <option value="Responsável">Responsável</option>
@@ -144,6 +144,7 @@ $usuarios = DB::query("SELECT * FROM usuario");
   <script src="../assets/js/jquery.min.js"></script>
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/sweetalert2.all.min.js"></script>
+  <script src="../assets/js/utils.js"></script>
   <script src="../assets/js/gerenciar-contas.js"></script>
 </body>
 

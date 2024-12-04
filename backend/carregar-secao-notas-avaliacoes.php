@@ -14,7 +14,7 @@ try {
 
   foreach ($classe_materias as $materia) {
     $avaliacoesRealizadas = DB::query("SELECT av.id, av.representacao FROM avaliacao av WHERE av.classe_id = %i AND av.realizada = 1 AND av.materia_id = %i", $classe_id, $materia['materia_id']);
-    $alunosClasse = DB::query("SELECT *, a.id as 'aluno_id' FROM aluno a INNER JOIN usuario u ON a.usuario_id = u.id WHERE a.classe_id = %i", $classe_id);
+    $alunosClasse = DB::query("SELECT *, a.id as 'aluno_id' FROM aluno a INNER JOIN usuario u ON a.usuario_id = u.id WHERE a.classe_id = %i AND u.status <> 0", $classe_id);
 
     if (empty($avaliacoesRealizadas)) continue;
 

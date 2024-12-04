@@ -197,6 +197,8 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'id_aluno' FROM aluno al INN
     <script src="../assets/js/utils.js"></script>
     <script src="../assets/js/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../assets/js/pages__pagina-inicial-aluno.js"></script>
+
 </body>
 <script>
     let idAluno = $('#id-aluno').val();
@@ -309,82 +311,87 @@ $dadosAluno = DB::queryFirstRow("SELECT *, al.id as 'id_aluno' FROM aluno al INN
     }
 
     function carregarGraficoFaltasDisciplina() {
-        var ctx = document.getElementById('grafico-medias-faltas-disciplina').getContext('2d');
-        var lineChart = new Chart(ctx, {
-            type: 'line',
+        $.ajax({
+            type: 'POST',
+            url: '../backend/aluno/retorna-dados-faltas-disciplina.php',
             data: {
-                labels: ['1º Bimestre', '2º Bimestre', '3º Bimestre', '4º Bimestre'],
-                datasets: [{
-                        label: 'Matemática',
-                        data: [7, 8.5, 9, 8],
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        fill: false,
-                        tension: 0.1
-                    },
-                    {
-                        label: 'História',
-                        data: [6.5, 7, 8.5, 9],
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        fill: false,
-                        tension: 0.1
-                    },
-                    {
-                        label: 'História',
-                        data: [7.5, 8, 9.5, 19],
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        fill: false,
-                        tension: 0.1
-                    },
-                    {
-                        label: 'História',
-                        data: [8.5, 9, 11, 12],
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        fill: false,
-                        tension: 0.1
-                    },
-                ]
+                idAluno,
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        align: 'start',
+            success: function(response) {
+                response = JSON.parse(response);
+                console.log(response);
+                var ctx = document
+                    .getElementById('grafico-medias-faltas-disciplina')
+                    .getContext('2d');
 
-                        labels: {
-                            boxHeight: 10,
-                            boxWidth: 10,
-                            usePointStyle: true,
-                            padding: 20
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 2,
-                        },
+                const coresVivas = [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 205, 86, 1)',
+                    'rgba(231, 76, 60, 1)',
+                    'rgba(46, 204, 113, 1)',
+                    'rgba(52, 152, 219, 1)',
+                    'rgba(241, 196, 15, 1)',
+                ];
 
-                        grid: {
-                            display: false
-                        }
+                var lineChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: response.bimestres,
+                        datasets: Object.keys(response.faltasPorMateria).map(function(
+                            materia,
+                            index
+                        ) {
+                            return {
+                                label: materia,
+                                data: response.faltasPorMateria[materia],
+                                borderColor: coresVivas[index % coresVivas.length],
+                                backgroundColor: coresVivas[index % coresVivas.length],
+                                fill: false,
+                                tension: 0.1,
+                            };
+                        }),
                     },
-
-                    x: {
-                        grid: {
-
-                            display: false
-                        }
-                    }
-                }
-            }
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                align: 'start',
+                                labels: {
+                                    boxHeight: 10,
+                                    boxWidth: 10,
+                                    usePointStyle: true,
+                                    padding: 20,
+                                },
+                            },
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 2,
+                                },
+                                grid: {
+                                    display: false,
+                                },
+                            },
+                            x: {
+                                grid: {
+                                    display: false,
+                                },
+                            },
+                        },
+                    },
+                });
+            },
+            error: function(error) {
+                console.log(error);
+            },
         });
-
     }
 
     function agendarEventoEscolar() {

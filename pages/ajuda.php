@@ -26,7 +26,7 @@ require_once '../backend/init-configs.php';
         <main>
 
             <div>
-                <h1>Como podemos ajudar?</h1>
+                <h1>Perguntas Frequentes (FAQ)</h1>
             </div>
 
             <div class="accordion mt-3" id="accordionExample">
@@ -64,7 +64,7 @@ require_once '../backend/init-configs.php';
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <p>Para entrar em contato utilize o email: schoolsync@gmail.com</p>
+                            <p>Para entrar em contato utilize o email: schoolsyncoficial@gmail.com</p>
                         </div>
                     </div>
                 </div>
