@@ -5,8 +5,6 @@ if ($_SESSION['categoria'] != "Administrador") {
   header('Location: ./permissao.php');
   exit;
 }
-
-$usuarios = DB::query("SELECT * FROM usuario");
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +17,7 @@ $usuarios = DB::query("SELECT * FROM usuario");
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/sweetalert2.min.css">
   <link rel="stylesheet" href="../assets/css/gerenciar-contas.css">
+  <link rel="shortcut icon" href="../assets/img/logo_transparente.png" type="image/x-icon">
 </head>
 
 <body>
@@ -50,32 +49,7 @@ $usuarios = DB::query("SELECT * FROM usuario");
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($usuarios as $usuario) {
-                if ($usuario['categoria'] == "Professor") {
-                  $tabela = "professor";
-                } elseif ($usuario['categoria'] == "Aluno") {
-                  $tabela = "aluno";
-                } elseif ($usuario['categoria'] == "Responsavel") {
-                  $tabela = "responsavel";
-                } else {
-                  $tabela = "administrador";
-                }
 
-                $usuarioAtivo = DB::queryFirstField("SELECT status FROM usuario WHERE id = %i", $usuario['id']);
-
-              ?>
-                <tr>
-                  <td><?= $usuario['id'] ?></td>
-                  <td><?= $usuario['nome'] ?></td>
-                  <td><?= $usuario['email'] ?></td>
-                  <td><?= $usuario['categoria'] ?></td>
-                  <td><?= ($usuarioAtivo == 0 ? "<i class='fas fa-circle' style='color: red;'></i>" : "<i class='fas fa-circle' style='color: green;'></i>") ?></td>
-                  <td>
-                    <button class="btn btn-warning" onclick="abrirModalEditarUsuario(<?= $usuario['id'] ?>)">Editar</button>
-                    <button class="btn btn-danger" onclick="excluirUsuario(<?= $usuario['id'] ?>)">Excluir</button>
-                  </td>
-                </tr>
-              <?php } ?>
             </tbody>
           </table>
 
@@ -126,11 +100,67 @@ $usuarios = DB::query("SELECT * FROM usuario");
                         <option value="Aluno">Aluno</option>
                       </select>
                     </fieldset>
+
+                    <!-- Aluno -->
+                    <fieldset data-categoria='Aluno'>
+                      <label for='ipt-escola-aluno' class='form-label'>Escola do Aluno</label>
+                      <input type='text' name='ipt-escola-aluno' id='ipt-escola-aluno' class='form-control' placeholder='E.E. Carlos Gomes' required>
+                    </fieldset>
+                    <fieldset data-categoria='Aluno'>
+                      <label for='ipt-dataNascimento-aluno' class='form-label'>Data de Nascimento</label>
+                      <input type='date' name='ipt-dataNascimento-aluno' id='ipt-dataNascimento-aluno' class='form-control' required>
+                    </fieldset>
+                    <fieldset data-categoria='Aluno'>
+                      <label for='select-genero-aluno' class='form-label'>Gênero do Aluno</label>
+                      <select class='form-control form-select' name='select-genero-aluno' id='select-genero-aluno' required>
+                        <option value='0' disabled selected>Gênero</option>
+                        <option value='Masculino'>Masculino</option>
+                        <option value='Feminino'>Feminino</option>
+                      </select>
+                    </fieldset>
+                    <fieldset data-categoria='Aluno'>
+                      <label for='select-escolaridade' class='form-label'>Escolaridade do Aluno</label>
+                      <select class='form-control form-select' name='select-escolaridade' id='select-escolaridade' required>
+                        <option value='-1' selected disabled>Escolaridade</option>
+                        <option value='1'>1</option>
+                        <option value='2'>2</option>
+                        <option value='3'>3</option>
+                        <option value='4'>4</option>
+                        <option value='5'>5</option>
+                      </select>
+                    </fieldset>
+
+                    <!-- Professor -->
+                    <fieldset data-categoria="Professor">
+                      <label for='ipt-cpf' class='form-label'>CPF do Professor</label>
+                      <input type='text' id='cpf-professor' class='form-control' placeholder='999-999-999-99' required>
+                    </fieldset>
+
+                    <!-- Administrador -->
+                    <fieldset data-categoria="Administrador">
+                      <label for='ipt-cargo-adm' class='form-label'>Cargo do Administrador</label>
+                      <input type='text' name='ipt-cargo-adm' id='ipt-cargo-adm' class='form-control' placeholder='Feedbacks' required>
+                    </fieldset>
+                    <fieldset>
+
+                      <!-- Responsável -->
+                      <fieldset data-categoria="Responsável">
+                        <label for='ipt-cpf-responsavel' class='form-label'>CPF do Responsável</label>
+                        <input type='text' name='ipt-cpf-responsavel' id='ipt-cpf-responsavel' class='form-control' placeholder='999-999-999-99' required>
+                      </fieldset>
+                      <fieldset data-categoria="Responsável">
+                        <label for='ipt-telefone-responsavel' class='form-label'>Telefone do Responsável</label>
+                        <input type='text' id='ipt-telefone-responsavel' name='ipt-telefone-responsavel' placeholder='(99) 99999-9999' class='form-control' required>
+                      </fieldset>
+                      <fieldset data-categoria="Responsável">
+                        <label for='ipt-quantidade-filhos' class='form-label'>Quantidade de Filhos</label>
+                        <input type='text' id='ipt-quantidade-filhos' name='ipt-quantidade-filhos' placeholder='1' class='form-control' required>
+                      </fieldset>
                   </form>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                  <button type="submit" class="btn" onclick="editarUsuario()">Adicionar Usuário</button>
+                  <button type="submit" class="btn" onclick="adicionarUsuario()">Adicionar Usuário</button>
                 </div>
               </div>
             </div>
@@ -145,6 +175,7 @@ $usuarios = DB::query("SELECT * FROM usuario");
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/sweetalert2.all.min.js"></script>
   <script src="../assets/js/utils.js"></script>
+  <script src="../plugins/vanilla-masker.js"></script>
   <script src="../assets/js/gerenciar-contas.js"></script>
 </body>
 

@@ -13,7 +13,7 @@ $tableBody = '';
 if (empty($recursosEducacionais)) {
   $tableBody .= "
     <tr>
-      <td colspan='6' class='text-center'>Nenhum recurso educacional cadastrado no sistema.</td>
+      <td colspan='7' class='text-center'>Nenhum recurso educacional cadastrado no sistema.</td>
     </tr>
   ";
 } else {

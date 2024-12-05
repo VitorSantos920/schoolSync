@@ -103,11 +103,15 @@ div:where(.swal2-container) input:where(.swal2-input) {
   }
 }
 
-.tabelaCabecalho {
+.table .tabelaCabecalho {
   text-align: center;
   font-size: var(--fontSize-md);
   font-family: var(--fontFamily-poppins);
   font-weight: var(--fontWeight-bold);
+
+  th {
+    vertical-align: middle;
+  }
 }
 
 .tabelaCorpo {
@@ -121,6 +125,10 @@ div:where(.swal2-container) input:where(.swal2-input) {
     overflow: hidden;
     max-width: 265px;
   }
+}
+
+tfoot td {
+  text-align: right;
 }
 
 .dropdown #btnPrincipal {

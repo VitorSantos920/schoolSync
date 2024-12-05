@@ -18,14 +18,16 @@ $dadosAdministrador = DB::queryFirstRow("SELECT * FROM usuario us INNER JOIN adm
   <title>Página Inicial - Administrador | SchoolSync</title>
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/pages__pagina-inicial-administrador.css">
+  <link rel="shortcut icon" href="../assets/img/logo_transparente.png" type="image/x-icon">
+
 </head>
 
 <body>
   <div class="wrapper">
     <div class="content-wrapper">
       <?php
-      include_once "../components/sidebarAdmin.php";
-      include_once "../components/Header.php";
+      include_once "../components/sidebar.php";
+      include_once "../components/header.php";
       ?>
 
       <main>

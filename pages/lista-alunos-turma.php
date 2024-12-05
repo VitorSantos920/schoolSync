@@ -50,6 +50,7 @@ $classe = DB::queryFirstRow('SELECT * FROM classe WHERE id = %i', $classe_id);
                         <button class="btn secao-atual" id="botao-lista-alunos" data-secao="lista-alunos" onclick="trocarSecao(this.getAttribute('data-secao'), this.id)">Lista de Alunos</button>
                         <button class="btn" id="botao-notas" data-secao="notas" onclick="trocarSecao(this.getAttribute('data-secao'), this.id)">Notas de Avaliações</button>
                         <button class="btn" id="botao-avaliacoes" data-secao="avaliacoes" onclick="trocarSecao(this.getAttribute('data-secao'), this.id)">Avaliações</button>
+                        <button class="btn" id="botao-gerenciamento-aulas" data-secao="gerenciamento-aulas" onclick="trocarSecao(this.getAttribute('data-secao'), this.id)">Gerenciamento de Aulas</button>
                     </div>
 
                     <div class="dropdown">
@@ -94,7 +95,6 @@ $classe = DB::queryFirstRow('SELECT * FROM classe WHERE id = %i', $classe_id);
                 </section>
 
                 <section id="notas">
-
                 </section>
 
                 <section id="avaliacoes">
@@ -114,6 +114,62 @@ $classe = DB::queryFirstRow('SELECT * FROM classe WHERE id = %i', $classe_id);
                     </table>
                     <?php
 
+                    ?>
+                </section>
+
+                <section id="gerenciamento-aulas">
+                    <div class="d-flex gap-4">
+                        <fieldset class="flex-grow-1">
+                            <label for="gerenciamento-aula-disciplina" class="form-label">Disciplina</label>
+                            <select class="form-control form-select" name="gerenciamento-aula-disciplina" id="gerenciamento-aula-disciplina">
+                                <option value="-1" disabled selected>Selecione uma disciplina</option>
+                                <?php
+                                $materias = DB::query('SELECT cm.materia_id, m.nome FROM classe_materia cm INNER JOIN materia m ON cm.materia_id = m.id WHERE classe_id = %i', $classe_id);
+                                foreach ($materias as $materia) {
+                                    echo "<option value='{$materia['materia_id']}' selected>{$materia['nome']}</option>";
+                                }
+                                ?>
+                            </select>
+                        </fieldset>
+
+                        <fieldset class="flex-grow-1">
+                            <label for="gerenciamento-aula-data" class="form-label">Data</label>
+                            <input type="date" value="2024-05-03" name="gerenciamento-aula-data" id="gerenciamento-aula-data" class="form-control">
+                        </fieldset>
+                    </div>
+
+                    <table class="table">
+                        <thead class="tabelaCabecalho">
+                            <th>ID do Aluno</th>
+                            <th>Nome do Aluno</th>
+                            <th>Presente / Faltou<br>(Selecionado: Presente)</th>
+                            <th>Motivo (Opcional)</th>
+                        </thead>
+
+                        <tbody class="tabelaCorpo">
+                            <?php
+                            $alunos = DB::query('SELECT *, al.id as "aluno_id" FROM aluno al INNER JOIN usuario u ON al.usuario_id = u.id WHERE classe_id = %i', $classe_id);
+                            foreach ($alunos as $aluno) {
+                                echo "
+                                <tr class='linha-aluno' data-aluno-id={$aluno['aluno_id']}>
+                                    <td>{$aluno['aluno_id']}</td>
+                                    <td>{$aluno['nome']}</td>
+                                    <td><input type='checkbox' class='presenca-aluno' checked></td>
+                                    <td><input type='text' class='form-control ipt-motivo' placeholder='Motivo da falta (Opcional)'></td>
+                                </tr>
+                                ";
+                            }
+                            ?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">
+                                    <button class="btn btn-success" onclick="registrarPresenca()">Registrar Presença</button>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <?php
                     ?>
                 </section>
 

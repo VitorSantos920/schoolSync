@@ -1,6 +1,6 @@
 $(document).ready(function () {
   carregaTabelaListaAlunos();
-  $(':is(#notas, #avaliacoes').hide();
+  $(':is(#notas, #avaliacoes, #gerenciamento-aulas').hide();
 });
 
 let secaoAtual = 'lista-alunos';
@@ -9,7 +9,7 @@ function trocarSecao(secaoId, botaoId) {
 
   secaoAtual = secaoId;
 
-  $(':is(#lista-alunos, #notas, #avaliacoes').hide(500);
+  $(':is(#lista-alunos, #notas, #avaliacoes, #gerenciamento-aulas').hide(500);
   $('.btn-secoes button').removeClass('secao-atual');
   $(`#${botaoId}`).addClass('secao-atual');
 
@@ -24,6 +24,9 @@ function trocarSecao(secaoId, botaoId) {
       break;
     case 'avaliacoes':
       carregarTabelaAvaliacoes();
+      break;
+    case 'gerenciamento-aulas':
+      carregarSecaoGerenciamentoAulas();
       break;
   }
 }
@@ -792,4 +795,90 @@ function excluirAvaliacao(idAvaliacao) {
         });
       }
     });
+}
+
+function carregarSecaoGerenciamentoAulas() {
+  // let classeId = $('#classe-id').val();
+  // $.ajax({
+  //   type: 'POST',
+  //   url: '../backend/carregar-secao-gerenciamento-aulas.php',
+  //   data: {
+  //     classeId,
+  //   },
+  //   success: function (response) {
+  //     response = JSON.parse(response);
+  //     switch (response.status) {
+  //       case -1:
+  //         console.log(response);
+  //         break;
+  //       case 1:
+  //         $('section#gerenciamento-aulas').html(response.botoes);
+  //         break;
+  //       case 0:
+  //         $('#gerenciamento-aulas').html(`<p>${response.message}</p>`);
+  //     }
+  //   },
+  // });
+}
+
+function registrarPresenca() {
+  let dadosFaltas = [];
+  let dadosRegistrarPresenca = {
+    disciplina: $('#gerenciamento-aula-disciplina').val(),
+    dataFalta: $('#gerenciamento-aula-data').val(),
+  };
+
+  if (verificaInputsVazios(dadosRegistrarPresenca)) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Opa, algo deu errado!',
+      text: 'Para realizar o registro de presença, é necessário fornecer a disciplina e a data.',
+    });
+
+    return;
+  }
+
+  $('.linha-aluno').each((index, linha) => {
+    const alunoId = $(linha).data('aluno-id');
+    const presente = $(linha).find('.presenca-aluno').is(':checked');
+    const motivo = $(linha).find('.ipt-motivo').val();
+
+    if (!presente) {
+      dadosFaltas.push({
+        alunoId,
+        materiaId: dadosRegistrarPresenca.disciplina,
+        dataFalta: dadosRegistrarPresenca.dataFalta,
+        motivo,
+      });
+    }
+  });
+
+  $.ajax({
+    type: 'POST',
+    url: '../backend/aluno/salvar-faltas-aula.php',
+    data: {
+      faltas: JSON.stringify(dadosFaltas),
+    },
+    success: function (response) {
+      response = JSON.parse(response);
+
+      switch (response.status) {
+        case 1:
+          Swal.fire({
+            icon: 'success',
+            title: 'Faltas registradas!',
+            text: response.swalMessage,
+          });
+          break;
+        case -1:
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro Interno!',
+            text: response.swalMessage,
+          });
+          break;
+      }
+    },
+    error: (error) => console.log(error),
+  });
 }

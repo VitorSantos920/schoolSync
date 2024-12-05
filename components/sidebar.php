@@ -108,6 +108,29 @@
                             }
                         }
                     }
+
+                    if ($_SESSION['categoria'] == "Administrador") {
+                        echo "
+                            <li>
+                                <a href='./pagina-inicial-administrador.php'>
+                                    <i class='fa-solid fa-house-chimney'></i>
+                                    <span>Página Inicial</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href='./gerenciar-contas.php'>
+                                    <i class='fa-solid fa-users'></i>
+                                    <span>Gerenciar Contas</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href='./recursos-educacionais.php'>
+                                    <i class='fa-solid fa-book'></i>
+                                    <span>Recursos Educacionais</span>
+                                </a>
+                            </li>
+                        ";
+                    }
                     ?>
 
 

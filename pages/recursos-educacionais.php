@@ -16,7 +16,10 @@ if ($_SESSION['categoria'] != "Administrador") {
   <meta name="description" content="Página inicial do professor ao realizar o login com sucesso no sistema SchoolSync">
   <meta name="keywords" content="docente, professor, tela inicial">
   <title>Recursos Educacionais - Administrador | SchoolSync</title>
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/sweetalert2.min.css">
+  <link rel="shortcut icon" href="../assets/img/logo_transparente.png" type="image/x-icon">
+
 
   <style>
     table.table th {
@@ -29,15 +32,14 @@ if ($_SESSION['categoria'] != "Administrador") {
   <div class="wrapper">
     <div class="content-wrapper">
       <?php
-      include_once "../components/header.php";
       include_once "../components/sidebar.php";
+      include_once "../components/header.php";
       ?>
 
       <main>
-        <button class="btn btn-success" onclick="modalCriacaoMaterialApoio()">Criar Material de Apoio</button>
         <div class="table-responsive">
           <table class="table table-borderless align-middle caption-top" id="table-recursos-educacionais">
-            <caption>Lista de Recursos Educacionais</caption>
+            <caption>Lista de Recursos Educacionais Cadastrados no SchoolSync</caption>
             <thead>
               <tr>
                 <th>ID</th>
